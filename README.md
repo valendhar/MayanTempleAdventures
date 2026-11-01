@@ -38,3 +38,9 @@ Live addresses: `https://<your-username>.github.io/sun-temple/` (English) and `h
 | `assets/img/full`, `assets/img/thumb` | Web-sized images, made automatically |
 | `_builder/` | The page source and the builder script used to regenerate the site |
 | `_builder/IMAGE_LIST.md` | Which image goes where, by file name |
+
+## License
+
+Copyright © 2026 Mike Stevanovic. All rights reserved.
+
+This project is proprietary and is not open source. Its art, characters, story, world, designs, text and code may not be copied, adapted, redistributed, used commercially or used to train AI without written permission. See [LICENSE](LICENSE) for the full terms.
