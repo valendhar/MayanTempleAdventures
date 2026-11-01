@@ -258,7 +258,8 @@ p { margin: 0 0 1em; }
 .pillars .pillar { grid-column: span 2; }
 .pillars .pillar:nth-child(4) { grid-column: 2 / span 2; }
 .pillars .pillar:nth-child(5) { grid-column: 4 / span 2; }
-.sunlit .pillar .fig img { aspect-ratio: auto; object-fit: fill; width: 100%; border-radius: 16px; }
+.sunlit .pillar .fig img { aspect-ratio: 16 / 9; object-fit: cover; width: 100%; border-radius: 16px; }
+.sunlit .pillar .fig.focus-35 img { object-position: center 35%; }
 .sunlit .pillar .ph-box { border-radius: 16px; }
 .pillar h3 { color: var(--ink); font-size: 1.6rem; margin: 18px 0 6px; }
 .pillar p { color: var(--ink-soft); font-size: .98rem; margin: 0; }

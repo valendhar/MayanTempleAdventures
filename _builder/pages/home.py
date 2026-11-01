@@ -32,8 +32,11 @@ def body(ctx):
          t("K'in, the last spirit of the temple, teaches, warns, foreshadows and remembers.",
            "K'in, der letzte Geist des Tempels, lehrt, warnt, deutet an und erinnert sich.")),
     ]
+    # All pillar pictures show as 16:9. HOME-NEVERALONE is 4:3, so it is cropped a little,
+    # framed to keep both Kaya's head and boots and K'in's light in view.
+    focus = {"HOME-NEVERALONE": "focus-35"}
     pillar_html = "".join(
-        f'<li class="pillar"><div class="arch">{ctx.figure(i, alt=n, link=False)}</div><h3>{n}</h3><p>{d}</p></li>'
+        f'<li class="pillar">{ctx.figure(i, alt=n, link=False, cls=focus.get(i.upper(), ""))}<h3>{n}</h3><p>{d}</p></li>'
         for i, n, d in pillars)
 
     cast = [
