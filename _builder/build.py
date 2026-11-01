@@ -12,6 +12,7 @@ import importlib.util
 import os
 import shutil
 import sys
+import zlib
 from pathlib import Path
 
 from PIL import Image
@@ -207,7 +208,7 @@ def nav_html(ctx):
         cur = ' aria-current="page"' if path == current else ""
         if not kids:
             return f'<li class="nav-item{active}"><a href="{ctx.url(path)}"{cur}>{esc(label)}</a></li>'
-        sub_id = f"sub-{level}-{idx}-{abs(hash(label)) % 99999}"
+        sub_id = f"sub-{level}-{idx}-{zlib.crc32(label.encode()) % 99999}"
         sub = "".join(item(k, level + 1, i) for i, k in enumerate(kids))
         return (
             f'<li class="nav-item has-sub level-{level}{active}">'
@@ -309,11 +310,11 @@ def page_shell(ctx, page, trail):
 <link rel="alternate" hreflang="de" href="{ctx.lang_url('de')}">
 {og_tag}
 <meta name="twitter:card" content="summary_large_image">
-<meta name="theme-color" content="#070B10">
+<meta name="theme-color" content="#0D2621">
 <link rel="icon" href="{ctx.asset('favicon.svg')}" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,400..800&family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="{ctx.asset('assets/css/site.css')}">
 </head>
 <body class="page-{ctx.path.replace('/', '-').replace('.html', '')}">

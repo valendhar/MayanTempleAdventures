@@ -62,6 +62,17 @@
   menuBtn && menuBtn.addEventListener("click", () => toggleMenu(menuBtn.getAttribute("aria-expanded") !== "true"));
   desktop.addEventListener("change", () => { closeAll(); if (menuBtn) toggleMenu(false); });
 
+  // ---------------- home: the climb lights up from Floor 0 to the summit, once
+  const ascent = document.querySelector(".ascent");
+  const calm = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (ascent && "IntersectionObserver" in window && !calm) {
+    ascent.classList.add("will-rise");
+    const io = new IntersectionObserver(entries => {
+      if (entries.some(e => e.isIntersecting)) { ascent.classList.add("is-lit"); io.disconnect(); }
+    }, { threshold: 0.25 });
+    io.observe(ascent);
+  }
+
   // ---------------- lightbox
   const lb = document.querySelector(".lightbox");
   if (!lb) return;
