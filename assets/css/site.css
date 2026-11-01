@@ -199,7 +199,16 @@ p { margin: 0 0 1em; }
 /* ---------- home: hero ---------- */
 .hero { position: relative; background: var(--canopy-deep); }
 .hero-art { position: relative; max-width: 1920px; margin: 0 auto; }
-.hero-art img { width: 100%; height: auto; max-height: calc(100svh - var(--header-h)); object-fit: cover; object-position: center 20%; }
+/* Show the whole key art (its logo is painted in): never crop it. On wide, short screens the
+   frame narrows so the full picture still fits under the header, and its sides fade out. */
+.hero-art { max-width: min(1920px, calc((100svh - var(--header-h)) * 1672 / 941)); }
+.hero-art img { width: 100%; height: auto; }
+@media (min-aspect-ratio: 17/9), (min-width: 1921px) {
+  .hero-art img {
+    -webkit-mask-image: linear-gradient(90deg, transparent, #000 7%, #000 93%, transparent);
+    mask-image: linear-gradient(90deg, transparent, #000 7%, #000 93%, transparent);
+  }
+}
 .hero-art::after {
   content: ""; position: absolute; inset: auto 0 0 0; height: 38%; pointer-events: none;
   background: linear-gradient(180deg, rgba(7, 22, 18, 0), rgba(7, 22, 18, .75) 60%, var(--canopy-deep));
@@ -241,12 +250,16 @@ p { margin: 0 0 1em; }
 .sunlit .section { padding-top: calc(96px + var(--s) * 2); }
 .sunlit h2 { color: var(--ink); text-align: center; }
 .sunlit a { color: #8A4F00; }
-.pillars { list-style: none; padding: 0; margin: 48px 0 0; display: grid; grid-template-columns: repeat(5, 1fr); gap: 28px; }
-/* each image sits in a stepped temple doorway */
-.arch {
-  clip-path: polygon(0 100%, 0 22%, 14% 22%, 14% 11%, 28% 11%, 28% 0, 72% 0, 72% 11%, 86% 11%, 86% 22%, 100% 22%, 100% 100%);
+/* three on top, two centred below; every picture shown whole, at its own shape */
+.pillars {
+  list-style: none; padding: 0; margin: 48px 0 0; display: grid;
+  grid-template-columns: repeat(6, 1fr); gap: 48px 32px; align-items: start;
 }
-.arch .fig img, .arch .ph-box { aspect-ratio: 4 / 5; object-fit: cover; width: 100%; border-radius: 0; }
+.pillars .pillar { grid-column: span 2; }
+.pillars .pillar:nth-child(4) { grid-column: 2 / span 2; }
+.pillars .pillar:nth-child(5) { grid-column: 4 / span 2; }
+.sunlit .pillar .fig img { aspect-ratio: auto; object-fit: fill; width: 100%; border-radius: 16px; }
+.sunlit .pillar .ph-box { border-radius: 16px; }
 .pillar h3 { color: var(--ink); font-size: 1.6rem; margin: 18px 0 6px; }
 .pillar p { color: var(--ink-soft); font-size: .98rem; margin: 0; }
 
@@ -489,7 +502,9 @@ p { margin: 0 0 1em; }
 @media (max-width: 1000px) {
   .hero-panel { grid-template-columns: 1fr; gap: 36px; margin-top: -3rem; padding-bottom: 64px; }
   .page-index .intro, .split, .ascent-head { grid-template-columns: 1fr; gap: 32px; }
-  .pillars { grid-template-columns: repeat(3, 1fr); }
+  .pillars { grid-template-columns: 1fr 1fr; }
+  .pillars .pillar, .pillars .pillar:nth-child(4) { grid-column: auto; }
+  .pillars .pillar:nth-child(5) { grid-column: 1 / -1; justify-self: center; width: calc(50% - 16px); }
   .step { width: calc(100% - var(--i) * 4%); }
 }
 @media (max-width: 640px) {
@@ -497,8 +512,9 @@ p { margin: 0 0 1em; }
   .hero-panel { margin-top: 0; padding-top: 8px; }
   .hero .facts { grid-template-columns: 1fr; padding: 4px 20px; }
   .hero .facts div:nth-last-child(2) { border-bottom: 1px solid var(--line); }
-  .pillars { grid-template-columns: 1fr 1fr; gap: 28px 16px; }
-  .pillar h3 { font-size: 1.3rem; }
+  .pillars { grid-template-columns: 1fr; gap: 36px; }
+  .pillars .pillar:nth-child(5) { width: auto; justify-self: stretch; }
+  .pillar h3 { font-size: 1.4rem; }
   .cast { grid-template-columns: 1fr; }
   .ascent { margin-top: 48px; }
   .step { width: 100%; }
