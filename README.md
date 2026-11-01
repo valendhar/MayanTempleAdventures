@@ -28,6 +28,15 @@ Live addresses: `https://<your-username>.github.io/sun-temple/` (English) and `h
 2. In GitHub Desktop: write a short summary, **Commit to main**, then **Push origin**.
 3. The live site updates within a minute or two.
 
+## Working on the site locally
+
+Edit the page sources in `_builder/` (never the generated `.html` files or `assets/css`, `assets/js`: the builder overwrites them). To see changes as you work:
+
+1. Once: `pip install -r _builder/requirements.txt`
+2. Run `python _builder/dev.py` and open http://127.0.0.1:8765/
+
+Every time you save a file in `_builder/`, the site rebuilds in under a second and open pages reload themselves. If a change breaks the build, the error shows in the terminal and in a red banner on the page until you fix it. Commit the rebuilt files together with your source changes.
+
 ## Folder guide
 
 | Folder | What is in it |
