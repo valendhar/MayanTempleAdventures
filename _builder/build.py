@@ -275,12 +275,20 @@ def crumbs(ctx, trail):
     return f'<p class="crumbs">{" / ".join(parts)}</p>'
 
 
+def first_uploaded(ids):
+    """A page's banner/og may be one image id or a list of candidates; use the first one uploaded.
+    A single id is returned as-is even when missing, so existing pages behave exactly as before."""
+    if isinstance(ids, (list, tuple)):
+        return next((i for i in ids if i.upper() in IMAGES), None)
+    return ids
+
+
 def page_shell(ctx, page, trail):
     L = ctx.lang
     title = tr(page["title"], L)
     full_title = SITE_TITLE if ctx.path == "index.html" else f"{title} · {SITE_TITLE}"
     desc = tr(page.get("description", UI["tagline"]), L)
-    og = page.get("og", "A-01")
+    og = first_uploaded(page.get("og", "A-01")) or ""
     og_tag = (f'<meta property="og:image" content="{ctx.img_src(og.upper(), "full")}">'
               if og.upper() in IMAGES else "")
     body = page["body"](ctx)
@@ -288,7 +296,7 @@ def page_shell(ctx, page, trail):
     if not page.get("custom_header"):
         kicker = f'<p class="kicker">{esc(tr(page["kicker"], L))}</p>' if page.get("kicker") else ""
         lede = f'<p class="lede">{tr(page["lede"], L)}</p>' if page.get("lede") else ""
-        bgimg = page.get("banner")
+        bgimg = first_uploaded(page.get("banner"))
         if page.get("banner_full") and bgimg and ctx.has(bgimg):
             # whole picture, never cropped; the heading sits over its lower fade
             m = IMAGES[bgimg.upper()]

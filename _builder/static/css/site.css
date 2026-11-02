@@ -360,7 +360,7 @@ p { margin: 0 0 1em; }
 .ph-box {
   display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px;
   aspect-ratio: 16/9; border-radius: var(--radius); border: 1px dashed rgba(239,230,206,.25);
-  background: repeating-linear-gradient(135deg, var(--stone) 0 14px, #18273A 14px 28px);
+  background: repeating-linear-gradient(135deg, var(--stone) 0 14px, #17423A 14px 28px);
 }
 .ph-id { font: 700 1rem var(--display); color: var(--gold); letter-spacing: .06em; }
 .ph-note { font-size: .75rem; color: var(--muted); text-transform: uppercase; letter-spacing: .16em; }
@@ -559,3 +559,38 @@ p { margin: 0 0 1em; }
 @media (max-width: 640px) {
   .cards-2, .cards-3, .cards-4, .cards-5 { grid-template-columns: 1fr; gap: 14px; }
 }
+
+/* ---------- climb pages: a floor's rooms as a numbered route ---------- */
+.drawing-wide { margin-top: 28px; }
+.route { list-style: none; padding: 0; margin: 44px 0 0; position: relative; }
+/* the path between the steps, brightening toward the exit */
+.route::before {
+  content: ""; position: absolute; left: 27px; top: 28px; bottom: 28px; width: 2px;
+  background: linear-gradient(180deg, rgba(244, 231, 200, .18), var(--gold));
+}
+.station {
+  position: relative; display: grid; grid-template-columns: 56px minmax(0, 5fr) minmax(0, 6fr);
+  gap: 0 28px; align-items: start; padding-bottom: 52px;
+}
+.station:last-child { padding-bottom: 0; }
+.station-num {
+  position: relative; z-index: 1; width: 56px; height: 56px; display: grid; place-items: center; border-radius: 6px;
+  background: var(--limestone); color: var(--ink); box-shadow: 0 4px 0 #B6A57B;
+  font: 800 1.7rem/1 var(--display); font-stretch: 80%;
+}
+.station:last-child .station-num { background: var(--gold); box-shadow: 0 4px 0 var(--gold-deep), 0 0 36px rgba(255, 184, 48, .4); }
+.station-media .fig img, .station-media .ph-box { aspect-ratio: 16 / 9; object-fit: cover; width: 100%; border-radius: 14px; }
+.station-text h3 { margin: 4px 0 10px; font-size: 1.6rem; }
+.station-text p { margin-bottom: .7em; }
+.tags { display: flex; flex-wrap: wrap; gap: 6px; margin: 0 0 12px; }
+.tags span { font-size: .85rem; font-weight: 600; color: var(--jade); padding: 3px 11px; border-radius: 999px; box-shadow: inset 0 0 0 1px rgba(69, 224, 184, .45); }
+.station-note { font: italic 400 1.08rem/1.45 var(--story); color: var(--limestone-dim); }
+@media (max-width: 760px) {
+  .route::before { left: 21px; }
+  .station { grid-template-columns: 44px minmax(0, 1fr); gap: 14px 16px; padding-bottom: 40px; }
+  .station-num { width: 44px; height: 44px; font-size: 1.35rem; }
+  .station-media, .station-text { grid-column: 2; }
+  .station-text h3 { margin-top: 0; font-size: 1.4rem; }
+}
+.gallery.gallery-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+@media (max-width: 640px) { .gallery.gallery-3 { grid-template-columns: 1fr; } }
