@@ -1,6 +1,6 @@
 # Missing images
 
-**200 images still show as placeholders.** Each ID is listed once, under the first page that uses it.
+**188 images still show as placeholders.** Each ID is listed once, under the first page that uses it.
 
 Save an image as `_builder/images/originals/<ID>.png` (or `.jpg` / `.webp`), using the ID exactly as shown. The next build (or the running dev server) turns the placeholder into the picture everywhere that ID is used.
 
@@ -19,10 +19,6 @@ Regenerate this list with `python _builder/missing_images.py`.
 ## The Climb (`climb/index.html`)
 
 `D-02` `T2A-SCENE` `T3A-SCENE` `T5A-SCENE` `T6A-SCENE`
-
-## The Threshold Hub (`climb/threshold.html`)
-
-`HUB01` `HUB02` `HUB12` `HUB03`
 
 ## Tier I · Flooded Foundations (`climb/tier-1.html`)
 
@@ -51,10 +47,6 @@ Regenerate this list with `python _builder/missing_images.py`.
 ## The Sky Altar (`climb/sky-altar.html`)
 
 `E-01` `CX-SKY` `E-02` `SKY-01` `SKY-02` `SKY-03`
-
-## Shared Rooms (`climb/shared-rooms.html`)
-
-`C-02` `CX-PC01` `C-01` `C-04` `CX-SR01` `C-03` `PC01` `SR01`
 
 ## Modular Kits (`art/kits.html`)
 
