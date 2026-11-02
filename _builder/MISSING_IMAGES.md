@@ -1,6 +1,6 @@
 # Missing images
 
-**121 images still show as placeholders:** 102 scenes, maps and sheets, then 19 codex pages.
+**103 images still show as placeholders:** 84 scenes, maps and sheets, then 19 codex pages.
 
 Save an image as `_builder/images/originals/<ID>.png` (or `.jpg` / `.webp`), using the ID exactly as shown. The next build (or the running dev server) turns the placeholder into the picture everywhere that ID is used.
 
@@ -8,7 +8,7 @@ Optional extras such as the turnarounds (`TA-KAYA`, `TA-OXLAHUN`, …), the name
 
 Regenerate this list with `python _builder/missing_images.py`.
 
-## Scenes, maps and sheets (102)
+## Scenes, maps and sheets (84)
 
 ### Characters (`characters/index.html`)
 
@@ -24,7 +24,7 @@ Regenerate this list with `python _builder/missing_images.py`.
 
 ### Tier IV · Elemental Sanctums (`climb/tier-4.html`)
 
-`T4A-SCENE` `T4A-MAP` `T4B-MAP` `T4C-SCENE` `T4C-MAP` `T4D-SCENE` `T4D-MAP` `T4E-SCENE` `T4E-MAP` `T4F-SCENE` `T4F-MAP` `T4G-SCENE` `T4G-MAP` `T4H-SCENE` `T4H-MAP` `T4-01` `T4-02` `T4-03` `T4-04` `T4-05` `T4-06` `T4-07`
+`T4G-SCENE` `T4G-MAP` `T4H-SCENE` `T4H-MAP`
 
 ### Tier V · Illusion Depths (`climb/tier-5.html`)
 
