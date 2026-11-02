@@ -646,11 +646,11 @@ def pyramid(ctx):
       <p class="big">{t("One pyramid, climbed from the inside: Floor 0, then seventeen floors in six tiers, then the open summit.",
                         "Eine Pyramide, von innen erklommen: Ebene 0, dann siebzehn Ebenen in sechs Stufen, dann der offene Gipfel.")}</p>
       <p>{t("Every floor runs the same way. Room A, then Room B, which holds the floor's Key Orb, then the Portal Chamber, where Kaya "
-            "sockets the orb, K'in speaks one line, a fragment of the mural lights, and she ascends. Every room has two arrival pads "
-            "for co-op and exactly one golden idol.",
+            "sockets the orb, K'in speaks one line, a fragment of the mural lights, and she ascends. Every room hides "
+            "exactly one golden idol.",
             "Jede Ebene läuft gleich ab. Raum A, dann Raum B mit der Schlüsselkugel der Ebene, dann die Portalkammer: Dort setzt Kaya "
-            "die Kugel ein, K'in spricht einen Satz, ein Fragment des Wandbilds leuchtet auf, und sie steigt weiter. Jeder Raum hat "
-            "zwei Ankunftsfelder für den Koop-Modus und genau ein goldenes Idol.")}</p>
+            "die Kugel ein, K'in spricht einen Satz, ein Fragment des Wandbilds leuchtet auf, und sie steigt weiter. In jedem Raum "
+            "ist genau ein goldenes Idol versteckt.")}</p>
       <p>{t("Puzzles scale with the climb: one mechanic per room in Tiers I and II, combined mechanics in III and IV, and layered "
             "perception puzzles under pressure in V and VI.",
             "Die Rätsel wachsen mit dem Aufstieg: eine Mechanik pro Raum in den Stufen I und II, kombinierte Mechaniken in III und IV "
@@ -659,7 +659,7 @@ def pyramid(ctx):
     {facts([(t("Floors", "Ebenen"), t("Floor 0, 17 floors in six tiers, the summit", "Ebene 0, 17 Ebenen in sechs Stufen, der Gipfel")),
             (t("Per floor", "Pro Ebene"), t("Room A, Room B with the Key Orb, Portal Chamber", "Raum A, Raum B mit Schlüsselkugel, Portalkammer")),
             (t("Bosses", "Bosse"), t("Gearwarden, Jaguar Priest, Priest's Lieutenant, Hollow High Priest", "Zahnradwächter, Jaguarpriester, Leutnant des Priesters, Hohler Hohepriester")),
-            (t("Co-op", "Koop"), t("Two arrival pads in every room", "Zwei Ankunftsfelder in jedem Raum"))])}
+            (t("Players", "Spieler"), t("Single Player", "Einzelspieler"))])}
   </div>
 </section>
 

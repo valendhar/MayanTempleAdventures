@@ -33,11 +33,10 @@ def overview(ctx):
     facts = [
         (t("Genre", "Genre"), t("Third-person action-adventure platformer with a roguelite climb",
                                 "Third-Person-Action-Adventure-Plattformer mit Roguelite-Aufstieg")),
-        (t("Planned engine", "Geplante Engine"), "Unreal Engine 5"),
+        (t("Planned engine", "Geplante Engine"), t("Unreal Engine 5 and Vertical Third Game Framework", "Unreal Engine 5 und Vertical Third Game Framework")),
         (t("Inspirations", "Vorbilder"), t("Ratchet &amp; Clank and Jak &amp; Daxter for tone; Hades for the return-and-grow loop",
                                           "Ratchet &amp; Clank und Jak &amp; Daxter für den Stil; Hades für den Kreislauf aus Rückkehr und Wachstum")),
-        (t("Players", "Spieler"), t("Solo first. Every room has two arrival pads and wide corridors for 2-player co-op",
-                                    "Zuerst solo. Jeder Raum hat zwei Ankunftsplattformen und breite Gänge für Koop zu zweit")),
+        (t("Players", "Spieler"), t("Single Player", "Einzelspieler")),
         (t("Campaign", "Kampagne"), t("Floor 0, seventeen floors in six tiers, and the Sky Altar summit",
                                       "Ebene 0, siebzehn Ebenen in sechs Stufen und der Himmelsaltar auf dem Gipfel")),
         (t("Setting", "Schauplatz"), t("The interior of one living stepped pyramid, plus the jungle forecourt and the open summit",

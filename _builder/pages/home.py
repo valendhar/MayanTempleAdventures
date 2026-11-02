@@ -7,10 +7,10 @@ def body(ctx):
 
     facts = [
         (t("Genre", "Genre"), t("Third-person action-adventure platformer", "Third-Person-Action-Adventure-Plattformer")),
-        (t("Planned engine", "Geplante Engine"), "Unreal Engine 5"),
+        (t("Planned engine", "Geplante Engine"), t("Unreal Engine 5 and Vertical Third Game Framework", "Unreal Engine 5 und Vertical Third Game Framework")),
         (t("Tone", "Stil"), "Ratchet &amp; Clank, Jak &amp; Daxter"),
         (t("Structure", "Aufbau"), t("Floor 0, six tiers, then the summit", "Ebene 0, sechs Stufen, dann der Gipfel")),
-        (t("Players", "Spieler"), t("Solo, with 2-player co-op rooms", "Solo, mit Koop-Räumen für 2 Spieler")),
+        (t("Players", "Spieler"), t("Single Player", "Einzelspieler")),
         (t("Stage", "Stand"), t("World, story and art direction in design", "Welt, Geschichte und Art Direction in Ausarbeitung")),
     ]
     fact_html = "".join(f"<div><dt>{k}</dt><dd>{v}</dd></div>" for k, v in facts)
