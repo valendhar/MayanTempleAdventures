@@ -1,6 +1,6 @@
 # Missing images
 
-**188 images still show as placeholders.** Each ID is listed once, under the first page that uses it.
+**170 images still show as placeholders.** Each ID is listed once, under the first page that uses it.
 
 Save an image as `_builder/images/originals/<ID>.png` (or `.jpg` / `.webp`), using the ID exactly as shown. The next build (or the running dev server) turns the placeholder into the picture everywhere that ID is used.
 
@@ -18,11 +18,7 @@ Regenerate this list with `python _builder/missing_images.py`.
 
 ## The Climb (`climb/index.html`)
 
-`D-02` `T2A-SCENE` `T3A-SCENE` `T5A-SCENE` `T6A-SCENE`
-
-## Tier I · Flooded Foundations (`climb/tier-1.html`)
-
-`CX-T1A` `D-01` `D-04` `CX-T1B` `D-03` `D-06` `CX-T1C` `D-05` `D-08` `CX-T1D` `D-07` `T1-01` `T1-02` `T1-03` `T1-04` `T1-05` `T1-06`
+`T2A-SCENE` `T3A-SCENE` `T5A-SCENE` `T6A-SCENE`
 
 ## Tier II · Trap Galleries (`climb/tier-2.html`)
 
