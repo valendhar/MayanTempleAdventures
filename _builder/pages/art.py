@@ -201,7 +201,7 @@ def set_pieces(ctx):
     climb = util.module_from_spec(spec)
     spec.loader.exec_module(climb)
     u, t = ctx.url, ctx.t
-    groups = [("floor-0", t("Floor 0", "Ebene 0"), "climb/floor-0.html",
+    groups = [("floor-0", "The Shell", "climb/floor-0.html",
                [("F0-01", ("The Sun Pillar", "Die Sonnensäule")),
                 ("F0-02", ("Stepping stones and spawn platform", "Trittsteine und Startplattform")),
                 ("F0-03", ("The sword shrine", "Der Schwertschrein"))])]

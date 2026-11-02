@@ -164,9 +164,9 @@ def short_story(ctx):
     u, t = ctx.url, ctx.t
     chapters = [
         ("1", t("The Overlooked Find", "Der übersehene Fund"),
-         t("Kaya arrives at the foot of the pyramid, wakes K'in, and dies on Floor 0 within the hour. When she wakes at the Threshold, "
+         t("Kaya arrives at the foot of the pyramid, wakes K'in, and dies in the Shell within the hour. When she wakes at the Threshold, "
            "something on the mural is new.",
-           "Kaya erreicht den Fuß der Pyramide, weckt K'in und stirbt keine Stunde später auf Ebene 0. Als sie an der Schwelle erwacht, "
+           "Kaya erreicht den Fuß der Pyramide, weckt K'in und stirbt keine Stunde später in The Shell. Als sie an der Schwelle erwacht, "
            "ist etwas auf dem Wandbild neu.")),
         ("2", t("Reading Between the Layers", "Zwischen den Schichten lesen"),
          t("She reads the wall like a crime scene: a fresh carving, a panel cut in newer stone, tally marks in a codex margin. "

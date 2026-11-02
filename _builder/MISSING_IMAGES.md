@@ -1,6 +1,6 @@
 # Missing images
 
-**40 images still show as placeholders:** 21 scenes, maps and sheets, then 19 codex pages.
+**35 images still show as placeholders:** 16 scenes, maps and sheets, then 19 codex pages.
 
 Save an image as `_builder/images/originals/<ID>.png` (or `.jpg` / `.webp`), using the ID exactly as shown. The next build (or the running dev server) turns the placeholder into the picture everywhere that ID is used.
 
@@ -8,7 +8,7 @@ Optional extras such as the turnarounds (`TA-KAYA`, `TA-OXLAHUN`, …), the name
 
 Regenerate this list with `python _builder/missing_images.py`.
 
-## Scenes, maps and sheets (21)
+## Scenes, maps and sheets (16)
 
 ### The Climb (`climb/index.html`)
 
@@ -21,10 +21,6 @@ Regenerate this list with `python _builder/missing_images.py`.
 ### Tier VI · The Ascension (`climb/tier-6.html`)
 
 `T6A-MAP` `T6B-SCENE` `T6B-MAP` `T6C-SCENE` `T6C-MAP` `T6D-SCENE` `T6D-MAP`
-
-### The Sky Altar (`climb/sky-altar.html`)
-
-`E-01` `E-02` `SKY-01` `SKY-02` `SKY-03`
 
 ## Codex pages (19), last
 

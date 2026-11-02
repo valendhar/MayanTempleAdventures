@@ -312,8 +312,8 @@ C["characters/guardians/ah-kuk.html"] = dict(
 
 C["characters/guardians/ix-nicte.html"] = dict(
     name="Ix Nicte", role=("Keeper of the First Step", "Hüterin der ersten Stufe"), sheet="CS-IXNICTE", banner="B-03", group=GUARD,
-    lede=("A slight guardian standing ankle-deep in Floor 0's flooded atrium, her bound hands closed around a single dried plumeria blossom.",
-          "Eine zierliche Wächterin, die knöcheltief im überfluteten Atrium von Ebene 0 steht, die gebundenen Hände um eine einzige getrocknete Frangipaniblüte geschlossen."),
+    lede=("A slight guardian standing ankle-deep in the Shell's flooded atrium, her bound hands closed around a single dried plumeria blossom.",
+          "Eine zierliche Wächterin, die knöcheltief im überfluteten Atrium von The Shell steht, die gebundenen Hände um eine einzige getrocknete Frangipaniblüte geschlossen."),
     hook=("She is the first Risen Guardian Kaya sees, and the one K'in appears to recognize.",
           "Sie ist die erste Erweckte Wächterin, die Kaya sieht, und die einzige, die K'in zu erkennen scheint."),
     intro=[
@@ -328,7 +328,7 @@ C["characters/guardians/ix-nicte.html"] = dict(
          "das getan hat, hat sie geliebt oder war sehr geschickt darin. Als Kaya vorbeigeht, verstummen K'ins Hinweise, und ihre "
          "Lichtspur verweilt einen langen Atemzug lang auf den Schultern der Frau."),
     ],
-    facts=[(R, ("Named guardian, Floor 0", "Benannte Wächterin, Ebene 0")),
+    facts=[(R, ("Named guardian, the Shell", "Benannte Wächterin, The Shell")),
            (WHERE, ("A half-submerged step on the east wall of the atrium", "Eine halb versunkene Stufe an der Ostwand des Atriums")),
            (STATE, ("Dormant; she does not rise in the story", "Ruhend; in der Geschichte erhebt sie sich nicht")),
            (SIG, ("A plumeria glazed in amber wax, a folded palm-leaf whistle at her hip, one drip per breath",
@@ -681,7 +681,7 @@ CLIMBERS = [("CS-MATEO", "Mateo Vance", ("The surveyor", "Der Landvermesser"), "
 
 # ------------------------------------------------------------------ creatures
 ENEMIES = [
-    ("E01", ("Risen Guardian", "Erweckter Wächter"), ("Base enemy · from Floor 0", "Grundgegner · ab Ebene 0"),
+    ("E01", ("Risen Guardian", "Erweckter Wächter"), ("Base enemy · from the Shell", "Grundgegner · ab The Shell"),
      ("A cursed priest in paper-brown wrappings with a cracked stone club. Shambles, relentless and without reason.",
       "Ein verfluchter Priester in papierbraunen Bandagen mit einer rissigen Steinkeule. Schlurft heran, unerbittlich und grundlos.")),
     ("E02", ("Elite Guardians", "Elite-Wächter"), ("Temple's Wrath variants · Tier VI", "Varianten des Tempelzorns · Stufe VI"),

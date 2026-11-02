@@ -7,7 +7,7 @@ from components import T, catalog, facts, feature, pair, room, tags
 # ------------------------------------------------------------------ campaign data
 # One row per floor: number, name, rooms, new mechanic, enemies, reward (None = no reward).
 FLOORS = {
-    0: (("The Initiation", "Die Einweihung"), "F0", ("All core verbs", "Alle Grundverben"),
+    0: (("The Shell", "The Shell"), "F0", ("All core verbs", "Alle Grundverben"),
         ("Risen Guardian", "Erweckter Wächter"), ("Obsidian macuahuitl; the Threshold opens", "Obsidian-Macuahuitl; die Schwelle öffnet sich")),
     1: (("The Drowned Gallery", "Die ertrunkene Galerie"), "T1A · T1B",
         ("Water hazards, logs, drain, lift", "Wassergefahren, Baumstämme, Abfluss, Aufzug"),
@@ -541,10 +541,10 @@ def floor_0(ctx):
           "Kaya hebt das Obsidian-Macuahuitl von seinem Sockel, und der erste Wächter erhebt sich. Der erste echte Kampf, auf einem "
           "hohen Absatz über dem Atrium."), None),
         ("B-11", ("The bridge to the portal", "Die Brücke zum Portal"), [("Exit", "Ausgang"), ("Next floor", "Nächste Ebene")],
-         ("A narrow bridge crosses high over the atrium to the round portal on top of the Sun Pillar. Step through and Floor 0 "
+         ("A narrow bridge crosses high over the atrium to the round portal on top of the Sun Pillar. Step through and the Shell "
           "seals behind you, sword in hand.",
           "Eine schmale Brücke führt hoch über das Atrium zum runden Portal auf der Spitze der Sonnensäule. Tritt hindurch, und "
-          "Ebene 0 versiegelt sich hinter dir, das Schwert in der Hand."), None),
+          "The Shell versiegelt sich hinter dir, das Schwert in der Hand."), None),
     ]
     stations = []
     for n, (img, name, tag_pairs, text, note) in enumerate(rooms, 1):
@@ -569,9 +569,9 @@ def floor_0(ctx):
 <section class="wrap section narrow-top">
   <div class="intro">
     <div class="prose">
-      <p class="big">{t("Floor 0 was designed as one object before a single room was painted. The cutaway, the plan and the codex "
+      <p class="big">{t("The Shell was designed as one object before a single room was painted. The cutaway, the plan and the codex "
                         "page all describe the same nine spaces and the single route through them.",
-                        "Ebene 0 wurde als ein einziges Objekt entworfen, bevor auch nur ein Raum gemalt wurde. Schnitt, Grundriss "
+                        "The Shell wurde als ein einziges Objekt entworfen, bevor auch nur ein Raum gemalt wurde. Schnitt, Grundriss "
                         "und Codexseite beschreiben dieselben neun Räume und die eine Route hindurch.")}</p>
       <p>{t("The route spirals upward from a flooded atrium to a portal on top of the Sun Pillar, which stands in that same atrium. "
             "It is the tutorial: it teaches every core verb once, and nothing twice.",
@@ -613,7 +613,7 @@ def floor_0(ctx):
 # ------------------------------------------------------------------ the pyramid (overview)
 OVERVIEW_CARDS = [
     ("climb/threshold.html", ["A-03"], ("The Threshold", "Die Schwelle"), ("Where every climb begins", "Wo jeder Aufstieg beginnt")),
-    ("climb/floor-0.html", ["B-03", "B-11"], ("Floor 0", "Ebene 0"), ("The Initiation", "Die Einweihung")),
+    ("climb/floor-0.html", ["B-03", "B-11"], ("The Shell", "The Shell"), ("Where every verb is learned", "Wo du jedes Grundverb lernst")),
     ("climb/tier-1.html", ["D-02", "D-04"], ("Tier I", "Stufe I"), TIERS[1]["line"]),
     ("climb/tier-2.html", ["T2A-SCENE"], ("Tier II", "Stufe II"), TIERS[2]["line"]),
     ("climb/tier-3.html", ["T3A-SCENE"], ("Tier III", "Stufe III"), TIERS[3]["line"]),
@@ -643,8 +643,8 @@ def pyramid(ctx):
 <section class="wrap section narrow-top">
   <div class="intro">
     <div class="prose">
-      <p class="big">{t("One pyramid, climbed from the inside: Floor 0, then seventeen floors in six tiers, then the open summit.",
-                        "Eine Pyramide, von innen erklommen: Ebene 0, dann siebzehn Ebenen in sechs Stufen, dann der offene Gipfel.")}</p>
+      <p class="big">{t("One pyramid, climbed from the inside: the Shell, then seventeen floors in six tiers, then the open summit.",
+                        "Eine Pyramide, von innen erklommen: The Shell, dann siebzehn Ebenen in sechs Stufen, dann der offene Gipfel.")}</p>
       <p>{t("Every floor runs the same way. Room A, then Room B, which holds the floor's Key Orb, then the Portal Chamber, where Kaya "
             "sockets the orb, K'in speaks one line, a fragment of the mural lights, and she ascends. Every room hides "
             "exactly one golden idol.",
@@ -656,7 +656,7 @@ def pyramid(ctx):
             "Die Rätsel wachsen mit dem Aufstieg: eine Mechanik pro Raum in den Stufen I und II, kombinierte Mechaniken in III und IV "
             "und vielschichtige Wahrnehmungsrätsel unter Druck in V und VI.")}</p>
     </div>
-    {facts([(t("Floors", "Ebenen"), t("Floor 0, 17 floors in six tiers, the summit", "Ebene 0, 17 Ebenen in sechs Stufen, der Gipfel")),
+    {facts([(t("Floors", "Ebenen"), t("The Shell, 17 floors in six tiers, the summit", "The Shell, 17 Ebenen in sechs Stufen, der Gipfel")),
             (t("Per floor", "Pro Ebene"), t("Room A, Room B with the Key Orb, Portal Chamber", "Raum A, Raum B mit Schlüsselkugel, Portalkammer")),
             (t("Bosses", "Bosse"), t("Gearwarden, Jaguar Priest, Priest's Lieutenant, Hollow High Priest", "Zahnradwächter, Jaguarpriester, Leutnant des Priesters, Hohler Hohepriester")),
             (t("Players", "Spieler"), t("Single Player", "Einzelspieler"))])}
@@ -875,7 +875,7 @@ def sky_altar(ctx):
 PAGES = {
     "climb/index.html": dict(
         title=("The Pyramid", "Die Pyramide"), kicker=("The Climb", "Der Aufstieg"),
-        lede=("Floor 0, seventeen floors in six tiers, and the summit.", "Ebene 0, siebzehn Ebenen in sechs Stufen und der Gipfel."),
+        lede=("The Shell, seventeen floors in six tiers, and the summit.", "The Shell, siebzehn Ebenen in sechs Stufen und der Gipfel."),
         description=("The structure of the climb in Ascent of the Sun Temple, from the Threshold to the Sky Altar.",
                      "Der Aufbau des Aufstiegs in Ascent of the Sun Temple, von der Schwelle bis zum Himmelsaltar."),
         banner=["HOME-CLIMB"], og=["HOME-CLIMB"], body=pyramid),
@@ -887,11 +887,11 @@ PAGES = {
                      "Wie die Schwelle als Hub des Spiels funktioniert: Lager, Portale, Abkürzungen, Laden, Codex und Wandbild."),
         banner=["A-03"], og=["A-03"], body=threshold_hub),
     "climb/floor-0.html": dict(
-        title=("Floor 0 · The Initiation", "Ebene 0 · Die Einweihung"), kicker=("The Climb", "Der Aufstieg"),
+        title=("The Shell", "The Shell"), kicker=("The Climb", "Der Aufstieg"),
         lede=("The tutorial floor: nine spaces on one route, and every core verb taught once.",
               "Die Tutorial-Ebene: neun Räume auf einer Route, und jedes Grundverb wird genau einmal gelehrt."),
-        description=("Floor 0, The Initiation: the tutorial floor of Ascent of the Sun Temple, room by room.",
-                     "Ebene 0, Die Einweihung: die Tutorial-Ebene von Ascent of the Sun Temple, Raum für Raum."),
+        description=("The Shell: the tutorial floor of Ascent of the Sun Temple, room by room.",
+                     "The Shell: die Tutorial-Ebene von Ascent of the Sun Temple, Raum für Raum."),
         banner=["B-03", "B-11"], og=["B-02", "B-11"], body=floor_0),
     "climb/sky-altar.html": dict(
         title=("The Sky Altar", "Der Himmelsaltar"), kicker=("The Climb", "Der Aufstieg"),

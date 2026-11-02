@@ -51,7 +51,7 @@ NAV = [
     (("The Climb", "Der Aufstieg"), "climb/index.html", [
         (("The Pyramid", "Die Pyramide"), "climb/index.html", []),
         (("The Threshold Hub", "Die Schwelle (Hub)"), "climb/threshold.html", []),
-        (("Floor 0 · The Initiation", "Ebene 0 · Die Einweihung"), "climb/floor-0.html", []),
+        (("The Shell", "The Shell"), "climb/floor-0.html", []),
         (("Tier I · Flooded Foundations", "Stufe I · Überflutete Fundamente"), "climb/tier-1.html", []),
         (("Tier II · Trap Galleries", "Stufe II · Fallengalerien"), "climb/tier-2.html", []),
         (("Tier III · Shifting Vaults", "Stufe III · Wandernde Gewölbe"), "climb/tier-3.html", []),

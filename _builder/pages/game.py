@@ -37,8 +37,8 @@ def overview(ctx):
         (t("Inspirations", "Vorbilder"), t("Ratchet &amp; Clank and Jak &amp; Daxter for tone; Hades for the return-and-grow loop",
                                           "Ratchet &amp; Clank und Jak &amp; Daxter für den Stil; Hades für den Kreislauf aus Rückkehr und Wachstum")),
         (t("Players", "Spieler"), t("Single Player", "Einzelspieler")),
-        (t("Campaign", "Kampagne"), t("Floor 0, seventeen floors in six tiers, and the Sky Altar summit",
-                                      "Ebene 0, siebzehn Ebenen in sechs Stufen und der Himmelsaltar auf dem Gipfel")),
+        (t("Campaign", "Kampagne"), t("The Shell, seventeen floors in six tiers, and the Sky Altar summit",
+                                      "The Shell, siebzehn Ebenen in sechs Stufen und der Himmelsaltar auf dem Gipfel")),
         (t("Setting", "Schauplatz"), t("The interior of one living stepped pyramid, plus the jungle forecourt and the open summit",
                                        "Das Innere einer lebenden Stufenpyramide, dazu der Dschungelvorplatz und der offene Gipfel")),
     ]
@@ -127,8 +127,8 @@ def how_it_plays(ctx):
 
     modes = [
         (t("The Ascent", "Der Aufstieg"), t("Story", "Story"),
-         t("A fixed, hand-built room order. The first playthrough, with Floor 0 as the tutorial that teaches every core verb once.",
-           "Eine feste, von Hand gebaute Raumfolge. Der erste Durchgang, mit Ebene 0 als Tutorial, das jede Kernaktion einmal beibringt.")),
+         t("A fixed, hand-built room order. The first playthrough, with the Shell as the tutorial that teaches every core verb once.",
+           "Eine feste, von Hand gebaute Raumfolge. Der erste Durchgang, mit The Shell als Tutorial, das jede Kernaktion einmal beibringt.")),
         (t("Trials of the Shifting Temple", "Prüfungen des wandelnden Tempels"), t("Unlocked after the first summit", "Freigeschaltet nach dem ersten Gipfel"),
          t("Rooms shuffle within each tier while the tier order stays fixed. Stackable <em>Temple's Wrath</em> curses add tougher undead, faster traps, fewer checkpoints, roaming Guardian Spirits and timed floors, and each level earns better rewards.",
            "Innerhalb jeder Stufe werden die Räume gemischt, die Reihenfolge der Stufen bleibt fest. Stapelbare Flüche des <em>Zorns des Tempels</em> bringen zähere Untote, schnellere Fallen, weniger Checkpoints, umherstreifende Wächtergeister und Ebenen auf Zeit, und jede Stufe bringt bessere Belohnungen.")),
@@ -221,7 +221,7 @@ def how_it_plays(ctx):
 def weapons(ctx):
     u, t = ctx.url, ctx.t
     arms = [
-        ("W01", t("Obsidian Macuahuitl", "Obsidian-Macuahuitl"), t("Melee · found on Floor 0", "Nahkampf · gefunden auf Ebene 0"),
+        ("W01", t("Obsidian Macuahuitl", "Obsidian-Macuahuitl"), t("Melee · found in the Shell", "Nahkampf · gefunden in The Shell"),
          t("A flat paddle war-club of dark hardwood edged with black obsidian blades, banded in hammered gold with a jade "
            "glyph strip down its centre. Light combo plus a heavy finisher; on a heavy attack the glyphs flare gold. "
            "Lifting it from the sword shrine is what wakes the first guardian.",

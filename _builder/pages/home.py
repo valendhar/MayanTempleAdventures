@@ -9,7 +9,7 @@ def body(ctx):
         (t("Genre", "Genre"), t("Third-person action-adventure platformer", "Third-Person-Action-Adventure-Plattformer")),
         (t("Planned engine", "Geplante Engine"), t("Unreal Engine 5 and Vertical Third Game Framework", "Unreal Engine 5 und Vertical Third Game Framework")),
         (t("Tone", "Stil"), "Ratchet &amp; Clank, Jak &amp; Daxter"),
-        (t("Structure", "Aufbau"), t("Floor 0, six tiers, then the summit", "Ebene 0, sechs Stufen, dann der Gipfel")),
+        (t("Structure", "Aufbau"), t("The Shell, six tiers, then the summit", "The Shell, sechs Stufen, dann der Gipfel")),
         (t("Players", "Spieler"), t("Single Player", "Einzelspieler")),
         (t("Stage", "Stand"), t("World, story and art direction in design", "Welt, Geschichte und Art Direction in Ausarbeitung")),
     ]
@@ -69,7 +69,7 @@ def body(ctx):
          t("The first element betrayed them.", "Das erste Element verriet sie."), "climb/tier-2.html"),
         (t("Tier I", "Stufe I"), t("The Flooded Foundations", "Die überfluteten Fundamente"),
          t("The ancients harnessed balance.", "Die Alten bändigten das Gleichgewicht."), "climb/tier-1.html"),
-        (t("Floor 0", "Ebene 0"), t("The Initiation", "Die Einweihung"), "", "climb/floor-0.html"),
+        (t("Start", "Start"), "The Shell", "", "climb/floor-0.html"),
     ]
     first_line = t("Where every climb begins.", "Wo jeder Aufstieg beginnt.")
     oq, cq = t("“", "„"), t("”", "“")
