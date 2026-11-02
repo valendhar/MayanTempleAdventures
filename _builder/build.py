@@ -379,7 +379,7 @@ def favicon_svg():
 def main():
     process_images()
     pages = load_pages()
-    for d in ("css", "js"):
+    for d in ("css", "js", "media"):
         dst = OUT / "assets" / d
         dst.mkdir(parents=True, exist_ok=True)
         for f in (HERE / "static" / d).glob("*"):

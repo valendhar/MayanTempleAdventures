@@ -670,6 +670,9 @@ a.mode.chapter.is-ready:hover { background: var(--stone-2); }
 a.mode.chapter.is-ready:hover h3 { color: var(--gold); }
 .chapter-cta { display: inline-block; margin-top: 12px; font-weight: 700; color: var(--gold); text-decoration: underline; text-underline-offset: 5px; }
 .chapter-soon { display: inline-block; margin-top: 12px; font: italic 400 1rem var(--story); color: var(--muted); }
+/* the chapter loop is scaled to the card's own width, so the four-column grid keeps its widths */
+.chapter-loop { display: block; margin-top: 14px; }
+.chapter-loop img { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; border-radius: calc(var(--radius) - 2px); border: 1px solid var(--line); }
 
 /* ---------- the reader: a chapter set like a book page ---------- */
 .reader {

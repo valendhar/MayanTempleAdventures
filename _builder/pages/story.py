@@ -191,10 +191,23 @@ def short_story(ctx):
     ]
     ready = {f"{n}" for n in reader_available()}
 
+    # a short looping scene for a chapter card, scaled to the card width
+    loops = {"1": ("the-likeness", t("Kaya at the Spirit Mural, with K'in glowing beside the middle portal",
+                                     "Kaya am Geisterwandbild, neben ihr leuchtet K'in vor dem mittleren Portal"))}
+
+    def chapter_loop(n):
+        if n not in loops:
+            return ""
+        name, alt = loops[n]
+        return (f'<span class="chapter-loop"><picture>'
+                f'<source media="(prefers-reduced-motion: reduce)" srcset="{ctx.asset(f"assets/media/{name}-still.webp")}">'
+                f'<img src="{ctx.asset(f"assets/media/{name}.webp")}" alt="{alt}" width="480" height="270" loading="lazy" decoding="async">'
+                f'</picture></span>')
+
     def chapter_card(n, nm, d):
         if n in ready:
             return (f'<a class="mode chapter is-ready" href="{u(f"story/chapter-{n}.html")}"><p class="kicker">{t("Chapter", "Kapitel")} {n}</p>'
-                    f'<h3>{nm}</h3><p>{d}</p><span class="chapter-cta">{t("Read the chapter", "Kapitel lesen")}</span></a>')
+                    f'<h3>{nm}</h3><p>{d}</p>{chapter_loop(n)}<span class="chapter-cta">{t("Read the chapter", "Kapitel lesen")}</span></a>')
         return (f'<article class="mode chapter"><p class="kicker">{t("Chapter", "Kapitel")} {n}</p><h3>{nm}</h3><p>{d}</p>'
                 f'<span class="chapter-soon">{t("Coming soon", "Folgt bald")}</span></article>')
     ch_html = "".join(chapter_card(n, nm, d) for n, nm, d in chapters)
