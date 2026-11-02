@@ -1,3 +1,7 @@
 _builder/images/originals/
 __pycache__/
 .DS_Store
+
+# Local working notes, never published
+HANDOFF.md
+_Docs/
