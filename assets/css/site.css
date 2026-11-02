@@ -656,3 +656,9 @@ p { margin: 0 0 1em; }
 .sw-name { font-weight: 700; color: var(--limestone); }
 .sw-hex { font-size: .9rem; color: var(--muted); }
 @media (max-width: 760px) { .swatches { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+
+/* three drawings of one floor side by side (map, cutaway, codex) */
+.drawings-3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; align-items: start; margin-top: 8px; }
+.drawings-3 .fig img { border-radius: 14px; }
+.drawings-3 .ph-box { aspect-ratio: 1; }
+@media (max-width: 760px) { .drawings-3 { grid-template-columns: 1fr; } }

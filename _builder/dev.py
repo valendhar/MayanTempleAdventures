@@ -4,7 +4,7 @@
 Usage:  python _builder/dev.py [--port 8765] [--host 127.0.0.1]
 
 - Builds the site once, then serves the repository folder at http://127.0.0.1:8765/
-- Watches _builder/ (pages, static css/js, build scripts). When a file changes it
+- Watches _builder/ (pages, static css/js, build scripts, and new images in images/originals). When a file changes it
   re-runs build.py, so the site you see is exactly what gets committed and deployed.
 - Every open page reloads itself after a successful build. If a build fails, the
   error is printed here and shown in a banner on the page; fix it and save again.
@@ -21,7 +21,7 @@ from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
 ROOT = HERE.parent
-WATCH_SUFFIXES = {".py", ".css", ".js", ".html", ".svg", ".json"}
+WATCH_SUFFIXES = {".py", ".css", ".js", ".html", ".svg", ".json", ".png", ".jpg", ".jpeg", ".webp"}
 POLL_SECONDS = 0.4
 
 state = {"version": 0, "error": ""}

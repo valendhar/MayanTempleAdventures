@@ -1,6 +1,6 @@
 # Missing images
 
-**210 images still show as placeholders.** Each ID is listed once, under the first page that uses it.
+**200 images still show as placeholders.** Each ID is listed once, under the first page that uses it.
 
 Save an image as `_builder/images/originals/<ID>.png` (or `.jpg` / `.webp`), using the ID exactly as shown. The next build (or the running dev server) turns the placeholder into the picture everywhere that ID is used.
 
@@ -23,10 +23,6 @@ Regenerate this list with `python _builder/missing_images.py`.
 ## The Threshold Hub (`climb/threshold.html`)
 
 `HUB01` `HUB02` `HUB12` `HUB03`
-
-## Floor 0 · The Initiation (`climb/floor-0.html`)
-
-`B-01` `CX-F0` `B-02` `B-03` `B-04` `B-06` `B-09` `F0-01` `F0-02` `F0-03`
 
 ## Tier I · Flooded Foundations (`climb/tier-1.html`)
 

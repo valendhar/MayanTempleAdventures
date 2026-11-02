@@ -584,9 +584,11 @@ def floor_0(ctx):
 
 <section class="band"><div class="wrap section">
   <h2>{t("One floor, three drawings", "Eine Ebene, drei Zeichnungen")}</h2>
-  {pair(ctx, "B-01", t("The floor from above", "Die Ebene von oben"),
-        "CX-F0", t("The same floor as a codex page", "Dieselbe Ebene als Codexseite"))}
-  <div class="drawing-wide">{ctx.figure("B-02", t("Isometric cutaway: the route spirals upward", "Isometrischer Schnitt: Die Route windet sich nach oben"), cls="sheet")}</div>
+  <div class="drawings-3">
+    {ctx.figure("B-01", t("The floor from above", "Die Ebene von oben"))}
+    {ctx.figure("B-02", t("Isometric cutaway: the route spirals upward", "Isometrischer Schnitt: Die Route windet sich nach oben"))}
+    {ctx.figure("CX-F0", t("The same floor as a codex page", "Dieselbe Ebene als Codexseite"))}
+  </div>
 </div></section>
 
 <section class="wrap section">
