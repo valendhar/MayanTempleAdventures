@@ -15,8 +15,9 @@ def q(ctx, text):
 
 # ------------------------------------------------------------------ shared pieces
 def card(ctx, img, name, role, path):
+    # name set over the picture with the role beneath it, like the cast on the home page
     return (f'<a class="card" href="{ctx.url(path)}">{ctx.figure(img, alt=name, link=False)}<span class="card-body">'
-            f'<span class="card-kicker">{role}</span><span class="card-title">{name}</span></span></a>')
+            f'<span class="card-title">{name}</span><span class="card-kicker">{role}</span></span></a>')
 
 
 def extras_gallery(ctx, extras):
@@ -27,13 +28,20 @@ def extras_gallery(ctx, extras):
     return f'<div class="gallery extras">{figs}</div>'
 
 
+def own_scene(c):
+    """The main cast have their own scene as banner: it is shown whole instead of as a cropped strip."""
+    return c.get("banner", "").startswith("HOME-") and not c.get("group")
+
+
 def character_page(c):
     def body(ctx):
         t = ctx.t
         intro = "".join(f"<p>{T(ctx, p)}</p>" for p in c["intro"])
         facts = "".join(f"<div><dt>{T(ctx, k)}</dt><dd>{T(ctx, v)}</dd></div>" for k, v in c["facts"])
         sheet = ctx.figure(c["sheet"], T(ctx, c.get("sheet_caption", ("Character sheet", "Charakterblatt"))), cls="sheet")
-        extra = extras_gallery(ctx, c.get("extras", []))
+        # a scene already shown whole in the page header is not repeated in the gallery
+        shown = c.get("banner") if own_scene(c) else None
+        extra = extras_gallery(ctx, [e for e in c.get("extras", []) if e[0] != shown])
         quote = c.get("quote")
         quote_html = ""
         if quote:
@@ -61,7 +69,7 @@ def character_page(c):
 """
 
     return dict(title=c["name"], kicker=c["role"], lede=c["lede"], banner=c.get("banner"),
-                description=c["lede"], body=body, og=c.get("og", c["sheet"]))
+                banner_full=own_scene(c), description=c["lede"], body=body, og=c.get("og", c["sheet"]))
 
 
 R = ("Role", "Rolle")
@@ -193,7 +201,7 @@ C["characters/oxlahun.html"] = dict(
 )
 
 C["characters/isabel-kaan.html"] = dict(
-    name="Dr. Isabel Kaan", role=("The missing mother", "Die verschwundene Mutter"), sheet="CS-ISABEL", banner="A-04", og="CS-ISABEL",
+    name="Dr. Isabel Kaan", role=("The missing mother", "Die verschwundene Mutter"), sheet="CS-ISABEL", banner="HOME-ISABEL", og="HOME-ISABEL",
     lede=("An epigrapher who argued that the Spirit Mural hides a betrayal. The experts dismissed her. Fourteen months ago she vanished.",
           "Eine Epigraphikerin, die behauptete, das Geisterwandbild verberge einen Verrat. Die Fachwelt tat es ab. Vor vierzehn Monaten verschwand sie."),
     hook=("Isabel never appears in the present. She exists through her notebooks, her goggles, Kaya's memories, and what other "

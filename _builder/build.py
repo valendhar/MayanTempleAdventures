@@ -289,9 +289,18 @@ def page_shell(ctx, page, trail):
         kicker = f'<p class="kicker">{esc(tr(page["kicker"], L))}</p>' if page.get("kicker") else ""
         lede = f'<p class="lede">{tr(page["lede"], L)}</p>' if page.get("lede") else ""
         bgimg = page.get("banner")
-        style = f' style="{ctx.bg(bgimg)}"' if bgimg and ctx.has(bgimg) else ""
-        cls = " has-bg" if style else ""
-        header_block = f"""
+        if page.get("banner_full") and bgimg and ctx.has(bgimg):
+            # whole picture, never cropped; the heading sits over its lower fade
+            m = IMAGES[bgimg.upper()]
+            header_block = f"""
+<section class="page-head page-head-art">
+  <div class="page-head-frame"><img src="{ctx.img_src(bgimg.upper(), 'full')}" alt="" width="{m['w']}" height="{m['h']}" fetchpriority="high"></div>
+  <div class="wrap page-head-text">{crumbs(ctx, trail)}{kicker}<h1>{esc(title)}</h1>{lede}</div>
+</section>"""
+        else:
+            style = f' style="{ctx.bg(bgimg)}"' if bgimg and ctx.has(bgimg) else ""
+            cls = " has-bg" if style else ""
+            header_block = f"""
 <section class="page-head{cls}"{style}><div class="wrap">
   {crumbs(ctx, trail)}{kicker}<h1>{esc(title)}</h1>{lede}
 </div></section>"""
