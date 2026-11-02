@@ -27,7 +27,7 @@ IMG_OUT = OUT / "assets" / "img"
 
 SITE_TITLE = "Ascent of the Sun Temple"
 SITE_TAGLINE = "A Mayan pyramid that rearranges itself around you."
-AUTHOR = "Mike"
+AUTHOR = "Mike Stevanovic"
 COPYRIGHT = "Mike Stevanovic"
 YEAR = "2026"
 
