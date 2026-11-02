@@ -160,6 +160,15 @@ def lore(ctx):
 
 
 # ------------------------------------------------------------------ short story
+def reader_available():
+    from importlib import util
+    from pathlib import Path
+    spec = util.spec_from_file_location("reader_data", Path(__file__).with_name("reader.py"))
+    mod = util.module_from_spec(spec)
+    spec.loader.exec_module(mod)
+    return mod.available()
+
+
 def short_story(ctx):
     u, t = ctx.url, ctx.t
     chapters = [
@@ -180,8 +189,15 @@ def short_story(ctx):
          t("Kaya decides what to carry up the stairs, and what to write down in her own hand.",
            "Kaya entscheidet, was sie die Stufen hinauftragen will und was sie mit eigener Hand aufschreibt.")),
     ]
-    ch_html = "".join(f'<article class="mode chapter"><p class="kicker">{t("Chapter", "Kapitel")} {n}</p><h3>{nm}</h3><p>{d}</p></article>'
-                      for n, nm, d in chapters)
+    ready = {f"{n}" for n in reader_available()}
+
+    def chapter_card(n, nm, d):
+        if n in ready:
+            return (f'<a class="mode chapter is-ready" href="{u(f"story/chapter-{n}.html")}"><p class="kicker">{t("Chapter", "Kapitel")} {n}</p>'
+                    f'<h3>{nm}</h3><p>{d}</p><span class="chapter-cta">{t("Read the chapter", "Kapitel lesen")}</span></a>')
+        return (f'<article class="mode chapter"><p class="kicker">{t("Chapter", "Kapitel")} {n}</p><h3>{nm}</h3><p>{d}</p>'
+                f'<span class="chapter-soon">{t("Coming soon", "Folgt bald")}</span></article>')
+    ch_html = "".join(chapter_card(n, nm, d) for n, nm, d in chapters)
 
     fact_rows = [
         (t("Title", "Titel"), t("The Likeness (working title)", "Das Abbild (Arbeitstitel)")),
@@ -237,10 +253,11 @@ def short_story(ctx):
 
 <section class="story-band">
   <div class="wrap section story-inner">
-    <p class="kicker">{t("Read the story", "Die Geschichte lesen")}</p>
-    <h2>{t("Chapters coming soon", "Kapitel folgen in Kürze")}</h2>
-    <p>{t("The story is being written. Each chapter will appear here to read as soon as it is finished.",
-          "Die Geschichte entsteht gerade. Jedes Kapitel erscheint hier zum Lesen, sobald es fertig ist.")}</p>
+    <h2>{t("Start reading", "Jetzt lesen")}</h2>
+    <p class="story-note">{t(f"{len(ready)} of 4 chapters published", f"{len(ready)} von 4 Kapiteln veröffentlicht")}</p>
+    <p>{t("The story is published chapter by chapter, laid out to be read like a book: at your own pace, in day or night mode.",
+          "Die Geschichte erscheint Kapitel für Kapitel und ist gesetzt wie ein Buch: in deinem Tempo, im Tag- oder Nachtmodus.")}</p>
+    <a class="btn btn-gold" href="{u('story/chapter-1.html')}">{t("Read Chapter 1", "Kapitel 1 lesen")}</a>
   </div>
 </section>
 """

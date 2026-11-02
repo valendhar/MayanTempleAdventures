@@ -73,6 +73,49 @@
     io.observe(ascent);
   }
 
+  // ---------------- story reader: progress bar, text size, paper/night (remembered in this browser)
+  const reader = document.querySelector("[data-reader]");
+  if (reader) {
+    const store = {
+      get(k) { try { return localStorage.getItem(k); } catch (e) { return null; } },
+      set(k, v) { try { localStorage.setItem(k, v); } catch (e) { /* storage blocked: settings just aren't kept */ } }
+    };
+    const sizes = [1.06, 1.14, 1.24, 1.36, 1.5];
+    let size = parseInt(store.get("reader-size"), 10);
+    if (isNaN(size) || size < 0 || size >= sizes.length) size = 2;
+    const themeBtn = reader.querySelector("[data-theme-toggle]");
+    const applySize = () => reader.style.setProperty("--size", sizes[size] + "rem");
+    const applyTheme = night => {
+      reader.dataset.theme = night ? "night" : "paper";
+      if (themeBtn) {
+        themeBtn.setAttribute("aria-pressed", night ? "true" : "false");
+        themeBtn.textContent = night ? (document.documentElement.lang === "de" ? "Papier" : "Paper")
+                                     : (document.documentElement.lang === "de" ? "Nacht" : "Night");
+      }
+    };
+    if (store.get("reader-size") !== null) applySize();
+    applyTheme(store.get("reader-theme") === "night");
+    reader.querySelectorAll("[data-size]").forEach(b => b.addEventListener("click", () => {
+      size = Math.min(sizes.length - 1, Math.max(0, size + parseInt(b.dataset.size, 10)));
+      applySize(); store.set("reader-size", String(size));
+    }));
+    themeBtn && themeBtn.addEventListener("click", () => {
+      const night = reader.dataset.theme !== "night";
+      applyTheme(night); store.set("reader-theme", night ? "night" : "paper");
+    });
+    const bar = document.querySelector(".reader-progress span");
+    const text = reader.querySelector(".reader-text");
+    const onScroll = () => {
+      if (!bar || !text) return;
+      const r = text.getBoundingClientRect();
+      const done = Math.min(1, Math.max(0, (innerHeight * 0.6 - r.top) / r.height));
+      bar.style.width = (done * 100).toFixed(1) + "%";
+    };
+    addEventListener("scroll", onScroll, { passive: true });
+    addEventListener("resize", onScroll);
+    onScroll();
+  }
+
   // ---------------- lightbox
   const lb = document.querySelector(".lightbox");
   if (!lb) return;

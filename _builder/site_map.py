@@ -17,6 +17,7 @@ NAV = [
         (("The Story", "Die Geschichte"), "story/index.html", []),
         (("Lore & History", "Vorgeschichte & Legenden"), "story/lore.html", []),
         (("The Short Story", "Die Kurzgeschichte"), "story/short-story.html", []),
+        (("Chapter 1 · The Overlooked Find", "Kapitel 1 · Der übersehene Fund"), "story/chapter-1.html", []),
     ]),
     (("World", "Welt"), "world/index.html", [
         (("The Living Temple", "Der lebende Tempel"), "world/index.html", []),
