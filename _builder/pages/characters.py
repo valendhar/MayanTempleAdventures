@@ -590,7 +590,7 @@ def overview(ctx):
         (ctx.pick("HOME-KAYA", "CS-KAYA"), "Kaya", t("The explorer", "Die Entdeckerin"), "characters/kaya.html"),
         (ctx.pick("HOME-KIN", "CS-KIN"), "K'in", t("The spirit guide", "Die Geistführerin"), "characters/kin.html"),
         (ctx.pick("HOME-OXLAHUN", "CS-OXLAHUN"), "Oxlahun", t("The trader", "Der Händler"), "characters/oxlahun.html"),
-        ("CS-ISABEL", "Dr. Isabel Kaan", t("The missing mother", "Die verschwundene Mutter"), "characters/isabel-kaan.html"),
+        (ctx.pick("HOME-ISABEL", "CS-ISABEL"), "Dr. Isabel Kaan", t("The missing mother", "Die verschwundene Mutter"), "characters/isabel-kaan.html"),
     ]
     order = [
         ("CS-GUARDIAN", t("The Risen Guardians", "Die Erweckten Wächter"), t("Five named guardians", "Fünf benannte Wächter"),
