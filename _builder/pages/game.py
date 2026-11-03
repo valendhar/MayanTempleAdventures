@@ -22,21 +22,21 @@ def overview(ctx):
          t("Puzzles grow with the climb: one mechanic per room in the lower tiers, combined mechanics in the middle, layered perception puzzles under pressure near the top.",
            "Die Rätsel wachsen mit dem Aufstieg: eine Mechanik pro Raum in den unteren Stufen, kombinierte Mechaniken in der Mitte und vielschichtige Wahrnehmungsrätsel unter Zeitdruck nahe der Spitze.")),
         ("04", t("Grow for good", "Dauerhaft wachsen"),
-         t("The four Elemental Orbs and the upgrades bought in the Threshold stay with Kaya between runs, and each one opens routes that were closed before.",
-           "Die vier Elementarkugeln und die in der Schwelle gekauften Verbesserungen bleiben Kaya über alle Durchläufe erhalten, und jede davon öffnet Wege, die vorher verschlossen waren.")),
+         t("The four Elemental Orbs and the upgrades bought in the Threshold stay with every Climber between runs, each one opens routes that were closed before, and your own carving on the Spirit Mural grows with every tier.",
+           "Die vier Elementarkugeln und die in der Schwelle gekauften Verbesserungen bleiben jedem Kletterer über alle Durchläufe erhalten, jede davon öffnet Wege, die vorher verschlossen waren, und dein eigenes Relief auf dem Geisterwandbild wächst mit jeder Stufe.")),
         ("05", t("Never alone", "Nie allein"),
-         t("K'in teaches, warns, foreshadows and remembers. She draws ghost paths after a missed jump, flickers before a trap fires and greets every return.",
-           "K'in lehrt, warnt, deutet an und erinnert sich. Nach einem verpatzten Sprung zeichnet sie Geisterpfade, sie flackert, bevor eine Falle auslöst, und begrüßt jede Rückkehr.")),
+         t("Climb with up to three friends, and every room is still solvable alone. K'in teaches, warns, foreshadows and remembers: she draws ghost paths after a missed jump, flickers before a trap fires and greets every return.",
+           "Kletter mit bis zu drei Freunden, und jeder Raum bleibt trotzdem allein lösbar. K'in lehrt, warnt, deutet an und erinnert sich: Nach einem verpatzten Sprung zeichnet sie Geisterpfade, sie flackert, bevor eine Falle auslöst, und begrüßt jede Rückkehr.")),
     ]
     pillar_html = "".join(f'<li><span class="num">{n}</span><div><h3>{nm}</h3><p>{d}</p></div></li>' for n, nm, d in pillars)
 
     facts = [
-        (t("Genre", "Genre"), t("Third-person action-adventure platformer with a roguelite climb",
-                                "Third-Person-Action-Adventure-Plattformer mit Roguelite-Aufstieg")),
-        (t("Planned engine", "Geplante Engine"), t("Unreal Engine 5 and Vertical Third Game Framework", "Unreal Engine 5 und Vertical Third Game Framework")),
+        (t("Genre", "Genre"), t("Co-op action-adventure platformer with a roguelite climb",
+                                "Koop-Action-Adventure-Plattformer mit Roguelite-Aufstieg")),
+        (t("Platform", "Plattform"), t("A Fortnite island, built in UEFN", "Eine Fortnite-Insel, gebaut im UEFN")),
         (t("Inspirations", "Vorbilder"), t("Ratchet &amp; Clank and Jak &amp; Daxter for tone; Hades for the return-and-grow loop",
                                           "Ratchet &amp; Clank und Jak &amp; Daxter für den Stil; Hades für den Kreislauf aus Rückkehr und Wachstum")),
-        (t("Players", "Spieler"), t("Single Player", "Einzelspieler")),
+        (t("Players", "Spieler"), t("1–4, co-op; you play your own Fortnite character", "1–4, Koop; du spielst deine eigene Fortnite-Figur")),
         (t("Campaign", "Kampagne"), t("The Shell, seventeen floors in six tiers, and the Sky Altar summit",
                                       "The Shell, siebzehn Ebenen in sechs Stufen und der Himmelsaltar auf dem Gipfel")),
         (t("Setting", "Schauplatz"), t("The interior of one living stepped pyramid, plus the jungle forecourt and the open summit",
@@ -49,26 +49,33 @@ def overview(ctx):
 <section class="wrap section narrow-top">
   <div class="intro">
     <div class="prose">
-      <p class="big">{t("Kaya, a young explorer, wakes K'in, the last spirit of an ancient Mayan sun temple, at its threshold. "
-                        "The temple is alive: it rearranges itself and swallows everyone who climbs it.",
-                        "Kaya, eine junge Entdeckerin, weckt an der Schwelle eines uralten Maya-Sonnentempels K'in, dessen letzten Geist. "
-                        "Der Tempel lebt: Er ordnet sich ständig neu und verschlingt jeden, der ihn erklimmt.")}</p>
-      <p>{t("Floor by floor she fights the risen guardians, survives the traps, solves the orb puzzles and earns the "
-            "elemental powers the builders once held, until she carries the Sun Orb to the great portal on the summit and "
-            "decides the temple's fate: restore the cycle, or break it.",
-            "Ebene für Ebene kämpft sie gegen die erweckten Wächter, übersteht die Fallen, löst die Kugelrätsel und erringt die "
-            "Elementarkräfte der Erbauer, bis sie die Sonnenkugel zum großen Portal auf dem Gipfel trägt und über das Schicksal "
-            "des Tempels entscheidet: den Kreislauf wiederherstellen oder ihn durchbrechen.")}</p>
+      <p class="big">{t("Ascent of the Sun Temple: Climbers is the flagship of Mayan Temple Adventures: a co-op climb for up "
+                        "to four players through an ancient Mayan sun temple that is alive. It rearranges itself and swallows "
+                        "everyone who climbs it.",
+                        "Ascent of the Sun Temple: Climbers ist die Hauptinsel von Mayan Temple Adventures: ein Koop-Aufstieg "
+                        "für bis zu vier Spieler durch einen uralten Maya-Sonnentempel, der lebt. Er ordnet sich ständig neu "
+                        "und verschlingt jeden, der ihn erklimmt.")}</p>
+      <p>{t("You play a Climber, in your own Fortnite character. Kaya, a young explorer, climbs the first floor beside "
+            "you, and K'in, the temple's last spirit, guides you the rest of the way. Floor by floor your party fights the "
+            "risen guardians, survives the traps, solves the orb puzzles and earns the elemental powers the builders once "
+            "held, until you carry the Sun Orb to the great portal on the summit and vote on the temple's fate: restore the "
+            f"cycle, or break it. <a href='{u('game/climbers-and-co-op.html')}'>Climbers and co-op →</a>",
+            "Du spielst einen Kletterer, in deiner eigenen Fortnite-Figur. Kaya, eine junge Entdeckerin, steigt die erste "
+            "Ebene an deiner Seite hinauf, und K'in, der letzte Geist des Tempels, führt dich den Rest des Wegs. Ebene für "
+            "Ebene kämpft deine Gruppe gegen die erweckten Wächter, übersteht die Fallen, löst die Kugelrätsel und erringt "
+            "die Elementarkräfte der Erbauer, bis ihr die Sonnenkugel zum großen Portal auf dem Gipfel tragt und über das "
+            "Schicksal des Tempels abstimmt: den Kreislauf wiederherstellen oder ihn durchbrechen. "
+            f"<a href='{u('game/climbers-and-co-op.html')}'>Kletterer und Koop →</a>")}</p>
       <p>{t(f"The story explains the structure. The temple <em>{q1}rearranges itself to trap greedy adventurers{q2}</em>, so "
             "shuffled room layouts belong to the world rather than to a menu. And "
-            f"<em>{q1}the cycle begins again… unless you break it{q2}</em>: when Kaya dies, K'in pulls her spirit back to the "
-            "Threshold. What her spirit keeps between cycles, the Elemental Orbs and the fragments she has gathered, is what "
-            "makes the next climb go further.",
+            f"<em>{q1}the cycle begins again… unless you break it{q2}</em>: when a Climber dies, K'in pulls their spirit back "
+            "to the Threshold. What the spirit keeps between cycles, the Elemental Orbs and the fragments gathered on the way, "
+            "is what makes the next climb go further.",
             f"Die Geschichte erklärt die Struktur. Der Tempel <em>{q1}ordnet sich neu, um gierige Abenteurer in die Falle zu "
             f"locken{q2}</em>, also gehören wechselnde Raumabfolgen zur Welt und nicht zu einem Menü. Und "
-            f"<em>{q1}der Kreislauf beginnt von vorn … es sei denn, du durchbrichst ihn{q2}</em>: Stirbt Kaya, zieht K'in ihren "
-            "Geist zurück an die Schwelle. Was ihr Geist von Kreislauf zu Kreislauf behält, die Elementarkugeln und die "
-            "gesammelten Geistsplitter, bringt den nächsten Aufstieg weiter.")}</p>
+            f"<em>{q1}der Kreislauf beginnt von vorn … es sei denn, du durchbrichst ihn{q2}</em>: Stirbt ein Kletterer, zieht "
+            "K'in seinen Geist zurück an die Schwelle. Was der Geist von Kreislauf zu Kreislauf behält, die Elementarkugeln und "
+            "die gesammelten Geistsplitter, bringt den nächsten Aufstieg weiter.")}</p>
     </div>
     <dl class="facts">{fact_html}</dl>
   </div>
@@ -82,11 +89,11 @@ def overview(ctx):
 
 <section class="wrap section">
   {feature(ctx, "A-04", t("First steps", "Erste Schritte"), t("The jungle forecourt", "Der Dschungelvorplatz"),
-    t("<p>Every climb begins at Kaya's camp at the foot of the pyramid: a canvas tent, a kettle on the fire, two straw "
+    t("<p>Every climb begins at the camp at the foot of the pyramid, Dr. Isabel Kaan's old dig: a canvas tent, a kettle on the fire, two straw "
       "training dummies and a carved target to practise on. Ahead, between two great feathered-serpent heads, the low "
       "tunnel leads into the Threshold.</p><p>The pyramid is always in view, so the summit is a goal you can see from "
       "the very first minute.</p>",
-      "<p>Jeder Aufstieg beginnt in Kayas Lager am Fuß der Pyramide: ein Segeltuchzelt, ein Kessel über dem Feuer, zwei "
+      "<p>Jeder Aufstieg beginnt im Lager am Fuß der Pyramide, Dr. Isabel Kaans alter Grabung: ein Segeltuchzelt, ein Kessel über dem Feuer, zwei "
       "Trainingspuppen aus Stroh und eine geschnitzte Zielscheibe zum Üben. Vor ihr führt der niedrige Tunnel zwischen zwei "
       "gewaltigen Federschlangenköpfen hinein in die Schwelle.</p><p>Die Pyramide ist immer zu sehen, der Gipfel ist also "
       "von der ersten Minute an ein sichtbares Ziel.</p>"))}
@@ -111,14 +118,14 @@ def how_it_plays(ctx):
     u, t = ctx.url, ctx.t
     loops = [
         (t("Room", "Raum"),
-         t("Arrive on the twin pads, traverse and fight, solve the room's lock, and the exit gate opens to the next room.",
-           "Auf den Zwillingsplattformen ankommen, durchqueren und kämpfen, das Schloss des Raums lösen, und das Ausgangstor öffnet sich zum nächsten Raum.")),
+         t("Arrive on the four arrival pads, traverse and fight, solve the room's lock, then gather at the exit: the gate opens once the whole party stands there.",
+           "Auf den vier Ankunftsplattformen ankommen, durchqueren und kämpfen, das Schloss des Raums lösen und euch am Ausgang sammeln: Das Tor öffnet sich, sobald die ganze Gruppe dort steht.")),
         (t("Floor", "Ebene"),
-         t("Room A, then Room B with the floor's Key Orb, then the Portal Chamber: socket the orb, hear K'in's line, light a mural fragment, bank your coins and ascend.",
-           "Raum A, dann Raum B mit der Schlüsselkugel der Ebene, dann die Portalkammer: Kugel einsetzen, K'ins Satz hören, ein Wandbildfragment entzünden, Münzen sichern und aufsteigen.")),
+         t("Room A, then Room B with the floor's Key Orb, then the Portal Chamber: socket the orb, hear K'in's line, light a mural fragment, bank your coins and ascend. The party carries one Key Orb, and whoever falls drops it.",
+           "Raum A, dann Raum B mit der Schlüsselkugel der Ebene, dann die Portalkammer: Kugel einsetzen, K'ins Satz hören, ein Wandbildfragment entzünden, Münzen sichern und aufsteigen. Die Gruppe trägt eine Schlüsselkugel, und wer fällt, lässt sie fallen.")),
         (t("Run", "Durchlauf"),
-         t("Leave the Threshold and climb. Death pulls Kaya's spirit back: most coins are lost, Spirit Fragments are kept. Or reach the summit.",
-           "Die Schwelle verlassen und aufsteigen. Der Tod zieht Kayas Geist zurück: Die meisten Münzen gehen verloren, die Geistsplitter bleiben. Oder der Gipfel ist erreicht.")),
+         t("Leave the Threshold and climb. In the story, a fallen Climber returns at the room's checkpoint while anyone in the party still stands. Only a party wipe pulls everyone back to the Threshold: some unbanked coins are lost, Spirit Fragments are kept.",
+           "Die Schwelle verlassen und aufsteigen. In der Story kehrt ein gefallener Kletterer am Checkpoint des Raums zurück, solange noch jemand aus der Gruppe steht. Erst wenn alle fallen, zieht der Tempel die ganze Gruppe an die Schwelle zurück: Ein Teil der ungesicherten Münzen geht verloren, die Geistsplitter bleiben.")),
         (t("Meta", "Meta"),
          t("Spend fragments at the Threshold, unlock weapons and gear, fill the Spirit Mural, open tier shortcuts and claim the Elemental Orbs that reshape the climb.",
            "Splitter in der Schwelle ausgeben, Waffen und Ausrüstung freischalten, das Geisterwandbild füllen, Abkürzungen zu den Stufen öffnen und die Elementarkugeln erringen, die den Aufstieg verändern.")),
@@ -129,14 +136,26 @@ def how_it_plays(ctx):
         (t("The Ascent", "Der Aufstieg"), t("Story", "Story"),
          t("A fixed, hand-built room order. The first playthrough, with the Shell as the tutorial that teaches every core verb once.",
            "Eine feste, von Hand gebaute Raumfolge. Der erste Durchgang, mit The Shell als Tutorial, das jede Kernaktion einmal beibringt.")),
-        (t("Trials of the Shifting Temple", "Prüfungen des wandelnden Tempels"), t("Unlocked after the first summit", "Freigeschaltet nach dem ersten Gipfel"),
-         t("Rooms shuffle within each tier while the tier order stays fixed. Stackable <em>Temple's Wrath</em> curses add tougher undead, faster traps, fewer checkpoints, roaming Guardian Spirits and timed floors, and each level earns better rewards.",
-           "Innerhalb jeder Stufe werden die Räume gemischt, die Reihenfolge der Stufen bleibt fest. Stapelbare Flüche des <em>Zorns des Tempels</em> bringen zähere Untote, schnellere Fallen, weniger Checkpoints, umherstreifende Wächtergeister und Ebenen auf Zeit, und jede Stufe bringt bessere Belohnungen.")),
+        (t("Trials of the Shifting Temple", "Prüfungen des wandelnden Tempels"), t("Opens tier by tier", "Öffnet sich Stufe für Stufe"),
+         t("Rooms shuffle within each tier while the tier order stays fixed, and a tier's Trials open as soon as the party clears it in the story. Stackable <em>Temple's Wrath</em> curses add tougher undead, faster traps, fewer checkpoints, roaming Guardian Spirits and timed floors, and each level earns better rewards.",
+           "Innerhalb jeder Stufe werden die Räume gemischt, die Reihenfolge der Stufen bleibt fest, und die Prüfungen einer Stufe öffnen sich, sobald die Gruppe sie in der Story geschafft hat. Stapelbare Flüche des <em>Zorns des Tempels</em> bringen zähere Untote, schnellere Fallen, weniger Checkpoints, umherstreifende Wächtergeister und Ebenen auf Zeit, und jede Stufe bringt bessere Belohnungen.")),
         (t("Expedition", "Expedition"), t("Replay", "Wiederholen"),
          t("Return to any cleared floor in its story layout with your full kit, to collect idols, earn medallions and open the orb-gated side routes.",
            "Kehre mit voller Ausrüstung in jede abgeschlossene Ebene in ihrer Story-Fassung zurück, um Idole zu sammeln, Medaillons zu verdienen und die durch Kugeln versperrten Nebenwege zu öffnen.")),
     ]
     mode_html = "".join(f'<article class="mode"><p class="kicker">{s}</p><h3>{n}</h3><p>{d}</p></article>' for n, s, d in modes)
+    trial = [
+        (t("Before the run", "Vor dem Durchlauf"), t("Temple's Wrath", "Zorn des Tempels"),
+         t("Ten stackable curses, from more undead and faster traps to no checkpoints and a silent K'in. The higher the Wrath, the richer the reward.",
+           "Zehn stapelbare Flüche, von mehr Untoten und schnelleren Fallen bis zu fehlenden Checkpoints und einer schweigenden K'in. Je höher der Zorn, desto reicher die Belohnung.")),
+        (t("At every Spirit Shrine", "An jedem Geisterschrein"), t("Blessings", "Segen"),
+         t("Each Climber picks one of three blessings for the run, in the four energy colours: faster sprints, slower traps, quicker revives, burning blades.",
+           "Jeder Kletterer wählt einen von drei Segen für den Durchlauf, in den vier Energiefarben: schnellere Sprints, langsamere Fallen, schnellere Wiederbelebung, brennende Klingen.")),
+        (t("From every boss", "Von jedem Boss"), t("Sun Shards", "Sonnensplitter"),
+         t("Each boss beaten in the Trials drops a shard. Four of them make a Trial Sun, which opens the hardest run of all: Eclipse.",
+           "Jeder in den Prüfungen besiegte Boss lässt einen Splitter fallen. Vier davon ergeben eine Prüfungssonne, die den härtesten Durchlauf von allen öffnet: Eclipse.")),
+    ]
+    trial_html = "".join(f'<article class="mode"><p class="kicker">{s}</p><h3>{n}</h3><p>{d}</p></article>' for s, n, d in trial)
 
     collect = [
         ("P07", t("Energy Orbs", "Energiekugeln"),
@@ -170,12 +189,12 @@ def how_it_plays(ctx):
   {feature(ctx, "B-05", t("Move", "Bewegen"), t("Platforming that never waits", "Plattforming, das nie wartet"),
     t("<p>Run, sprint, jump, mantle, crouch and swim, across a platform set that keeps changing: sliding slabs, floating "
       "and swinging platforms, seesaws, rotating calendar discs, crumbling floors, vanishing phase steps, updrafts and "
-      "lifts.</p><p>Every room hands Kaya one new idea, then the next room asks her to use it while something else is "
-      "trying to kill her.</p>",
+      "lifts.</p><p>Every room hands you one new idea, then the next room asks you to use it while something else is "
+      "trying to kill you.</p>",
       "<p>Laufen, sprinten, springen, hochziehen, ducken und schwimmen, über Plattformen, die sich ständig ändern: "
       "gleitende Steinplatten, schwebende und schwingende Plattformen, Wippen, rotierende Kalenderscheiben, bröckelnde "
-      "Böden, verschwindende Phasenstufen, Aufwinde und Aufzüge.</p><p>Jeder Raum gibt Kaya eine neue Idee an die Hand, "
-      "und der nächste verlangt, dass sie sie anwendet, während etwas anderes versucht, sie umzubringen.</p>"))}
+      "Böden, verschwindende Phasenstufen, Aufwinde und Aufzüge.</p><p>Jeder Raum gibt dir eine neue Idee an die Hand, "
+      "und der nächste verlangt, dass du sie anwendest, während etwas anderes versucht, dich umzubringen.</p>"))}
   {feature(ctx, "B-07", t("Read", "Lesen"), t("Traps with a rhythm", "Fallen mit Rhythmus"),
     t("<p>Spikes, fire vents, fireball serpent heads, saw tracks, pendulums, dart walls, rolling boulders and crushing "
       "walls. Each fires on a readable beat, and K'in flickers a warning before it goes off.</p><p>Getting through "
@@ -207,11 +226,13 @@ def how_it_plays(ctx):
   <p class="kicker">{t("Modes", "Modi")}</p>
   <h2>{t("One room pool, three ways to climb", "Ein Raumpool, drei Arten aufzusteigen")}</h2>
   <div class="modes">{mode_html}</div>
+  <h3 class="sub-head">{t("Inside a Trial", "In einer Prüfung")}</h3>
+  <div class="modes">{trial_html}</div>
 </section>
 
 <section class="band"><div class="wrap section">
   <p class="kicker">{t("Collectibles and economy", "Sammelobjekte und Wirtschaft")}</p>
-  <h2>{t("What Kaya carries out of every room", "Was Kaya aus jedem Raum mitnimmt")}</h2>
+  <h2>{t("What Climbers carry out of every room", "Was Kletterer aus jedem Raum mitnehmen")}</h2>
   <div class="items">{collect_html}</div>
 </div></section>
 """
@@ -266,25 +287,27 @@ def weapons(ctx):
     return f"""
 <section class="wrap section narrow-top">
   <p class="kicker">{t("Weapons", "Waffen")}</p>
-  <h2>{t("An explorer's arsenal, found in the temple", "Das Arsenal einer Entdeckerin, gefunden im Tempel")}</h2>
-  <p class="lede-sm">{t("Kaya enters as a scholar, not a warrior. Every weapon is a discovery, and each one changes what "
-                        "she can reach as much as what she can fight.",
-                        "Kaya betritt den Tempel als Gelehrte, nicht als Kriegerin. Jede Waffe ist eine Entdeckung und verändert, "
-                        "was sie erreichen kann, ebenso sehr wie das, was sie bekämpfen kann.")}</p>
+  <h2>{t("An explorer's arsenal, found in the temple", "Das Arsenal der Entdecker, gefunden im Tempel")}</h2>
+  <p class="lede-sm">{t("Climbers enter with empty hands. Every weapon is a discovery, and each one changes what you can "
+                        "reach as much as what you can fight.",
+                        "Kletterer betreten den Tempel mit leeren Händen. Jede Waffe ist eine Entdeckung und verändert, "
+                        "was du erreichen kannst, ebenso sehr wie das, was du bekämpfen kannst.")}</p>
   <div class="items">{arm_html}</div>
 </section>
 
 <section class="band"><div class="wrap section">
   {feature(ctx, "W05", t("Permanent powers", "Dauerhafte Kräfte"), t("The four Elemental Orbs", "Die vier Elementarkugeln"),
-    t("<p>The builders harnessed fire, earth, wind and water through four sacred orbs. Kaya claims them one by one in "
-      "the Elemental Sanctums, and unlike everything else she gathers, they stay with her spirit through every death.</p>"
-      "<p>Each orb is a traversal tool, a combat power and a key. Rooms that need an orb only enter the Trials room pool "
-      "once she owns it, so the temple literally grows as she does.</p>",
-      "<p>Die Erbauer bändigten Feuer, Erde, Wind und Wasser mit vier heiligen Kugeln. Kaya erringt sie nacheinander in "
-      "den Elementarheiligtümern, und anders als alles andere, was sie sammelt, bleiben sie ihrem Geist über jeden Tod "
-      "hinaus erhalten.</p><p>Jede Kugel ist Fortbewegungswerkzeug, Kampfkraft und Schlüssel zugleich. Räume, die eine "
-      "Kugel erfordern, kommen erst in den Raumpool der Prüfungen, wenn Kaya sie besitzt; der Tempel wächst also "
-      "buchstäblich mit ihr.</p>"))}
+    t("<p>The builders harnessed fire, earth, wind and water through four sacred orbs. Climbers claim them one by one "
+      "in the Elemental Sanctums, and unlike everything else they gather, the orbs stay with each spirit through every "
+      "death.</p><p>Each orb is a traversal tool, a combat power and a key. Rooms that need an orb only enter the Trials "
+      "room pool once the party owns it, so the temple literally grows with you. If a friend has not claimed an orb yet, "
+      "K'in lends them a glowing echo of it for that room.</p>",
+      "<p>Die Erbauer bändigten Feuer, Erde, Wind und Wasser mit vier heiligen Kugeln. Kletterer erringen sie "
+      "nacheinander in den Elementarheiligtümern, und anders als alles andere, was sie sammeln, bleiben die Kugeln jedem "
+      "Geist über jeden Tod hinaus erhalten.</p><p>Jede Kugel ist Fortbewegungswerkzeug, Kampfkraft und Schlüssel "
+      "zugleich. Räume, die eine Kugel erfordern, kommen erst in den Raumpool der Prüfungen, wenn die Gruppe sie besitzt; "
+      "der Tempel wächst also buchstäblich mit euch. Hat ein Freund eine Kugel noch nicht errungen, leiht K'in ihm für "
+      "diesen Raum ein leuchtendes Echo davon.</p>"))}
   <div class="table-wrap"><table class="orb-table">
     <thead><tr><th>{t("Orb", "Kugel")}</th><th>{t("Earned on", "Errungen auf")}</th><th>{t("Traversal", "Fortbewegung")}</th><th>{t("Combat", "Kampf")}</th></tr></thead>
     <tbody>{orb_rows}</tbody>
@@ -296,11 +319,13 @@ def weapons(ctx):
     t("<p>The brightest thing in the game. A blazing golden orb with a living sun glyph at its core, cradled in four "
       "carved gold hands set with red, green, white and blue gems, one for each element.</p>"
       "<p>It waits in a sealed vault behind the Priest's Lieutenant on Floor 17. Carried to the Sky Altar, it opens the "
-      f"Sun Portal and puts the final choice in Kaya's hands. <a href='{u('climb/sky-altar.html')}'>The summit →</a></p>",
+      "Sun Portal and puts the final choice in the party's hands: every Climber steps onto Restore or Break, and the "
+      f"majority decides. <a href='{u('climb/sky-altar.html')}'>The summit →</a></p>",
       "<p>Das hellste Objekt im Spiel. Eine lodernde goldene Kugel mit einer lebendigen Sonnenglyphe im Kern, gehalten "
       "von vier geschnitzten Goldhänden mit roten, grünen, weißen und blauen Edelsteinen, einem für jedes Element.</p>"
       "<p>Sie wartet in einem versiegelten Gewölbe hinter dem Leutnant des Priesters auf Ebene 17. Zum Himmelsaltar "
-      "getragen, öffnet sie das Sonnenportal und legt die letzte Entscheidung in Kayas Hände. "
+      "getragen, öffnet sie das Sonnenportal und legt die letzte Entscheidung in die Hände der Gruppe: Jeder Kletterer "
+      "tritt auf Wiederherstellen oder Durchbrechen, und die Mehrheit entscheidet. "
       f"<a href='{u('climb/sky-altar.html')}'>Zum Gipfel →</a></p>"))}
   {feature(ctx, "P07", t("Puzzle energy", "Rätselenergie"), t("Energy Orbs", "Energiekugeln"),
     t("<p>The working orbs of every puzzle room: gold sun, blue water, red fire and green growth, each held in a "
@@ -312,11 +337,160 @@ def weapons(ctx):
 """
 
 
+# ------------------------------------------------------------------ climbers & co-op
+def climbers(ctx):
+    u, t = ctx.url, ctx.t
+    kaya_steps = [
+        (t("Floor 0", "Ebene 0"),
+         t("Kaya climbs the Shell beside the party, waits for you at every section and points the way. In the spike "
+           "corridor the temple takes her, and she dissolves into gold light.",
+           "Kaya steigt mit der Gruppe durch The Shell, wartet an jedem Abschnitt auf euch und zeigt den Weg. Im "
+           "Stachelkorridor holt der Tempel sie, und sie zerfällt in goldenes Licht.")),
+        (t("The Threshold", "Die Schwelle"),
+         t("You find her back at the Threshold, alive, staring at her own fresh carving on the Spirit Mural. From then on "
+           "she stays to read the wall, and sends Climbers up for the evidence she needs: mural fragments, codex pages, "
+           "her mother's notes.",
+           "Ihr findet sie an der Schwelle wieder, lebendig, vor ihrem eigenen frischen Relief auf dem Geisterwandbild. Von "
+           "da an bleibt sie, um die Wand zu lesen, und schickt Kletterer nach den Beweisen aus, die sie braucht: "
+           "Wandbildfragmente, Codexseiten, die Notizen ihrer Mutter.")),
+        (t("On the way up", "Auf dem Weg nach oben"),
+         t("Three times on the climb, Kaya meets the party with something new she has read in the stone. What she finds "
+           "is for the players to discover.",
+           "Dreimal auf dem Weg nach oben trifft Kaya die Gruppe mit etwas Neuem, das sie im Stein gelesen hat. Was sie "
+           "findet, sollen die Spieler selbst entdecken.")),
+    ]
+    kaya_html = "".join(f'<li><span class="loop-label">{n}</span><p>{d}</p></li>' for n, d in kaya_steps)
+
+    rules = [
+        (t("At the exit gate", "Am Ausgangstor"), t("No one left behind", "Niemand bleibt zurück"),
+         t("A room's exit opens when its lock is solved and every living Climber stands at the gate.",
+           "Der Ausgang eines Raums öffnet sich, wenn sein Schloss gelöst ist und jeder lebende Kletterer am Tor steht.")),
+        (t("Per floor", "Pro Ebene"), t("One Key Orb", "Eine Schlüsselkugel"),
+         t("The party carries a single Key Orb to the Portal Chamber. If its carrier falls, anyone can pick it up.",
+           "Die Gruppe trägt eine einzige Schlüsselkugel zur Portalkammer. Fällt ihr Träger, kann jeder sie aufheben.")),
+        (t("When you fall", "Wenn du fällst"), t("Back on your feet", "Wieder auf den Beinen"),
+         t("In the story, a fallen Climber returns at the room's checkpoint after a few seconds, as long as someone in "
+           "the party is still standing.",
+           "In der Story kehrt ein gefallener Kletterer nach ein paar Sekunden am Checkpoint des Raums zurück, solange "
+           "noch jemand aus der Gruppe steht.")),
+        (t("Orbs you lack", "Fehlende Kugeln"), t("Borrowed echoes", "Geliehene Echos"),
+         t("If a room needs an Elemental Orb a friend has not claimed yet, K'in lends them a glowing echo of it for that "
+           "room only.",
+           "Braucht ein Raum eine Elementarkugel, die ein Freund noch nicht errungen hat, leiht K'in ihm ein leuchtendes "
+           "Echo davon, nur für diesen Raum.")),
+        (t("Between sessions", "Zwischen den Sitzungen"), t("Catch up together", "Gemeinsam aufholen"),
+         t("Progress belongs to each player. Friends who are behind still earn everything, and get the floor credited when "
+           "the party clears it.",
+           "Der Fortschritt gehört jedem Spieler selbst. Freunde, die zurückliegen, verdienen trotzdem alles und bekommen "
+           "die Ebene angerechnet, wenn die Gruppe sie schafft.")),
+        (t("On the summit", "Auf dem Gipfel"), t("The ending vote", "Die Abstimmung"),
+         t("Each Climber stands at Restore or Break. The majority decides, and every player's own save remembers how they "
+           "voted.",
+           "Jeder Kletterer stellt sich auf Wiederherstellen oder Durchbrechen. Die Mehrheit entscheidet, und jeder "
+           "Spielstand merkt sich, wie sein Spieler gestimmt hat.")),
+    ]
+    rule_html = "".join(f'<article class="mode"><p class="kicker">{k}</p><h3>{n}</h3><p>{d}</p></article>' for k, n, d in rules)
+
+    rooms = [
+        (t("1 · The Drowned Gallery", "1 · Die ertrunkene Galerie"),
+         t("One Climber drains the channel from the balcony while the others wait at the stairs.",
+           "Ein Kletterer lässt den Kanal vom Balkon aus ab, während die anderen an der Treppe warten.")),
+        (t("3 · Hall of Blades", "3 · Halle der Klingen"),
+         t("Stand on the four corner plates together, in the right order, and the dart volley never fires.",
+           "Steht gemeinsam in der richtigen Reihenfolge auf den vier Eckplatten, und die Pfeilsalve feuert nie.")),
+        (t("5 · The Collapsing Stair", "5 · Die einstürzende Treppe"),
+         t("The Guardian Spirit speeds up while anyone lags behind, so the party has to move as one.",
+           "Der Wächtergeist wird schneller, solange jemand zurückbleibt, also muss sich die Gruppe gemeinsam bewegen.")),
+        (t("8 · The Gear Ascent", "8 · Der Zahnradaufstieg"),
+         t("The Gearwarden turns toward the nearest Climber: one lures it into a vent pillar while the others strike its core.",
+           "Der Zahnradwächter wendet sich dem nächsten Kletterer zu: Einer lockt ihn an eine Dampfsäule, während die anderen seinen Kern treffen.")),
+        (t("10 · The Buried Ossuary", "10 · Das verschüttete Beinhaus"),
+         t("Two Climbers pushing a boulder move it twice as fast.",
+           "Zwei Kletterer, die einen Felsbrocken schieben, bewegen ihn doppelt so schnell.")),
+        (t("11 · The Broken Ramparts", "11 · Die zerbrochenen Wälle"),
+         t("The first Climber up an updraft can lower a rope ladder for the rest.",
+           "Wer zuerst mit dem Aufwind oben ist, kann den anderen eine Strickleiter herablassen.")),
+        (t("14 · The Hall of Lies", "14 · Die Halle der Lügen"),
+         t("Glyph Scan shows the false tiles only to the Climber using it, who has to guide the others across.",
+           "Der Glyphenscan zeigt die falschen Kacheln nur dem Kletterer, der ihn benutzt, und der muss die anderen hinüberlotsen.")),
+        (t("15 · The Totem Vault", "15 · Das Totemgewölbe"),
+         t("The Jaguar Priest hides in one of four totems, so the party splits up to cover them all.",
+           "Der Jaguarpriester versteckt sich in einem von vier Totems, also teilt sich die Gruppe auf, um alle zu bewachen.")),
+        (t("16 · The Elemental Gauntlet", "16 · Der Elementarspießrutenlauf"),
+         t("Each Climber takes an orb role: the one who burns, the one who breaks, the one who glides, the one who parts the water.",
+           "Jeder Kletterer übernimmt eine Kugelrolle: einer brennt, einer bricht, einer gleitet, einer teilt das Wasser.")),
+    ]
+    room_rows = "".join(f"<tr><th scope='row'>{n}</th><td>{d}</td></tr>" for n, d in rooms)
+
+    scale = [("1", "×1", "×1"), ("2", "×1.5", "×1.6"), ("3", "×2", "×2.2"), ("4", "×2.5", "×2.8")]
+    scale_rows = "".join(f"<tr><th scope='row'>{p}</th><td>{e}</td><td>{b}</td></tr>" for p, e, b in scale)
+
+    return f"""
+<section class="wrap section narrow-top">
+  <div class="prose">
+    <p class="big">{t("You are a Climber. You play your own Fortnite character, and K'in greets you the way she greets "
+                      "everyone the temple lets in: climbing soul.",
+                      "Du bist ein Kletterer. Du spielst deine eigene Fortnite-Figur, und K'in begrüßt dich so, wie sie "
+                      "jeden begrüßt, den der Tempel einlässt: kletternde Seele.")}</p>
+    <p>{t(f"The temple has always kept a record of the people it takes. The <a href='{u('characters/climbers/index.html')}'>Carved "
+          "Climbers</a> on the Spirit Mural came before you. You are next.",
+          f"Der Tempel hat schon immer festgehalten, wen er holt. Die <a href='{u('characters/climbers/index.html')}'>gemeißelten "
+          "Kletterer</a> auf dem Geisterwandbild waren vor dir da. Du bist der Nächste.")}</p>
+  </div>
+</section>
+
+<section class="band"><div class="wrap section">
+  {feature(ctx, ctx.pick("MURAL-CLIMBERS", "HUB08"), t("Your likeness", "Dein Abbild"), t("Carved into the wall", "In die Wand gemeißelt"),
+    t("<p>The first time a Climber dies, a new panel is cut into the Spirit Mural: a carved figure, your name in a glyph "
+      "frame, and a sigil you choose from the four totem animals, jaguar, serpent, eagle or monkey.</p>"
+      "<p>The panel grows with you. Every tier you clear adds a band to it, and the ending you reach can gild it. Everyone "
+      "in the Threshold sees everyone else's panel, so the wall becomes a record of who has climbed how far.</p>",
+      "<p>Wenn ein Kletterer zum ersten Mal stirbt, wird eine neue Tafel in das Geisterwandbild geschlagen: eine "
+      "gemeißelte Gestalt, dein Name in einem Glyphenrahmen und ein Zeichen, das du aus den vier Totemtieren wählst, "
+      "Jaguar, Schlange, Adler oder Affe.</p><p>Die Tafel wächst mit dir. Jede geschaffte Stufe fügt ein Band hinzu, und "
+      "das Ende, das du erreichst, kann sie vergolden. Alle in der Schwelle sehen die Tafeln der anderen, so wird die Wand "
+      "zu einem Verzeichnis, wer wie weit gekommen ist.</p>"))}
+</div></section>
+
+<section class="wrap section">
+  <p class="kicker">{t("Kaya in the game", "Kaya im Spiel")}</p>
+  <h2>{t("Beside you first, then at the wall", "Erst an deiner Seite, dann an der Wand")}</h2>
+  <p class="lede-sm">{t(f"<a href='{u('characters/kaya.html')}'>Kaya</a> is no longer the one you play. She is the one you climb with, "
+                        "and then the one you climb for.",
+                        f"<a href='{u('characters/kaya.html')}'>Kaya</a> ist nicht mehr die Figur, die du spielst. Sie ist die, "
+                        "mit der du kletterst, und dann die, für die du kletterst.")}</p>
+  <ol class="loops loops-grid">{kaya_html}</ol>
+</section>
+
+<section class="band"><div class="wrap section">
+  <p class="kicker">{t("Up to four", "Bis zu vier")}</p>
+  <h2>{t("How a party climbs", "Wie eine Gruppe klettert")}</h2>
+  <p class="lede-sm">{t("Every room can still be solved alone. Playing together only adds speed, or a second way through.",
+                        "Jeder Raum bleibt allein lösbar. Gemeinsames Spielen bringt nur mehr Tempo oder einen zweiten Weg.")}</p>
+  <div class="modes">{rule_html}</div>
+</div></section>
+
+<section class="wrap section">
+  <p class="kicker">{t("Floor by floor", "Ebene für Ebene")}</p>
+  <h2>{t("Rooms that play differently together", "Räume, die sich gemeinsam anders spielen")}</h2>
+  <div class="table-wrap"><table class="orb-table">
+    <thead><tr><th>{t("Floor", "Ebene")}</th><th>{t("With a party", "Mit einer Gruppe")}</th></tr></thead>
+    <tbody>{room_rows}</tbody>
+  </table></div>
+  <h3 class="sub-head">{t("Enemies grow with the party", "Gegner wachsen mit der Gruppe")}</h3>
+  <div class="table-wrap"><table class="orb-table scale-table">
+    <thead><tr><th>{t("Climbers", "Kletterer")}</th><th>{t("Enemies in a room", "Gegner im Raum")}</th><th>{t("Boss health", "Lebenspunkte der Bosse")}</th></tr></thead>
+    <tbody>{scale_rows}</tbody>
+  </table></div>
+</section>
+"""
+
+
 PAGES = {
     "game/index.html": dict(
         title=("Overview & Pillars", "Überblick & Säulen"), kicker=("The Game", "Das Spiel"), banner="B-11",
-        lede=("A third-person action-adventure platformer inside a living Mayan pyramid, planned for Unreal Engine 5.",
-              "Ein Third-Person-Action-Adventure-Plattformer in einer lebenden Maya-Pyramide, geplant für Unreal Engine 5."),
+        lede=("The flagship island: a co-op action-adventure platformer inside a living Mayan pyramid, for up to four players.",
+              "Die Hauptinsel: ein Koop-Action-Adventure-Plattformer in einer lebenden Maya-Pyramide, für bis zu vier Spieler."),
         description=("What Ascent of the Sun Temple is, and the five design pillars behind it.",
                      "Was Ascent of the Sun Temple ist und welche fünf Design-Säulen dahinterstehen."),
         body=overview, og="B-11"),
@@ -327,11 +501,19 @@ PAGES = {
         description=("Loops, traversal, traps, combat, puzzles, modes and collectibles.",
                      "Kreisläufe, Fortbewegung, Fallen, Kampf, Rätsel, Modi und Sammelobjekte."),
         body=how_it_plays, og="B-05"),
+    "game/climbers-and-co-op.html": dict(
+        title=("Climbers & Co-op", "Kletterer & Koop"), kicker=("The Game", "Das Spiel"),
+        banner=["COOP-PARTY", "HUB08"],
+        lede=("You play yourself, the temple carves you into its wall, and up to four Climbers go up together.",
+              "Du spielst dich selbst, der Tempel meißelt dich in seine Wand, und bis zu vier Kletterer steigen gemeinsam auf."),
+        description=("Playing as a Climber, the Spirit Mural likeness, Kaya's role and the co-op rules of the flagship.",
+                     "Als Kletterer spielen, das Abbild auf dem Geisterwandbild, Kayas Rolle und die Koop-Regeln der Hauptinsel."),
+        body=climbers, og=["COOP-PARTY", "HUB08"]),
     "game/weapons-and-powers.html": dict(
         title=("Weapons & Powers", "Waffen & Kräfte"), kicker=("The Game", "Das Spiel"), banner="T4B-SCENE",
         lede=("Four weapons, four permanent Elemental Orbs and the one Sun Orb that opens the summit.",
               "Vier Waffen, vier dauerhafte Elementarkugeln und die eine Sonnenkugel, die den Gipfel öffnet."),
-        description=("Kaya's weapons, the Elemental Orbs and the Sun Orb.",
-                     "Kayas Waffen, die Elementarkugeln und die Sonnenkugel."),
+        description=("The Climbers' weapons, the Elemental Orbs and the Sun Orb.",
+                     "Die Waffen der Kletterer, die Elementarkugeln und die Sonnenkugel."),
         body=weapons, og="W05"),
 }

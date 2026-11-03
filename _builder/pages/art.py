@@ -162,8 +162,8 @@ def kits(ctx):
 
 
 def props(ctx):
-    return intro(ctx, "Everything Kaya can step on, pick up, solve or be hurt by: twenty-two sheets of shared gameplay props.",
-                 "Alles, worauf Kaya treten, was sie aufheben, lösen oder woran sie sich verletzen kann: zweiundzwanzig Blätter mit "
+    return intro(ctx, "Everything a Climber can step on, pick up, solve or be hurt by: twenty-two sheets of shared gameplay props.",
+                 "Alles, worauf ein Kletterer treten, was er aufheben, lösen oder woran er sich verletzen kann: zweiundzwanzig Blätter mit "
                  "gemeinsamen Gameplay-Objekten.") + \
         f'<section class="band"><div class="wrap section">{catalog(ctx, PROPS)}</div></section>'
 
@@ -172,8 +172,8 @@ def relics(ctx):
     u, t = ctx.url, ctx.t
     return f"""
 <section class="wrap section narrow-top"><div class="prose">
-  <p class="big">{t("The objects the story turns on: Kaya's weapons, the orbs, K'in, and the kit she inherited from her mother.",
-                    "Die Gegenstände, um die sich die Geschichte dreht: Kayas Waffen, die Kugeln, K'in und die Ausrüstung, die sie von "
+  <p class="big">{t("The objects the story turns on: the Climbers' weapons, the orbs, K'in, and the kit Kaya inherited from her mother.",
+                    "Die Gegenstände, um die sich die Geschichte dreht: die Waffen der Kletterer, die Kugeln, K'in und die Ausrüstung, die Kaya von "
                     "ihrer Mutter geerbt hat.")}</p>
   <p><a class="text-link" href="{u('game/weapons-and-powers.html')}">{t("How the weapons and powers play", "Wie sich Waffen und Kräfte spielen")}</a></p>
 </div></section>

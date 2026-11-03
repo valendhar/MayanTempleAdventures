@@ -53,9 +53,11 @@ def living_temple(ctx):
     flip=True)}
   {feature(ctx, "A-04", t("Outside", "Draußen"), t("Jungle and camp", "Dschungel und Lager"),
     t("<p>Dense jungle presses against the stone and hides the pyramid's base beneath vines and roots. At the foot of the pyramid, "
-      "Kaya's camp is the last taste of ordinary life: a canvas tent, supply crates, a kettle ticking on the campfire.</p>",
+      "Isabel Kaan's old camp is the last taste of ordinary life: a canvas tent, supply crates, a kettle ticking on the campfire. "
+      "Every climb in the game starts here.</p>",
       "<p>Dichter Dschungel drängt sich an den Stein und verbirgt den Fuß der Pyramide unter Ranken und Wurzeln. Am Fuß der Pyramide "
-      "ist Kayas Lager der letzte Rest gewöhnlichen Lebens: ein Segeltuchzelt, Vorratskisten, ein Kessel, der über dem Lagerfeuer leise tickt.</p>"))}
+      "ist Isabel Kaans altes Lager der letzte Rest gewöhnlichen Lebens: ein Segeltuchzelt, Vorratskisten, ein Kessel, der über dem Lagerfeuer leise tickt. "
+      "Jeder Aufstieg im Spiel beginnt hier.</p>"))}
   {feature(ctx, "HUB04", t("The terraces", "Die Terrassen"), t("Eight steps to the sky", "Acht Stufen bis zum Himmel"),
     t("<p>Eight sloped terraces with stepped cornices, jade bands and recessed sun panels rise to the summit temple, with the grand stair "
       "running up the front between serpent-headed balustrades.</p><p>Roots and moss weather the outside slowly; inside, the temple "

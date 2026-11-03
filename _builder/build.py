@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Static site builder for the Ascent of the Sun Temple design site.
+"""Static site builder for the Mayan Temple Adventures design site.
 
 Usage:  python3 _builder/build.py [output_dir]
 
@@ -25,7 +25,7 @@ OUT = Path(sys.argv[1]).resolve() if len(sys.argv) > 1 else HERE.parent
 ORIGINALS = HERE / "images" / "originals"
 IMG_OUT = OUT / "assets" / "img"
 
-SITE_TITLE = "Ascent of the Sun Temple"
+SITE_TITLE = "Mayan Temple Adventures"
 SITE_TAGLINE = "A Mayan pyramid that rearranges itself around you."
 AUTHOR = "Mike Stevanovic"
 COPYRIGHT = "Mike Stevanovic"
@@ -51,11 +51,15 @@ UI = {
     "prev_img": ("Previous image", "Vorheriges Bild"),
     "next_img": ("Next image", "Nächstes Bild"),
     "lang_label": ("Language", "Sprache"),
-    "foot_by": ("A game in design by {}. Planned for Unreal Engine 5.",
-                "Ein Spiel in Entwicklung von {}. Geplant für Unreal Engine 5."),
+    "foot_by": ("Fortnite islands in design by {}. Planned in Unreal Editor for Fortnite (UEFN).",
+                "Fortnite-Inseln in Entwicklung von {}. Geplant im Unreal Editor for Fortnite (UEFN)."),
     "foot_note": ("In development. All art shown is concept and design work, not in-engine capture.",
                   "In Entwicklung. Alle gezeigten Bilder sind Konzept- und Designarbeiten, keine Aufnahmen aus der Engine."),
     "rights": ("All rights reserved.", "Alle Rechte vorbehalten."),
+    "trademark": ("Fortnite, Unreal Editor for Fortnite and Epic Games are trademarks of Epic Games, Inc. "
+                  "This project is not affiliated with or endorsed by Epic Games.",
+                  "Fortnite, Unreal Editor for Fortnite und Epic Games sind Marken von Epic Games, Inc. "
+                  "Dieses Projekt steht in keiner Verbindung zu Epic Games und wird nicht von Epic Games unterstützt."),
     "stub_kicker": ("Coming soon", "Demnächst"),
     "stub_prep": ("In preparation", "In Vorbereitung"),
     "stub_text": ("This page is being written. Check back soon.",
@@ -263,7 +267,8 @@ def footer(ctx):
       <p>{esc(ctx.ui("foot_by", AUTHOR))}</p>
     </div>
     <p class="foot-note">{ctx.ui("foot_note")}<br>
-    © {YEAR} {esc(COPYRIGHT)}. {ctx.ui("rights")}</p>
+    © {YEAR} {esc(COPYRIGHT)}. {ctx.ui("rights")}<br>
+    {ctx.ui("trademark")}</p>
   </div>
 </footer>"""
 

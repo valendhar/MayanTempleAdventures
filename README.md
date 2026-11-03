@@ -1,6 +1,6 @@
-# Ascent of the Sun Temple — design site
+# Mayan Temple Adventures — design site
 
-A visual design document for *Ascent of the Sun Temple*, a third-person action-adventure platformer set inside a living Mayan pyramid, planned for Unreal Engine 5.
+A visual design document for *Mayan Temple Adventures*: five Fortnite islands set in and around one living Mayan pyramid, planned in Unreal Editor for Fortnite (UEFN). The flagship, *Ascent of the Sun Temple: Climbers*, is a co-op climb for up to four players.
 
 The site is plain HTML, CSS and JavaScript. It needs no build step on GitHub and works by opening `index.html` in a browser.
 
@@ -8,7 +8,7 @@ The site is plain HTML, CSS and JavaScript. It needs no build step on GitHub and
 
 The site is in English and German. English pages live at the top level, the German copies of every page live in `de/` with the same file names. The flags in the top-right corner of the menu bar switch to the same page in the other language. Images are shared by both languages.
 
-Live addresses: `https://<your-username>.github.io/sun-temple/` (English) and `https://<your-username>.github.io/sun-temple/de/` (German).
+Live addresses: `https://valendhar.github.io/MayanTempleAdventures/` (English) and `https://valendhar.github.io/MayanTempleAdventures/de/` (German).
 
 ## Putting it online with GitHub Pages
 

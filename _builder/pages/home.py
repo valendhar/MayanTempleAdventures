@@ -6,12 +6,12 @@ def body(ctx):
     hero_style = ctx.bg("A-01")
 
     facts = [
-        (t("Genre", "Genre"), t("Third-person action-adventure platformer", "Third-Person-Action-Adventure-Plattformer")),
-        (t("Planned engine", "Geplante Engine"), t("Unreal Engine 5 and Vertical Third Game Framework", "Unreal Engine 5 und Vertical Third Game Framework")),
+        (t("Genre", "Genre"), t("Co-op action-adventure platformer", "Koop-Action-Adventure-Plattformer")),
+        (t("Platform", "Plattform"), t("Fortnite islands, built in UEFN", "Fortnite-Inseln, gebaut im UEFN")),
         (t("Tone", "Stil"), "Ratchet &amp; Clank, Jak &amp; Daxter"),
         (t("Structure", "Aufbau"), t("The Shell, six tiers, then the summit", "The Shell, sechs Stufen, dann der Gipfel")),
-        (t("Players", "Spieler"), t("Single Player", "Einzelspieler")),
-        (t("Stage", "Stand"), t("World, story and art direction in design", "Welt, Geschichte und Art Direction in Ausarbeitung")),
+        (t("Players", "Spieler"), t("1–4 co-op, as your own Fortnite character", "1–4 im Koop, als deine eigene Fortnite-Figur")),
+        (t("Islands", "Inseln"), t("Five, all set in one temple", "Fünf, alle im selben Tempel")),
     ]
     fact_html = "".join(f"<div><dt>{k}</dt><dd>{v}</dd></div>" for k, v in facts)
 
@@ -26,11 +26,11 @@ def body(ctx):
          t("Orb, plate, mirror and totem puzzles that grow deeper the higher you climb.",
            "Rätsel mit Kugeln, Druckplatten, Spiegeln und Totems, die immer anspruchsvoller werden, je höher du steigst.")),
         ("T4B-SCENE", t("Grow for good", "Dauerhaft wachsen"),
-         t("The four Elemental Orbs and hub upgrades persist between runs and reshape what you can reach.",
-           "Die vier Elementarkugeln und die Verbesserungen aus dem Hub bleiben über Durchläufe hinweg erhalten und öffnen neue Wege.")),
+         t("The four Elemental Orbs and hub upgrades persist between runs, and your own carving on the Spirit Mural grows with every tier.",
+           "Die vier Elementarkugeln und die Verbesserungen aus dem Hub bleiben über Durchläufe hinweg erhalten, und dein eigenes Relief auf dem Geisterwandbild wächst mit jeder Stufe.")),
         (ctx.pick("HOME-NEVERALONE", "W07"), t("Never alone", "Nie allein"),
-         t("K'in, the last spirit of the temple, teaches, warns, foreshadows and remembers.",
-           "K'in, der letzte Geist des Tempels, lehrt, warnt, deutet an und erinnert sich.")),
+         t("Climb with up to three friends, while K'in, the last spirit of the temple, teaches, warns and remembers.",
+           "Kletter mit bis zu drei Freunden, während K'in, der letzte Geist des Tempels, lehrt, warnt und sich erinnert.")),
     ]
     # All pillar pictures show as 16:9. HOME-NEVERALONE is 4:3, so it is cropped a little,
     # framed to keep both Kaya's head and boots and K'in's light in view.
@@ -40,7 +40,7 @@ def body(ctx):
         for i, n, d in pillars)
 
     cast = [
-        (ctx.pick("HOME-KAYA", "CS-KAYA"), "Kaya", t("The explorer", "Die Entdeckerin"), "characters/kaya.html"),
+        (ctx.pick("HOME-KAYA", "CS-KAYA"), "Kaya", t("The reader", "Die Leserin"), "characters/kaya.html"),
         (ctx.pick("HOME-KIN", "CS-KIN"), "K'in", t("The spirit guide", "Die Geistführerin"), "characters/kin.html"),
         (ctx.pick("HOME-OXLAHUN", "CS-OXLAHUN"), "Oxlahun", t("The trader", "Der Händler"), "characters/oxlahun.html"),
         (ctx.pick("HOME-PRIEST", "CS-PRIEST"), t("The Hollow High Priest", "Der Hohle Hohepriester"),
@@ -81,6 +81,19 @@ def body(ctx):
         f'<span class="step-line">{(oq + l + cq) if l else first_line}</span></a></li>'
         for k, (n, nm, l, p) in enumerate(tiers))
 
+    # One card per Fortnite island, in build order (see pages/islands.py).
+    islands = [
+        ("islands/trap-galleries.html", ctx.pick("ISL-TRAPS", "T2A-SCENE"), "Trap Galleries", t("Deathrun · 1–16", "Deathrun · 1–16")),
+        ("islands/ascent.html", ctx.pick("ISL-ASCENT", "KEYART"), "Ascent of the Sun Temple", t("Co-op adventure · 1–4", "Koop-Abenteuer · 1–4")),
+        ("islands/kaan-expedition.html", ctx.pick("ISL-DIG", "A-04"), "Kaan Expedition", t("Tycoon · 1–8", "Tycoon · 1–8")),
+        ("islands/illusion-depths.html", ctx.pick("ISL-DEPTHS", "T5A-SCENE"), "Illusion Depths", t("Co-op escape rooms · 2–4", "Koop-Escape-Rooms · 2–4")),
+        ("islands/orb-raiders.html", ctx.pick("ISL-RAIDERS", "T4E-SCENE"), "Orb Raiders", t("PvPvE · 8–16", "PvPvE · 8–16")),
+    ]
+    island_html = "".join(
+        f'<li><a class="island-card" href="{u(p)}">{ctx.figure(i, alt=n, link=False)}'
+        f'<span class="island-num">{k + 1}</span><span class="island-name">{n}</span><span class="island-line">{g}</span></a></li>'
+        for k, (p, i, n, g) in enumerate(islands))
+
     if ctx.has("KEYART"):
         alt = t("Mayan Temple Adventure: Ascent of the Sun Temple. Kaya and K'in at their jungle camp below the great stepped pyramid.",
                 "Mayan Temple Adventure: Ascent of the Sun Temple. Kaya und K'in in ihrem Dschungellager unter der großen Stufenpyramide.")
@@ -89,7 +102,7 @@ def body(ctx):
         hero_title = ""
     else:
         hero_art = f'<div class="hero-art hero-art-bg" style="{hero_style}"></div>'
-        hero_title = '<h1 class="hero-title">Ascent of the Sun Temple</h1>'
+        hero_title = '<h1 class="hero-title">Mayan Temple Adventures</h1>'
 
     return f"""
 <section class="hero">
@@ -98,11 +111,11 @@ def body(ctx):
     <div class="hero-copy">
       {hero_title}
       <p class="hero-hook">{t("A Mayan pyramid that rearranges itself around you.", "Eine Maya-Pyramide, die sich um dich herum neu ordnet.")}</p>
-      <p class="hero-sub">{t("A third-person action-adventure platformer, planned for Unreal Engine 5.",
-                             "Ein Third-Person-Action-Adventure-Plattformer, geplant für Unreal Engine 5.")}</p>
+      <p class="hero-sub">{t("Five Fortnite islands in one living temple, built in UEFN. At their heart, a co-op climb for up to four friends.",
+                             "Fünf Fortnite-Inseln in einem lebenden Tempel, gebaut im UEFN. In ihrem Zentrum ein Koop-Aufstieg für bis zu vier Freunde.")}</p>
       <div class="cta-row">
         <a class="btn btn-gold" href="{u('climb/index.html')}">{t("Explore the climb", "Den Aufstieg erkunden")}</a>
-        <a class="btn btn-ghost" href="{u('characters/index.html')}">{t("Meet the cast", "Die Figuren kennenlernen")}</a>
+        <a class="btn btn-ghost" href="{u('islands/index.html')}">{t("See the five islands", "Die fünf Inseln ansehen")}</a>
       </div>
     </div>
     <dl class="facts">{fact_html}</dl>
@@ -113,18 +126,22 @@ def body(ctx):
   <h2 class="intro-title">{t("One temple. Eighteen floors. A spirit who has seen every climber fall.",
          "Ein Tempel. Achtzehn Ebenen. Ein Geist, der jeden Kletterer hat fallen sehen.")}</h2>
   <div class="intro-text">
-    <p class="big">{t("Kaya, a young explorer, wakes K'in, the last spirit of an ancient Mayan sun temple, at its threshold. "
-                      "The temple is alive: it rearranges itself and swallows everyone who climbs it.",
-                      "Kaya, eine junge Entdeckerin, weckt an der Schwelle eines uralten Maya-Sonnentempels K'in, dessen letzten Geist. "
-                      "Der Tempel lebt: Er ordnet sich ständig neu und verschlingt jeden, der ihn erklimmt.")}</p>
-    <p>{t("Floor by floor she fights the risen guardians, survives the traps, solves the orb puzzles and earns the "
-          "elemental powers the builders once held. When she dies, the temple pulls her back to the Threshold, and she climbs "
-          "again a little wiser. At the summit she carries the Sun Orb to the great portal and decides the temple's fate: "
-          "restore the cycle, or break it.",
-          "Ebene für Ebene kämpft sie gegen die erweckten Wächter, übersteht die Fallen, löst die Kugelrätsel und erringt die "
-          "Elementarkräfte, die einst die Erbauer besaßen. Stirbt sie, zieht der Tempel sie zurück an die Schwelle, und sie "
-          "steigt erneut auf, ein wenig klüger als zuvor. Auf dem Gipfel trägt sie die Sonnenkugel zum großen Portal und "
-          "entscheidet über das Schicksal des Tempels: den Kreislauf wiederherstellen oder ihn durchbrechen.")}</p>
+    <p class="big">{t("You and up to three friends enter an ancient Mayan sun temple as Climbers, each in your own Fortnite "
+                      "character. The temple is alive: it rearranges itself and swallows everyone who climbs it.",
+                      "Du und bis zu drei Freunde betretet als Kletterer einen uralten Maya-Sonnentempel, jeder in seiner "
+                      "eigenen Fortnite-Figur. Der Tempel lebt: Er ordnet sich ständig neu und verschlingt jeden, der ihn erklimmt.")}</p>
+    <p>{t("Kaya, a young explorer, climbs the first floor with you and dies on its traps. She wakes at the Threshold to "
+          "find herself carved into the temple's wall, and stays to read it. K'in, the temple's last spirit, guides you on. "
+          "Floor by floor your party fights the risen guardians, survives the traps, solves the orb puzzles and earns the "
+          "elemental powers the builders once held. Whoever falls is pulled back, and carved into the wall beside Kaya. At "
+          "the summit you carry the Sun Orb to the great portal and decide the temple's fate together: restore the cycle, "
+          "or break it.",
+          "Kaya, eine junge Entdeckerin, steigt die erste Ebene mit euch hinauf und stirbt an ihren Fallen. Sie erwacht an "
+          "der Schwelle, findet sich selbst in die Wand des Tempels gemeißelt und bleibt, um sie zu lesen. K'in, der letzte "
+          "Geist des Tempels, führt euch weiter. Ebene für Ebene kämpft deine Gruppe gegen die erweckten Wächter, übersteht "
+          "die Fallen, löst die Kugelrätsel und erringt die Elementarkräfte, die einst die Erbauer besaßen. Wer fällt, wird "
+          "zurückgeholt und neben Kaya in die Wand gemeißelt. Auf dem Gipfel tragt ihr die Sonnenkugel zum großen Portal und "
+          "entscheidet gemeinsam über das Schicksal des Tempels: den Kreislauf wiederherstellen oder ihn durchbrechen.")}</p>
     <a class="text-link" href="{u('game/index.html')}">{t("Read the full overview", "Zum vollständigen Überblick")}</a>
   </div>
 </section>
@@ -134,6 +151,14 @@ def body(ctx):
     <h2>{t("Five ideas hold up the whole climb", "Fünf Ideen tragen den ganzen Aufstieg")}</h2>
     <ul class="pillars">{pillar_html}</ul>
   </div>
+</section>
+
+<section class="wrap section islands-band">
+  <div class="section-head">
+    <h2>{t("One temple, five islands", "Ein Tempel, fünf Inseln")}</h2>
+    <a class="text-link" href="{u('islands/index.html')}">{t("The islands and the roadmap", "Die Inseln und die Roadmap")}</a>
+  </div>
+  <ol class="island-grid">{island_html}</ol>
 </section>
 
 <section class="wrap section split">
@@ -199,8 +224,8 @@ def body(ctx):
 PAGES = {
     "index.html": dict(
         title=("Home", "Start"),
-        description=("Ascent of the Sun Temple: a third-person action-adventure platformer inside a living Mayan pyramid, planned for Unreal Engine 5.",
-                     "Ascent of the Sun Temple: ein Third-Person-Action-Adventure-Plattformer in einer lebenden Maya-Pyramide, geplant für Unreal Engine 5."),
+        description=("Mayan Temple Adventures: five Fortnite islands in a living Mayan pyramid, led by a co-op climb for up to four players.",
+                     "Mayan Temple Adventures: fünf Fortnite-Inseln in einer lebenden Maya-Pyramide, angeführt von einem Koop-Aufstieg für bis zu vier Spieler."),
         body=body,
         custom_header=True,
         no_pager=True,

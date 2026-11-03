@@ -114,9 +114,9 @@ TIERS = {
                 "nie wieder abfloss. Jeder Raum stellt genau eine Frage: wo du stehst, wann du hinübergehst, worauf du zielst."),),
         floors={
             1: [R("T1A", ("The Drowned Gallery", "Die ertrunkene Galerie"), [("Water", "Wasser"), ("Timing", "Timing")],
-                  [("A tall flooded hall of dark green water. Kaya crosses stone islands and floating logs that drift between them, and "
+                  [("A tall flooded hall of dark green water. Climbers cross stone islands and floating logs that drift between them, and "
                     "one island has a band of spikes on a timer.",
-                    "Eine hohe, geflutete Halle voller dunkelgrünem Wasser. Kaya überquert Steininseln und treibende Baumstämme dazwischen, "
+                    "Eine hohe, geflutete Halle voller dunkelgrünem Wasser. Kletterer überqueren Steininseln und treibende Baumstämme dazwischen, "
                     "und auf einer Insel fährt in festem Takt ein Streifen Stacheln aus."),
                    ("Deep water hides temple leeches. The shallow wading lane along the east wall is safe from them but slow, and two "
                     "guardians wade in it, so the coward's route costs time and a fight. The golden idol sits on a pillar in the water.",
@@ -224,9 +224,9 @@ TIERS = {
                 "Zahnradwächters."),),
         floors={
             6: [R("T3A", ("The Seesaw Hall", "Die Wippenhalle"), [("Weight", "Gewicht"), ("Tilt", "Neigung")],
-                  [("Long stone seesaws over a deep pit tilt under Kaya's weight, followed by a tilting bridge. Archers watch from the "
-                    "side ledges.",
-                    "Lange steinerne Wippen über einer tiefen Grube kippen unter Kayas Gewicht, danach folgt eine kippende Brücke. "
+                  [("Long stone seesaws over a deep pit tilt toward the side with more Climbers on it, followed by a tilting bridge. "
+                    "Archers watch from the side ledges.",
+                    "Lange steinerne Wippen über einer tiefen Grube kippen zu der Seite, auf der mehr Kletterer stehen, danach folgt eine kippende Brücke. "
                     "Schützen lauern auf den Seitensimsen.")]),
                R("T3B", ("The Disc Well", "Der Scheibenbrunnen"), [KEY, ("Rotation", "Drehung")],
                   [("Rotating stone discs, carved like calendar wheels, spiral up a tall well at different speeds. The Key Orb waits on "
@@ -267,12 +267,12 @@ TIERS = {
     4: dict(
         title=("Tier IV · The Elemental Sanctums", "Stufe IV · Die Elementarheiligtümer"),
         line=("The orbs scattered, and guardians were born.", "Die Kugeln zerstreuten sich, und Wächter wurden geboren."),
-        lede=("Four sanctums, four elements: the tier where Kaya claims the Elemental Orbs.",
-              "Vier Heiligtümer, vier Elemente: die Stufe, in der Kaya die Elementarkugeln erringt."),
+        lede=("Four sanctums, four elements: the tier where Climbers claim the Elemental Orbs.",
+              "Vier Heiligtümer, vier Elemente: die Stufe, in der Kletterer die Elementarkugeln erringen."),
         intro=(("Each of the four floors keeps one of the scattered orbs. Fire, Earth, Wind and Water are permanent powers: once "
-                "Kaya holds one, rooms she has already cleared can be read in a new way.",
+                "a Climber holds one, rooms they have already cleared can be read in a new way.",
                 "Jede der vier Ebenen bewahrt eine der verstreuten Kugeln. Feuer, Erde, Wind und Wasser sind dauerhafte Kräfte: Sobald "
-                "Kaya eine davon besitzt, lassen sich Räume, die sie schon hinter sich hat, neu lesen."),),
+                "ein Kletterer eine davon besitzt, lassen sich Räume, die er schon hinter sich hat, neu lesen."),),
         floors={
             9: [R("T4A", ("The Lava Channels", "Die Lavakanäle"), [("Lava", "Lava"), ("Fire jets", "Feuerstrahlen")],
                   [("Three channels of glowing lava, crossed by burning rope bridges that collapse behind you, while serpent heads on "
@@ -376,11 +376,12 @@ TIERS = {
         line=("A single orb chose memory over power.", "Eine einzige Kugel wählte die Erinnerung statt der Macht."),
         lede=("The last two floors: every element and every trap, and the Sun Orb.",
               "Die letzten beiden Ebenen: jedes Element und jede Falle, und die Sonnenkugel."),
-        intro=(("Everything Kaya has learned is tested at once. The gauntlet asks for all four orbs in turn, the crucible throws every "
-                "trap at her together, and the Priest's Lieutenant guards the vault of the Sun Orb.",
-                "Alles, was Kaya gelernt hat, wird auf einmal geprüft. Der Spießrutenlauf verlangt alle vier Kugeln nacheinander, der "
-                "Schmelztiegel wirft ihr jede Falle gleichzeitig entgegen, und der Leutnant des Priesters bewacht das Gewölbe der "
-                "Sonnenkugel."),),
+        intro=(("Everything the party has learned is tested at once. The gauntlet asks for all four orbs in turn, so each Climber "
+                "takes an orb role, the crucible throws every trap at you together, and the Priest's Lieutenant guards the vault "
+                "of the Sun Orb.",
+                "Alles, was die Gruppe gelernt hat, wird auf einmal geprüft. Der Spießrutenlauf verlangt alle vier Kugeln nacheinander, "
+                "also übernimmt jeder Kletterer eine Kugelrolle, der Schmelztiegel wirft euch jede Falle gleichzeitig entgegen, und der "
+                "Leutnant des Priesters bewacht das Gewölbe der Sonnenkugel."),),
         floors={
             16: [R("T6A", ("Gauntlet I", "Spießrutenlauf I"), [("Fire", "Feuer"), ("Earth", "Erde")],
                    [("A fire section, burning vines and crossing lava bridges, then an earth section of shattered walls and heavy plates.",
@@ -450,17 +451,17 @@ def tier_page(n):
         extra = ""
         if tier.get("orbs"):
             extra = feature(ctx, "W05", None, t("The four Elemental Orbs", "Die vier Elementarkugeln"),
-                            t(f"<p>Fire burns, Earth breaks, Wind lifts and Water parts. Each orb is a permanent power that stays with Kaya "
-                              f"between runs, and each opens routes in floors she has already climbed.</p>"
+                            t(f"<p>Fire burns, Earth breaks, Wind lifts and Water parts. Each orb is a permanent power that stays with a "
+                              f"Climber between runs, and each opens routes in floors they have already climbed.</p>"
                               f"<p><a class='text-link' href='{u('game/weapons-and-powers.html')}'>How the orbs work</a></p>",
-                              f"<p>Feuer brennt, Erde bricht, Wind hebt und Wasser teilt. Jede Kugel ist eine dauerhafte Kraft, die Kaya "
-                              f"über alle Durchläufe hinweg behält, und jede öffnet Wege in Ebenen, die sie schon erklommen hat.</p>"
+                              f"<p>Feuer brennt, Erde bricht, Wind hebt und Wasser teilt. Jede Kugel ist eine dauerhafte Kraft, die ein "
+                              f"Kletterer über alle Durchläufe hinweg behält, und jede öffnet Wege in Ebenen, die er schon erklommen hat.</p>"
                               f"<p><a class='text-link' href='{u('game/weapons-and-powers.html')}'>Wie die Kugeln funktionieren</a></p>"))
         if tier.get("sun"):
             extra = feature(ctx, "W06", None, t("The Sun Orb", "Die Sonnenkugel"),
-                            t(f"<p>The brightest object in the game, resting in a cradle of four carved hands. Kaya carries it up the last "
-                              f"stair to the <a href='{u('climb/sky-altar.html')}'>Sky Altar</a>.</p>",
-                              f"<p>Das hellste Objekt im Spiel, gebettet in eine Wiege aus vier gemeißelten Händen. Kaya trägt sie die "
+                            t(f"<p>The brightest object in the game, resting in a cradle of four carved hands. The party carries it up the "
+                              f"last stair to the <a href='{u('climb/sky-altar.html')}'>Sky Altar</a>.</p>",
+                              f"<p>Das hellste Objekt im Spiel, gebettet in eine Wiege aus vier gemeißelten Händen. Die Gruppe trägt sie die "
                               f"letzte Treppe hinauf zum <a href='{u('climb/sky-altar.html')}'>Himmelsaltar</a>.</p>"))
         extra_html = f'<section class="wrap section">{extra}</section>' if extra else ""
         return f"""
@@ -496,10 +497,10 @@ def floor_0(ctx):
     story = u("story/short-story.html")
     rooms = [
         ("B-03", ("The entry hall", "Die Eingangshalle"), [("Spawn", "Startpunkt"), ("Movement", "Bewegung")],
-         ("Where Kaya spawns. Wide, quiet, and lit by one shaft through the roof, so you can learn the camera and the jump with "
-          "nothing at stake.",
-          "Hier erscheint Kaya. Weit, still und erhellt von einem einzigen Lichtschacht im Dach, damit du Kamera und Sprung lernen "
-          "kannst, ohne dass etwas auf dem Spiel steht."),
+         ("Where the party arrives, with Kaya beside them pointing up at the portal glow. Wide, quiet, and lit by one shaft "
+          "through the roof, so you can learn the camera and the jump with nothing at stake.",
+          "Hier kommt die Gruppe an, und Kaya zeigt neben ihr hinauf zum Leuchten des Portals. Weit, still und erhellt von einem "
+          "einzigen Lichtschacht im Dach, damit du Kamera und Sprung lernen kannst, ohne dass etwas auf dem Spiel steht."),
          (f"On a half-submerged step, <a href='{ix_nicte}'>Ix Nicte</a>, Keeper of the First Step, stands dormant.",
           f"Auf einer halb überfluteten Stufe ruht <a href='{ix_nicte}'>Ix Nicte</a>, die Hüterin der ersten Stufe.")),
         ("B-04", ("The fire-vent floor", "Der Boden der Feuerdüsen"), [("Timed hazard", "Getaktete Gefahr"), ("Fixed beat", "Fester Takt")],
@@ -523,8 +524,8 @@ def floor_0(ctx):
           "Zwei Gefahren in unterschiedlichem Rhythmus in einem engen Gang: einfahrende Stacheln im Boden und eine steinerne "
           "Schlange, die am Ende Feuer speit. Einmal durchzukommen ist Glück; sauber durchzukommen heißt, dass du beide Takte "
           "gelernt hast."),
-         (f"This is where Kaya dies in <a href='{story}'>the short story</a>.",
-          f"Hier stirbt Kaya in <a href='{story}'>der Kurzgeschichte</a>.")),
+         (f"This is where Kaya dies, in <a href='{story}'>the short story</a> and in the game: she triggers the spikes and dissolves into gold light.",
+          f"Hier stirbt Kaya, in <a href='{story}'>der Kurzgeschichte</a> wie im Spiel: Sie löst die Stacheln aus und zerfällt in goldenes Licht.")),
         ("B-08", ("The orb shrine", "Der Kugelschrein"), [("Puzzle", "Rätsel"), ("Shrine", "Schrein")],
          ("Orbs on pedestals, gold, blue and red, around a ring of glyphs, with one correct arrangement. K'in lights the orb that "
           "is wrong rather than the one that is right, so the solving is still yours.",
@@ -536,10 +537,10 @@ def floor_0(ctx):
           "Blauweiße Energiestrahlen kreuzen eine Serpentinenrampe und schalten im Takt an und aus. Hier wird nichts ausgewichen. "
           "Hier wird gegangen, in der richtigen Hälfte der Sekunde."), None),
         ("B-10", ("The sword shrine", "Der Schwertschrein"), [("Combat", "Kampf"), ("Reward", "Belohnung")],
-         ("Kaya lifts the obsidian macuahuitl off its pedestal, and the first guardian stands up. First real combat, on a high "
-          "landing that overlooks the atrium.",
-          "Kaya hebt das Obsidian-Macuahuitl von seinem Sockel, und der erste Wächter erhebt sich. Der erste echte Kampf, auf einem "
-          "hohen Absatz über dem Atrium."), None),
+         ("A Climber lifts the obsidian macuahuitl off its pedestal, and the first guardian stands up. First real combat, on a high "
+          "landing that overlooks the atrium, and the party fights it without Kaya.",
+          "Ein Kletterer hebt das Obsidian-Macuahuitl von seinem Sockel, und der erste Wächter erhebt sich. Der erste echte Kampf, "
+          "auf einem hohen Absatz über dem Atrium, und die Gruppe kämpft ohne Kaya."), None),
         ("B-11", ("The bridge to the portal", "Die Brücke zum Portal"), [("Exit", "Ausgang"), ("Next floor", "Nächste Ebene")],
          ("A narrow bridge crosses high over the atrium to the round portal on top of the Sun Pillar. Step through and the Shell "
           "seals behind you, sword in hand.",
@@ -593,8 +594,8 @@ def floor_0(ctx):
 
 <section class="wrap section">
   <h2>{t("Nine rooms, one way up", "Neun Räume, ein Weg nach oben")}</h2>
-  <p class="lede-sm">{t("In the order Kaya meets them, from the flooded atrium to the portal on the Sun Pillar.",
-                        "In der Reihenfolge, in der Kaya sie betritt, vom gefluteten Atrium bis zum Portal auf der Sonnensäule.")}</p>
+  <p class="lede-sm">{t("In the order the party meets them, from the flooded atrium to the portal on the Sun Pillar.",
+                        "In der Reihenfolge, in der die Gruppe sie betritt, vom gefluteten Atrium bis zum Portal auf der Sonnensäule.")}</p>
   <ol class="route" role="list">{"".join(stations)}</ol>
   <p class="floor-end">{t(f"Then the Portal Chamber, and up into <a href='{u('climb/tier-1.html')}'>the Flooded Foundations</a>.",
                            f"Danach die Portalkammer und hinauf in <a href='{u('climb/tier-1.html')}'>die überfluteten Fundamente</a>.")}</p>
@@ -645,12 +646,12 @@ def pyramid(ctx):
     <div class="prose">
       <p class="big">{t("One pyramid, climbed from the inside: the Shell, then seventeen floors in six tiers, then the open summit.",
                         "Eine Pyramide, von innen erklommen: The Shell, dann siebzehn Ebenen in sechs Stufen, dann der offene Gipfel.")}</p>
-      <p>{t("Every floor runs the same way. Room A, then Room B, which holds the floor's Key Orb, then the Portal Chamber, where Kaya "
-            "sockets the orb, K'in speaks one line, a fragment of the mural lights, and she ascends. Every room hides "
+      <p>{t("Every floor runs the same way. Room A, then Room B, which holds the floor's Key Orb, then the Portal Chamber, where the "
+            "party sockets the orb, K'in speaks one line, a fragment of the mural lights, and you ascend. Every room hides "
             "exactly one golden idol.",
-            "Jede Ebene läuft gleich ab. Raum A, dann Raum B mit der Schlüsselkugel der Ebene, dann die Portalkammer: Dort setzt Kaya "
-            "die Kugel ein, K'in spricht einen Satz, ein Fragment des Wandbilds leuchtet auf, und sie steigt weiter. In jedem Raum "
-            "ist genau ein goldenes Idol versteckt.")}</p>
+            "Jede Ebene läuft gleich ab. Raum A, dann Raum B mit der Schlüsselkugel der Ebene, dann die Portalkammer: Dort setzt die "
+            "Gruppe die Kugel ein, K'in spricht einen Satz, ein Fragment des Wandbilds leuchtet auf, und ihr steigt weiter. In jedem "
+            "Raum ist genau ein goldenes Idol versteckt.")}</p>
       <p>{t("Puzzles scale with the climb: one mechanic per room in Tiers I and II, combined mechanics in III and IV, and layered "
             "perception puzzles under pressure in V and VI.",
             "Die Rätsel wachsen mit dem Aufstieg: eine Mechanik pro Raum in den Stufen I und II, kombinierte Mechaniken in III und IV "
@@ -659,7 +660,7 @@ def pyramid(ctx):
     {facts([(t("Floors", "Ebenen"), t("The Shell, 17 floors in six tiers, the summit", "The Shell, 17 Ebenen in sechs Stufen, der Gipfel")),
             (t("Per floor", "Pro Ebene"), t("Room A, Room B with the Key Orb, Portal Chamber", "Raum A, Raum B mit Schlüsselkugel, Portalkammer")),
             (t("Bosses", "Bosse"), t("Gearwarden, Jaguar Priest, Priest's Lieutenant, Hollow High Priest", "Zahnradwächter, Jaguarpriester, Leutnant des Priesters, Hohler Hohepriester")),
-            (t("Players", "Spieler"), t("Single Player", "Einzelspieler"))])}
+            (t("Players", "Spieler"), t("1–4 co-op; every room solvable alone", "1–4 im Koop; jeder Raum auch allein lösbar"))])}
   </div>
 </section>
 
@@ -670,8 +671,8 @@ def pyramid(ctx):
 
 <section class="wrap section">
   <div class="pair pair-wide">
-    {ctx.figure("CX-00", t("The codex map Kaya finds inside the pyramid. In the game its pages are collectible maps and loading screens.",
-                         "Die Codexkarte, die Kaya in der Pyramide findet. Im Spiel sind ihre Seiten sammelbare Karten und Ladebildschirme."))}
+    {ctx.figure("CX-00", t("The codex map found inside the pyramid. In the game its pages are collectible maps and loading screens.",
+                         "Die Codexkarte, die in der Pyramide gefunden wird. Im Spiel sind ihre Seiten sammelbare Karten und Ladebildschirme."))}
     {ctx.figure("HOME-CLIMB", t("The pyramid in cutaway, floor by floor", "Die Pyramide im Schnitt, Ebene für Ebene"))}
   </div>
 </section>
@@ -691,28 +692,33 @@ def threshold_hub(ctx):
     u, t = ctx.url, ctx.t
     stations = [
         ("HUB06", ("The round altar", "Der runde Altar"),
-         ("K'in waits above it and greets Kaya after every return, with a line that changes as the climb goes on.",
-          "K'in schwebt darüber und begrüßt Kaya nach jeder Rückkehr, mit einem Satz, der sich im Lauf des Aufstiegs verändert.")),
+         ("K'in waits above it and greets every Climber after every return, with a line that changes as the climb goes on.",
+          "K'in schwebt darüber und begrüßt jeden Kletterer nach jeder Rückkehr, mit einem Satz, der sich im Lauf des Aufstiegs verändert.")),
         ("HUB12", ("Six tier shortcut pads", "Sechs Abkürzungsfelder"),
-         ("Three on each side wall, one per tier. Clear a tier and its pad lights, so a later run can start higher up.",
+         ("Three on each side wall, one per tier. Clear a tier and its pad lights, so a later run can start higher up. The party "
+          "leader picks any tier they have cleared.",
           "Drei an jeder Seitenwand, eines pro Stufe. Ist eine Stufe geschafft, leuchtet ihr Feld, und ein späterer Durchlauf kann "
-          "weiter oben beginnen.")),
+          "weiter oben beginnen. Wer die Gruppe anführt, wählt jede Stufe, die er schon geschafft hat.")),
         ("HUB10", ("The offering table", "Der Opfertisch"),
          ("Oxlahun's shop: healing, upgrades and new gear, paid for in coins and Spirit Fragments.",
           "Oxlahuns Laden: Heilung, Verbesserungen und neue Ausrüstung, bezahlt mit Münzen und Geistsplittern.")),
         ("HUB11", ("The codex lectern", "Das Codex-Lesepult"),
-         ("The codex and lore menu. Every codex page Kaya finds on the way up is added here.",
-          "Das Menü für Codex und Hintergrundwissen. Jede Codexseite, die Kaya auf dem Weg nach oben findet, kommt hierher.")),
+         ("The codex and lore menu. Every codex page found on the way up is added here, and Kaya reads what Climbers bring her.",
+          "Das Menü für Codex und Hintergrundwissen. Jede Codexseite, die auf dem Weg nach oben gefunden wird, kommt hierher, und "
+          "Kaya liest, was Kletterer ihr bringen.")),
         ("HUB08", ("The Spirit Mural", "Das Geisterwandbild"),
-         ("The progress wall. Each cleared floor lights another fragment of the temple's history.",
-          "Die Wand des Fortschritts. Jede geschaffte Ebene lässt ein weiteres Fragment der Tempelgeschichte aufleuchten.")),
+         ("The progress wall. Each cleared floor lights another fragment of the temple's history, and every Climber the temple has "
+          "taken has a carved panel here, Kaya's among them.",
+          "Die Wand des Fortschritts. Jede geschaffte Ebene lässt ein weiteres Fragment der Tempelgeschichte aufleuchten, und "
+          "jeder Kletterer, den der Tempel geholt hat, hat hier eine gemeißelte Tafel, Kayas eingeschlossen.")),
     ]
     modes = [
         (("The Ascent", "Der Aufstieg"), ("Middle portal · Story", "Mittleres Portal · Geschichte"),
          ("The campaign, floor by floor to the summit. Open from the start.",
           "Die Kampagne, Ebene für Ebene bis zum Gipfel. Von Anfang an offen.")),
         (("Trials of the Shifting Temple", "Prüfungen des wandelnden Tempels"), ("Left portal", "Linkes Portal"),
-         ("Sealed until Kaya reaches the summit for the first time.", "Versiegelt, bis Kaya zum ersten Mal den Gipfel erreicht.")),
+         ("Sealed until a tier is cleared in the story; each tier's Trials open as soon as it is.",
+          "Versiegelt, bis eine Stufe in der Story geschafft ist; die Prüfungen jeder Stufe öffnen sich, sobald sie geschafft ist.")),
         (("Expedition", "Expedition"), ("Right portal", "Rechtes Portal"),
          ("Sealed until a tier has been cleared.", "Versiegelt, bis eine Stufe geschafft ist.")),
     ]
@@ -735,10 +741,16 @@ def threshold_hub(ctx):
 <section class="band"><div class="wrap section">
   <h2>{t("Outside: the forecourt", "Draußen: der Vorplatz")}</h2>
   {feature(ctx, "HUB01", None, t("The explorer camp", "Das Forscherlager"),
-           t("<p>Kaya's camp at the foot of the pyramid: tent, campfire and kettle, a map table and crates. The game starts here, and "
-             "the pyramid is always in view.</p>",
-             "<p>Kayas Lager am Fuß der Pyramide: Zelt, Lagerfeuer und Kessel, ein Kartentisch und Kisten. Hier beginnt das Spiel, "
-             "und die Pyramide ist immer im Blick.</p>"))}
+           t("<p>Isabel Kaan's old camp at the foot of the pyramid: tent, campfire and kettle, a map table and crates. The party "
+             "spawns here, and the pyramid is always in view.</p>"
+             "<p>The camp has eight slots to restore with Spirit Fragments, from a kettle and a lantern line to a codex shelf and "
+             "Isabel's desk. Each one is cosmetic or a small comfort, like a map table that counts the idols on every floor, and "
+             "the whole party sees what has been restored.</p>",
+             "<p>Isabel Kaans altes Lager am Fuß der Pyramide: Zelt, Lagerfeuer und Kessel, ein Kartentisch und Kisten. Hier "
+             "erscheint die Gruppe, und die Pyramide ist immer im Blick.</p>"
+             "<p>Das Lager hat acht Plätze, die sich mit Geistsplittern wiederherstellen lassen, vom Kessel und einer Laternenkette "
+             "bis zum Codexregal und Isabels Schreibtisch. Jeder ist kosmetisch oder eine kleine Erleichterung, etwa ein Kartentisch, "
+             "der die Idole jeder Ebene zählt, und die ganze Gruppe sieht, was wiederhergestellt wurde.</p>"))}
   {feature(ctx, "HUB02", None, t("Training ground", "Übungsplatz"),
            t("<p>Straw dummies with painted faces and a stone target. Practise every weapon here, with nothing at stake.</p>",
              "<p>Strohpuppen mit aufgemalten Gesichtern und eine Zielscheibe aus Stein. Hier übst du jede Waffe, ohne dass etwas "
@@ -775,10 +787,10 @@ def threshold_hub(ctx):
 def shared_rooms(ctx):
     u, t = ctx.url, ctx.t
     pc = room(ctx, "PC", ("The Portal Chamber", "Die Portalkammer"),
-              [("Every floor ends here. Kaya arrives and hears K'in's line at the mural fragment, banks her coins or buys a heal at the "
+              [("Every floor ends here. The party arrives and hears K'in's line at the mural fragment, banks coins or buys a heal at the "
                 "small offering shrine, climbs the three-step dais, sets the Key Orb in the socket of carved cupped hands, and walks "
                 "into the great round Portal Door.",
-                "Jede Ebene endet hier. Kaya kommt an und hört K'ins Satz am Fragment des Wandbilds, bringt ihre Münzen in Sicherheit "
+                "Jede Ebene endet hier. Die Gruppe kommt an und hört K'ins Satz am Fragment des Wandbilds, bringt Münzen in Sicherheit "
                 "oder kauft am kleinen Opferschrein eine Heilung, steigt das dreistufige Podest hinauf, setzt die Schlüsselkugel in "
                 "die Schale aus gemeißelten Händen und geht durch die große runde Portaltür."),
                ("A small blue return portal goes home to the Threshold with progress saved. One shared room replaces seventeen "
@@ -790,7 +802,7 @@ def shared_rooms(ctx):
               [("A calm safe room before each tier's last Portal Chamber: a candlelit altar, a basin of glowing healing water, and three "
                 "relics to choose a blessing from, a gold sun amulet, a green jade necklace and a blue shell charm.",
                 "Ein ruhiger, sicherer Raum vor der letzten Portalkammer jeder Stufe: ein Altar im Kerzenschein, ein Becken mit "
-                "leuchtendem Heilwasser und drei Relikte, aus denen Kaya einen Segen wählt: ein goldenes Sonnenamulett, eine grüne "
+                "leuchtendem Heilwasser und drei Relikte, aus denen jeder Kletterer einen Segen wählt: ein goldenes Sonnenamulett, eine grüne "
                 "Jadekette und ein blauer Muschelanhänger.")],
               "C-04", "C-03", "CX-SR01", tag_pairs=[("End of every tier", "Ende jeder Stufe"), ("Safe room", "Sicherer Raum")], flip=True)
     return f"""
@@ -845,18 +857,21 @@ def sky_altar(ctx):
   {feature(ctx, "E-02", None, t("The fight", "Der Kampf"),
            t(f"<p>The <a href='{u('characters/hollow-high-priest.html')}'>Hollow High Priest</a>, the order's former head, waits on the "
              f"plateau with four stolen lights circling in his open ribcage. His boss phases are played on the braziers: each one ties "
-             f"the fight to an element Kaya has learned on the way up.</p>",
+             f"the fight to an element the party has learned on the way up. With a full party, each Climber lights the brazier of "
+             f"an orb they own.</p>",
              f"<p>Der <a href='{u('characters/hollow-high-priest.html')}'>Hohle Hohepriester</a>, einst das Oberhaupt des Ordens, "
              f"wartet auf dem Plateau, vier gestohlene Lichter kreisen in seinem offenen Brustkorb. Seine Bossphasen spielen an den "
-             f"Feuerbecken: Jede verbindet den Kampf mit einem Element, das Kaya auf dem Weg nach oben gelernt hat.</p>"))}
+             f"Feuerbecken: Jede verbindet den Kampf mit einem Element, das die Gruppe auf dem Weg nach oben gelernt hat. In einer "
+             f"vollen Gruppe entzündet jeder Kletterer das Feuerbecken einer Kugel, die er besitzt.</p>"))}
   {feature(ctx, "E-03", None, t("The choice", "Die Wahl"),
-           t(f"<p>Kaya places the Sun Orb on the altar before the Sun Portal. Two pedestals flank it: gold to restore the cycle, violet "
-             f"to break it. What each choice costs is told in <a href='{u('story/index.html')}'>the story</a>.</p>"
-             f"<p>After the first summit, the left portal in the Threshold opens: Trials of the Shifting Temple.</p>",
-             f"<p>Kaya legt die Sonnenkugel auf den Altar vor dem Sonnenportal. Zwei Sockel stehen daneben: gold, um den Kreislauf "
-             f"wiederherzustellen, violett, um ihn zu durchbrechen. Was jede Wahl kostet, erzählt <a href='{u('story/index.html')}'>die "
-             f"Geschichte</a>.</p><p>Nach dem ersten Gipfel öffnet sich das linke Portal in der Schwelle: die Prüfungen des wandelnden "
-             f"Tempels.</p>"), flip=True)}
+           t(f"<p>The Sun Orb goes on the altar before the Sun Portal. Two pedestals flank it: gold to restore the cycle, violet "
+             f"to break it. Each Climber steps onto one, and the majority decides. What each choice costs is told in "
+             f"<a href='{u('story/index.html')}'>the story</a>.</p>"
+             f"<p>After the first summit, the Trials of the Shifting Temple are open for every tier, all the way to the top.</p>",
+             f"<p>Die Sonnenkugel kommt auf den Altar vor dem Sonnenportal. Zwei Sockel stehen daneben: gold, um den Kreislauf "
+             f"wiederherzustellen, violett, um ihn zu durchbrechen. Jeder Kletterer tritt auf einen davon, und die Mehrheit "
+             f"entscheidet. Was jede Wahl kostet, erzählt <a href='{u('story/index.html')}'>die Geschichte</a>.</p>"
+             f"<p>Nach dem ersten Gipfel stehen die Prüfungen des wandelnden Tempels für jede Stufe offen, bis ganz nach oben.</p>"), flip=True)}
   {boss}
 </div></section>
 

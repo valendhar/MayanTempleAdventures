@@ -11,7 +11,16 @@ NAV = [
     (("The Game", "Das Spiel"), "game/index.html", [
         (("Overview & Pillars", "Überblick & Säulen"), "game/index.html", []),
         (("How It Plays", "So wird gespielt"), "game/how-it-plays.html", []),
+        (("Climbers & Co-op", "Kletterer & Koop"), "game/climbers-and-co-op.html", []),
         (("Weapons & Powers", "Waffen & Kräfte"), "game/weapons-and-powers.html", []),
+    ]),
+    (("UEFN Islands", "UEFN-Inseln"), "islands/index.html", [
+        (("Overview & Roadmap", "Überblick & Roadmap"), "islands/index.html", []),
+        (("1 · Trap Galleries", "1 · Trap Galleries"), "islands/trap-galleries.html", []),
+        (("2 · Ascent of the Sun Temple", "2 · Ascent of the Sun Temple"), "islands/ascent.html", []),
+        (("3 · Kaan Expedition", "3 · Kaan Expedition"), "islands/kaan-expedition.html", []),
+        (("4 · Illusion Depths", "4 · Illusion Depths"), "islands/illusion-depths.html", []),
+        (("5 · Orb Raiders", "5 · Orb Raiders"), "islands/orb-raiders.html", []),
     ]),
     (("Story", "Geschichte"), "story/index.html", [
         (("The Story", "Die Geschichte"), "story/index.html", []),

@@ -1,4 +1,4 @@
-/* Ascent of the Sun Temple — site styles
+/* Mayan Temple Adventures — site styles
    Palette from the key art: jungle canopy, sunlit limestone, sun gold, jade glow, ember */
 :root {
   --canopy: #0D2621;
@@ -737,3 +737,30 @@ a.reader-next:hover { border-color: var(--accent); color: var(--accent); }
   .site-header, .site-footer, .reader-tools, .reader-progress, .reader-end .text-link { display: none !important; }
   .reader { box-shadow: none; margin: 0; max-width: none; background: #fff; color: #000; }
 }
+
+/* ---------- UEFN islands: home band, island pages ---------- */
+.island-grid { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(5, 1fr); gap: 16px; }
+.island-card { position: relative; display: flex; flex-direction: column; height: 100%; text-decoration: none; color: inherit;
+  border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; background: var(--stone); transition: border-color .2s; }
+.island-card .fig { margin: 0; overflow: hidden; }
+.island-card .fig img, .island-card .ph-box { aspect-ratio: 4 / 3; width: 100%; object-fit: cover; border-radius: 0; transition: transform .5s ease-out; }
+.island-num { position: absolute; top: 10px; left: 10px; min-width: 30px; height: 30px; display: grid; place-items: center;
+  border-radius: 8px; background: var(--canopy-deep); color: var(--gold); font: 800 .95rem/1 var(--display); }
+.island-name { display: block; padding: 14px 16px 2px; font: 800 1.1rem/1.2 var(--display); color: var(--limestone); }
+.island-line { display: block; padding: 0 16px 16px; font-size: .9rem; color: var(--limestone-dim); }
+.island-card:hover { border-color: var(--gold); }
+.island-card:hover .island-name { color: var(--gold); }
+.island-card:hover .fig img { transform: scale(1.04); }
+.island-card:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
+@media (max-width: 1000px) { .island-grid { grid-template-columns: repeat(3, 1fr); } }
+@media (max-width: 640px) { .island-grid { grid-template-columns: 1fr 1fr; gap: 12px; } .island-name { font-size: 1rem; } }
+@media (prefers-reduced-motion: reduce) { .island-card .fig img { transition: none; } }
+
+.sub-head { margin: 8px 0 16px; }
+.island-back { margin: 8px 0 0; }
+.scale-table { max-width: 640px; }
+/* steps that wrap: three to a row, each its own card */
+.loops.loops-grid { grid-template-columns: repeat(3, 1fr); gap: 14px; }
+.loops.loops-grid li, .loops.loops-grid li + li { border: 1px solid var(--line); border-radius: var(--radius); }
+@media (max-width: 1000px) { .loops.loops-grid { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 640px) { .loops.loops-grid { grid-template-columns: 1fr; } }

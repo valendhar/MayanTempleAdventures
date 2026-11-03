@@ -41,6 +41,11 @@ def story(ctx):
           "hochschnellender Stacheln.")}</p>
     <p>{t("She wakes on the stone floor of the Threshold, exactly where she started, and K'in greets her as though nothing is wrong.",
           "Sie erwacht auf dem Steinboden der Schwelle, genau dort, wo sie begonnen hat, und K'in begrüßt sie, als wäre nichts geschehen.")}</p>
+    <p>{t("In the game, players do not play Kaya. They arrive as Climbers, climb the Shell beside her, and watch the temple take "
+          "her. From then on Kaya's story is the thread they follow: she reads the wall, and they climb for the evidence.",
+          "Im Spiel spielen die Spieler nicht Kaya. Sie kommen als Kletterer, steigen an ihrer Seite durch The Shell und sehen zu, "
+          "wie der Tempel sie holt. Von da an ist Kayas Geschichte der Faden, dem sie folgen: Sie liest die Wand, und sie klettern "
+          "nach den Beweisen.")}</p>
   </div>
 </section>
 
@@ -57,23 +62,50 @@ def story(ctx):
       "with twin braids, a satchel on her left hip and goggles pushed up on her forehead.</p>"
       "<p>Beside it stand older carvings of the climbers who came before her: a surveyor with a notched staff, a woman with a coil of "
       "rope, a young man with a lantern, a small figure with a satchel much like Kaya's, and one carving that was never finished. "
+      "The wall is not finished either: every Climber who falls is carved beside her. "
       f"<a href='{u('characters/climbers/index.html')}'>Meet the Carved Climbers →</a></p>",
       "<p>Auf dem Geisterwandbild ist in hellem Kalkstein, noch bestäubt von frischen Splittern, eine neue Figur erschienen: eine "
       "schlanke junge Frau mit zwei Zöpfen, einer Tasche an der linken Hüfte und einer hochgeschobenen Schutzbrille auf der Stirn.</p>"
       "<p>Daneben stehen ältere Reliefs der Kletterer, die vor ihr kamen: ein Landvermesser mit gekerbtem Messstab, eine Frau mit "
       "einem Seil über der Schulter, ein junger Mann mit einer Laterne, eine kleine Gestalt mit einer Tasche, die Kayas sehr ähnlich "
-      f"sieht, und ein Relief, das nie vollendet wurde. <a href='{u('characters/climbers/index.html')}'>Zu den gemeißelten Kletterern →</a></p>"),
+      "sieht, und ein Relief, das nie vollendet wurde. Auch die Wand ist nicht vollendet: Jeder Kletterer, der fällt, wird neben ihr "
+      f"eingemeißelt. <a href='{u('characters/climbers/index.html')}'>Zu den gemeißelten Kletterern →</a></p>"),
     flip=True)}
   {feature(ctx, "HOME-NEVERALONE", t("The guide", "Die Führerin"), t("A spirit who edits history", "Ein Geist, der Geschichte umschreibt"),
     t("<p>K'in is gentle, patient and indispensable. She lights the way, warns of traps and pulls Kaya's spirit back after every fall. "
       "She also tells the temple's history in short, memorable lines, and the oldest glyphs on the wall do not always agree with her.</p>"
-      "<p>Kaya has to decide how much of K'in's account she is willing to carry, and whether she can keep climbing with a guide she "
-      "cannot fully trust.</p>",
+      "<p>Kaya, and every Climber who brings her evidence, has to decide how much of K'in's account to carry, and whether to keep "
+      "climbing with a guide no one can fully trust.</p>",
       "<p>K'in ist sanft, geduldig und unverzichtbar. Sie weist den Weg, warnt vor Fallen und holt Kayas Geist nach jedem Sturz zurück. "
       "Sie erzählt auch die Geschichte des Tempels in kurzen, einprägsamen Sätzen, und die ältesten Glyphen an der Wand stimmen nicht "
-      "immer mit ihr überein.</p><p>Kaya muss entscheiden, wie viel von K'ins Version sie mit sich tragen will und ob sie mit einer "
-      "Führerin weiterklettern kann, der sie nicht ganz vertraut.</p>"))}
+      "immer mit ihr überein.</p><p>Kaya und jeder Kletterer, der ihr Beweise bringt, müssen entscheiden, wie viel von K'ins Version "
+      "sie mit sich tragen wollen und ob sie mit einer Führerin weiterklettern, der niemand ganz vertrauen kann.</p>"))}
 </div></section>
+
+<section class="wrap section">
+  <p class="kicker">{t("The mural mystery", "Das Rätsel des Wandbilds")}</p>
+  <h2>{t("Two readings of every fragment", "Zwei Lesarten jedes Fragments")}</h2>
+  <p class="lede-sm">{t("The wall is evidence. At every Portal Chamber, Climbers take a rubbing of the fragment that lights up "
+                        "and carry it down to Kaya. K'in has already told them what it means. Kaya tells them what the glyphs "
+                        "actually say, and the two do not always agree.",
+                        "Die Wand ist ein Beweisstück. In jeder Portalkammer nehmen Kletterer einen Abrieb des Fragments, das "
+                        "aufleuchtet, und bringen ihn zu Kaya hinunter. K'in hat ihnen schon gesagt, was es bedeutet. Kaya sagt "
+                        "ihnen, was die Glyphen wirklich sagen, und beides stimmt nicht immer überein.")}</p>
+  <div class="modes">
+    <article class="mode"><p class="kicker">{t("At every Portal Chamber", "In jeder Portalkammer")}</p>
+      <h3>{t("K'in's version", "K'ins Version")}</h3>
+      <p>{t("One line of history, spoken over the fragment. Short, memorable, and the version the temple wants told.",
+            "Ein Satz Geschichte, über dem Fragment gesprochen. Kurz, einprägsam und die Fassung, die der Tempel erzählt haben will.")}</p></article>
+    <article class="mode"><p class="kicker">{t("Back at the Threshold", "Zurück an der Schwelle")}</p>
+      <h3>{t("Kaya's reading", "Kayas Lesart")}</h3>
+      <p>{t("What the carving says when someone reads it slowly, twice. The codex keeps both versions side by side.",
+            "Was das Relief sagt, wenn jemand es langsam liest, zweimal. Der Codex hält beide Fassungen nebeneinander fest.")}</p></article>
+    <article class="mode"><p class="kicker">{t("Three times on the way up", "Dreimal auf dem Weg nach oben")}</p>
+      <h3>{t("Kaya's scenes", "Kayas Szenen")}</h3>
+      <p>{t("Kaya meets the party with something she has found in the stone. What it is, the players find out for themselves.",
+            "Kaya trifft die Gruppe mit etwas, das sie im Stein gefunden hat. Was es ist, finden die Spieler selbst heraus.")}</p></article>
+  </div>
+</section>
 
 <section class="wrap section">
   <p class="kicker">{t("K'in's history", "K'ins Geschichte")}</p>
@@ -87,12 +119,14 @@ def story(ctx):
 
 <section class="band"><div class="wrap section">
   {feature(ctx, "E-03", t("The ending", "Das Ende"), t("Restore the cycle, or break it", "Den Kreislauf wiederherstellen oder durchbrechen"),
-    t("<p>At the summit, Kaya places the Sun Orb on the altar before the great Sun Portal. Two pedestals flank it: one glowing gold, "
-      "one deep violet.</p><p>Restoring the cycle keeps the temple alive as it is. Breaking it ends the loop for good. What either "
-      "choice costs depends on what Kaya has learned on the way up.</p>",
-      "<p>Auf dem Gipfel legt Kaya die Sonnenkugel auf den Altar vor dem großen Sonnenportal. Zwei Sockel stehen daneben: einer glüht "
-      "golden, der andere tief violett.</p><p>Wird der Kreislauf wiederhergestellt, bleibt der Tempel lebendig, wie er ist. Wird er "
-      "durchbrochen, endet die Schleife für immer. Was jede Entscheidung kostet, hängt davon ab, was Kaya auf dem Weg nach oben gelernt hat.</p>"))}
+    t("<p>At the summit, the Climbers place the Sun Orb on the altar before the great Sun Portal. Two pedestals flank it: one "
+      "glowing gold, one deep violet. Each Climber steps onto one, and the majority decides.</p><p>Restoring the cycle keeps the "
+      "temple alive as it is. Breaking it ends the loop for good. What either choice costs depends on what the Climbers, and "
+      "Kaya, have learned on the way up.</p>",
+      "<p>Auf dem Gipfel legen die Kletterer die Sonnenkugel auf den Altar vor dem großen Sonnenportal. Zwei Sockel stehen daneben: "
+      "einer glüht golden, der andere tief violett. Jeder Kletterer tritt auf einen davon, und die Mehrheit entscheidet.</p>"
+      "<p>Wird der Kreislauf wiederhergestellt, bleibt der Tempel lebendig, wie er ist. Wird er durchbrochen, endet die Schleife "
+      "für immer. Was jede Entscheidung kostet, hängt davon ab, was die Kletterer und Kaya auf dem Weg nach oben gelernt haben.</p>"))}
 </div></section>
 """
 
@@ -281,8 +315,8 @@ PAGES = {
         title=("The Story", "Die Geschichte"), kicker=("Story", "Geschichte"), banner="E-03",
         lede=("A scholar's daughter, a temple that records every death, and a guide who has been editing history out of love and grief.",
               "Die Tochter einer Gelehrten, ein Tempel, der jeden Tod festhält, und eine Führerin, die die Geschichte aus Liebe und Trauer umgeschrieben hat."),
-        description=("The story of Ascent of the Sun Temple: Kaya, K'in and the cycle.",
-                     "Die Geschichte von Ascent of the Sun Temple: Kaya, K'in und der Kreislauf."),
+        description=("The story of Mayan Temple Adventures: Kaya, K'in, the Climbers and the cycle.",
+                     "Die Geschichte von Mayan Temple Adventures: Kaya, K'in, die Kletterer und der Kreislauf."),
         body=story, og="E-03"),
     "story/lore.html": dict(
         title=("Lore & History", "Vorgeschichte & Legenden"), kicker=("Story", "Geschichte"), banner="HOME-PRIEST",
@@ -294,7 +328,7 @@ PAGES = {
         title=("The Short Story", "Die Kurzgeschichte"), kicker=("Story", "Geschichte"), banner="HOME-KIN",
         lede=("“The Likeness”, an archaeology mystery set in the Sun Temple. Four chapters, in progress.",
               "„Das Abbild“, ein Archäologie-Mystery im Sonnentempel. Vier Kapitel, in Arbeit."),
-        description=("The Likeness: a short story set in the world of Ascent of the Sun Temple.",
-                     "Das Abbild: eine Kurzgeschichte aus der Welt von Ascent of the Sun Temple."),
+        description=("The Likeness: a short story set in the world of Mayan Temple Adventures.",
+                     "Das Abbild: eine Kurzgeschichte aus der Welt von Mayan Temple Adventures."),
         body=short_story, og="HUB09"),
 }

@@ -84,7 +84,7 @@ C = {}
 
 # ================================================================== main cast
 C["characters/kaya.html"] = dict(
-    name="Kaya", role=("The explorer", "Die Entdeckerin"), sheet="CS-KAYA", banner="HOME-KAYA", og="HOME-KAYA",
+    name="Kaya", role=("The reader", "Die Leserin"), sheet="CS-KAYA", banner="HOME-KAYA", og="HOME-KAYA",
     lede=("Twenty-three, a scholar's daughter, and the first climber in centuries who reads the wall instead of the stair.",
           "Dreiundzwanzig, Tochter einer Gelehrten und seit Jahrhunderten die erste Kletterin, die die Wand liest statt der Treppe."),
     hook=("Kaya survives by reading, not fighting. She arrives with her mother's notebooks, her own rubbing kit and a certainty "
@@ -103,14 +103,22 @@ C["characters/kaya.html"] = dict(
          "Ihre Mutter verschwand vor vierzehn Monaten, ohne Leiche, ohne Nachricht, ohne Zeugen. Kaya zählt die Tage auf der "
          "letzten Seite ihres Notizbuchs, in den Balken-und-Punkt-Zahlen ihrer Mutter, und spricht absichtlich in der Gegenwart "
          "von ihr. Sie hat niemandem gesagt, auch sich selbst nicht, ob sie wegen eines Wandbilds gekommen ist oder wegen einer Mutter."),
+        ("In the game, the players are Climbers and Kaya is the one they meet. She climbs the Shell beside the party and "
+         "dies on its traps like everyone else. Then she stays at the Threshold to read the wall, and sends Climbers up for "
+         "the evidence she cannot reach herself: mural fragments, codex pages and her mother's notes.",
+         "Im Spiel sind die Spieler Kletterer, und Kaya ist die, der sie begegnen. Sie steigt mit der Gruppe durch The Shell "
+         "und stirbt wie alle anderen an seinen Fallen. Dann bleibt sie an der Schwelle, um die Wand zu lesen, und schickt "
+         "Kletterer nach den Beweisen aus, an die sie selbst nicht herankommt: Wandbildfragmente, Codexseiten und die Notizen "
+         "ihrer Mutter."),
     ],
-    facts=[(R, ("Hero and player character", "Heldin und Spielfigur")),
+    facts=[(R, ("Story heroine; in the game, a companion and quest-giver", "Heldin der Geschichte; im Spiel Begleiterin und Auftraggeberin")),
            (("Age", "Alter"), ("23", "23")),
            (SIG, ("Her mother's bronze dig goggles, twin braids, a satchel on the left hip, charcoal behind one ear",
                   "Die bronzene Grabungsbrille ihrer Mutter, zwei Zöpfe, die Tasche an der linken Hüfte, Kohle hinter einem Ohr")),
            (("Method", "Methode"), ("Rubbings, sketches, tool marks, and “possible reading” instead of a guess",
                                      "Abriebe, Skizzen, Werkzeugspuren und „mögliche Lesart“ statt einer Vermutung")),
-           (("Weapons", "Waffen"), ("Obsidian macuahuitl, spirit blowgun", "Obsidian-Macuahuitl, Geisterblasrohr"))],
+           (("In the game", "Im Spiel"), ("Floor 0 beside the party, then the Threshold, and three scenes on the way up",
+                                          "Ebene 0 an der Seite der Gruppe, dann die Schwelle und drei Szenen auf dem Weg nach oben"))],
     quote=(("Thank you. I mean that. And I'm going to check it anyway.",
             "Danke. Ehrlich. Und ich prüfe es trotzdem nach."), ("Kaya", "Kaya")),
     design=("Everything has to read in motion, at third-person range, against busy carved stone. Her cerulean tunic is the one "
@@ -595,7 +603,7 @@ C["characters/climbers/odalys.html"] = dict(
 def overview(ctx):
     t = ctx.t
     living = [
-        (ctx.pick("HOME-KAYA", "CS-KAYA"), "Kaya", t("The explorer", "Die Entdeckerin"), "characters/kaya.html"),
+        (ctx.pick("HOME-KAYA", "CS-KAYA"), "Kaya", t("The reader", "Die Leserin"), "characters/kaya.html"),
         (ctx.pick("HOME-KIN", "CS-KIN"), "K'in", t("The spirit guide", "Die Geistführerin"), "characters/kin.html"),
         (ctx.pick("HOME-OXLAHUN", "CS-OXLAHUN"), "Oxlahun", t("The trader", "Der Händler"), "characters/oxlahun.html"),
         (ctx.pick("HOME-ISABEL", "CS-ISABEL"), "Dr. Isabel Kaan", t("The missing mother", "Die verschwundene Mutter"), "characters/isabel-kaan.html"),
@@ -621,7 +629,7 @@ def overview(ctx):
                                        "redigiert sie, Oxlahun verkauft sie, und Isabel bat immer nur darum, dass man ihre überprüft.")}</p></div>
 </section>
 <section class="band"><div class="wrap section">
-  <p class="kicker">{t("The living", "Die Lebenden")}</p><h2>{t("Who Kaya meets", "Wem Kaya begegnet")}</h2>
+  <p class="kicker">{t("The living", "Die Lebenden")}</p><h2>{t("Who Climbers meet", "Wem Kletterer begegnen")}</h2>
   {row(living, "cards-4")}
 </div></section>
 <section class="wrap section">
@@ -658,13 +666,16 @@ def group_page(intro_fn, sheet, members, extras=()):
 def guardians_intro(ctx):
     t = ctx.t
     return (f'<p class="big">{t("The cursed priests of the Sun Temple still walk its halls, wrapped like funerary bundles, a cold sigil glowing on each chest.", "Die verfluchten Priester des Sonnentempels wandeln noch immer durch seine Hallen, eingewickelt wie Grabbündel, ein kalt leuchtendes Siegel auf jeder Brust.")}</p>'
-            f'<p>{t("In play they are the base enemy: they shamble, swing and rise from dust. In the story, the five named guardians are people with a post and a posture. Each held a modest rank in an order that measured rank by scale, and each still holds the pose the curse found them in. Their sigils glow a cold silver-white, never one of the four elemental colours.", "Im Spiel sind sie der Grundgegner: Sie schlurfen, schlagen zu und erheben sich aus dem Staub. In der Geschichte sind die fünf benannten Wächter Menschen mit einem Posten und einer Haltung. Jeder hatte einen bescheidenen Rang in einem Orden, der Rang an der Größe maß, und jeder verharrt noch in der Pose, in der ihn der Fluch fand. Ihre Siegel leuchten kalt silberweiß, nie in einer der vier Elementarfarben.")}</p>')
+            f'<p>{t("In play they are the base enemy: they shamble, swing and rise from dust. In the story, the five named guardians are people with a post and a posture. Each held a modest rank in an order that measured rank by scale, and each still holds the pose the curse found them in. Their sigils glow a cold silver-white, never one of the four elemental colours.", "Im Spiel sind sie der Grundgegner: Sie schlurfen, schlagen zu und erheben sich aus dem Staub. In der Geschichte sind die fünf benannten Wächter Menschen mit einem Posten und einer Haltung. Jeder hatte einen bescheidenen Rang in einem Orden, der Rang an der Größe maß, und jeder verharrt noch in der Pose, in der ihn der Fluch fand. Ihre Siegel leuchten kalt silberweiß, nie in einer der vier Elementarfarben.")}</p>'
+            f'<p>{t("In the game the five named guardians return as elites: each appears once per tier as the last fight of a floor, with its own sigil and one gift of the curse, a shield, a summons, a leap, a cleave or a curse.", "Im Spiel kehren die fünf benannten Wächter als Elitegegner zurück: Jeder erscheint einmal pro Stufe als letzter Kampf einer Ebene, mit eigenem Siegel und einer Gabe des Fluchs, einem Schild, einer Beschwörung, einem Sprung, einem Rundumschlag oder einem Fluch.")}</p>')
 
 
 def climbers_intro(ctx):
     t = ctx.t
     return (f'<p class="big">{t("One likeness for every climber K'in has lost, carved into the Spirit Mural so that no one goes unrecorded.", "Ein Abbild für jeden Kletterer, den K'in verloren hat, ins Geisterwandbild gemeißelt, damit niemand unaufgezeichnet bleibt.")}</p>'
-            f'<p>{t("They exist only as reliefs, each about the length of a forearm, with dust settled into the grooves. Each sheet shows the carving twice: under flat front light, the way K'in lights it, and under low raking light, the way Kaya learns to read it. The newest figure on the strip is Kaya herself, still pale with fresh dust.", "Es gibt sie nur als Reliefs, jedes etwa so lang wie ein Unterarm, mit Staub in den Rillen. Jedes Blatt zeigt das Relief zweimal: bei flachem Frontlicht, wie K'in es beleuchtet, und bei flachem Streiflicht, wie Kaya es zu lesen lernt. Die neueste Figur im Streifen ist Kaya selbst, noch hell vom frischen Staub.")}</p>')
+            f'<p>{t("They exist only as reliefs, each about the length of a forearm, with dust settled into the grooves. Each sheet shows the carving twice: under flat front light, the way K'in lights it, and under low raking light, the way Kaya learns to read it. The newest figure on the strip is Kaya herself, still pale with fresh dust.", "Es gibt sie nur als Reliefs, jedes etwa so lang wie ein Unterarm, mit Staub in den Rillen. Jedes Blatt zeigt das Relief zweimal: bei flachem Frontlicht, wie K'in es beleuchtet, und bei flachem Streiflicht, wie Kaya es zu lesen lernt. Die neueste Figur im Streifen ist Kaya selbst, noch hell vom frischen Staub.")}</p>'
+            f'<p>{t("In the game the wall keeps growing. The first time a player dies in the temple, their Climber is carved here too, with their name in a glyph frame and a sigil of their choice.", "Im Spiel wächst die Wand weiter. Wenn ein Spieler zum ersten Mal im Tempel stirbt, wird auch sein Kletterer hier eingemeißelt, mit seinem Namen in einem Glyphenrahmen und einem Zeichen seiner Wahl.")} '
+            f'<a href="{ctx.url("game/climbers-and-co-op.html")}">{t("Climbers &amp; Co-op →", "Kletterer &amp; Koop →")}</a></p>')
 
 
 GUARDIANS = [("CS-AHKUK", "Ah Kuk", ("Receiver of Offerings", "Empfänger der Opfergaben"), "characters/guardians/ah-kuk.html"),
@@ -748,8 +759,8 @@ def creatures(ctx):
     return f"""
 <section class="wrap section narrow-top">
   <p class="kicker">{t("Enemies", "Gegner")}</p><h2>{t("What waits on the floors", "Was auf den Ebenen wartet")}</h2>
-  <p class="lede-sm">{t("Eerie and characterful rather than gory. Every enemy is built to read clearly at third-person range.",
-                        "Eher unheimlich und charaktervoll als blutig. Jeder Gegner ist so gestaltet, dass er aus der Third-Person-Distanz klar lesbar ist.")}</p>
+  <p class="lede-sm">{t("Eerie and characterful rather than gory. Every enemy is built to read clearly at third-person range, and their numbers grow with the size of the party.",
+                        "Eher unheimlich und charaktervoll als blutig. Jeder Gegner ist so gestaltet, dass er aus der Third-Person-Distanz klar lesbar ist, und ihre Zahl wächst mit der Größe der Gruppe.")}</p>
   {grid(ENEMIES)}
 </section>
 <section class="band"><div class="wrap section">
@@ -760,6 +771,8 @@ def creatures(ctx):
 </div></section>
 <section class="wrap section">
   <p class="kicker">{t("Named guardians", "Benannte Wächter")}</p><h2>{t("The ones with a story", "Die mit einer Geschichte")}</h2>
+  <p class="lede-sm">{t("In the game they return as elite enemies, once per tier, each with its own sigil and one gift of the curse.",
+                        "Im Spiel kehren sie als Elitegegner zurück, einmal pro Stufe, jeder mit eigenem Siegel und einer Gabe des Fluchs.")}</p>
   <div class="cards cards-4">{named}</div>
 </section>
 <section class="band"><div class="wrap section">
@@ -813,8 +826,8 @@ PAGES.update({
         og="CS-GUARDIAN"),
     "characters/climbers/index.html": dict(
         title=("The Carved Climbers", "Die gemeißelten Kletterer"), kicker=("Characters", "Figuren"), banner="HOME-KIN",
-        lede=("The faces on the Spirit Mural: climbers who came before Kaya and never left.",
-              "Die Gesichter auf dem Geisterwandbild: Kletterer, die vor Kaya kamen und nie gingen."),
+        lede=("The faces on the Spirit Mural: climbers who came before Kaya and never left. In the game, every player joins them.",
+              "Die Gesichter auf dem Geisterwandbild: Kletterer, die vor Kaya kamen und nie gingen. Im Spiel reiht sich jeder Spieler bei ihnen ein."),
         description=("The Carved Climbers on the Spirit Mural.", "Die gemeißelten Kletterer auf dem Geisterwandbild."),
         body=group_page(climbers_intro, "CS-CLIMBERS", CLIMBERS, [("HUB09", ("The relief panels", "Die Relieftafeln"))]),
         og="CS-CLIMBERS"),
