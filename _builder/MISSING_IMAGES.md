@@ -1,6 +1,6 @@
 # Missing images
 
-**35 images still show as placeholders:** 16 scenes, maps and sheets, then 19 codex pages.
+**17 images still show as placeholders:** 16 scenes, maps and sheets, then 1 codex pages.
 
 Save an image as `_builder/images/originals/<ID>.png` (or `.jpg` / `.webp`), using the ID exactly as shown. The next build (or the running dev server) turns the placeholder into the picture everywhere that ID is used.
 
@@ -22,6 +22,6 @@ Regenerate this list with `python _builder/missing_images.py`.
 
 `T6A-MAP` `T6B-SCENE` `T6B-MAP` `T6C-SCENE` `T6C-MAP` `T6D-SCENE` `T6D-MAP`
 
-## Codex pages (19), last
+## Codex pages (1), last
 
-`CX-T4A` `CX-T4B` `CX-T4C` `CX-T4D` `CX-T4E` `CX-T4F` `CX-T4G` `CX-T4H` `CX-T5A` `CX-T5B` `CX-T5C` `CX-T5D` `CX-T5E` `CX-B2` `CX-T6A` `CX-T6B` `CX-T6C` `CX-T6D` `CX-SKY`
+`CX-SKY`
