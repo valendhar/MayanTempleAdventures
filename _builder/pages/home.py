@@ -95,10 +95,15 @@ def body(ctx):
         for k, (p, i, n, g) in enumerate(islands))
 
     if ctx.has("KEYART"):
-        alt = t("Mayan Temple Adventure: Ascent of the Sun Temple. Kaya and K'in at their jungle camp below the great stepped pyramid.",
-                "Mayan Temple Adventure: Ascent of the Sun Temple. Kaya und K'in in ihrem Dschungellager unter der großen Stufenpyramide.")
-        hero_art = (f'<div class="hero-art"><img src="{ctx.img_src("KEYART", "full")}" alt="{alt}" '
-                    f'width="1672" height="941" fetchpriority="high"></div>')
+        alt = t("Kaya and K'in at their jungle camp below the great stepped pyramid.",
+                "Kaya und K'in in ihrem Dschungellager unter der großen Stufenpyramide.")
+        # The title logo is its own layer over the painting, so it stays sharp and can move per screen size.
+        logo = ""
+        if ctx.has("TITLE-LOGO"):
+            logo = (f'<h1 class="hero-logo"><img src="{ctx.img_src("TITLE-LOGO", "full")}" alt="Mayan Temple Adventures" '
+                    f'width="1774" height="887" fetchpriority="high"></h1>')
+        hero_art = (f'<div class="hero-art"><img class="hero-painting" src="{ctx.img_src("KEYART", "full")}" alt="{alt}" '
+                    f'width="1672" height="941" fetchpriority="high">{logo}</div>')
         hero_title = ""
     else:
         hero_art = f'<div class="hero-art hero-art-bg" style="{hero_style}"></div>'
@@ -229,6 +234,6 @@ PAGES = {
         body=body,
         custom_header=True,
         no_pager=True,
-        og="KEYART",
+        og=["KEYART-SHARE", "KEYART"],
     )
 }

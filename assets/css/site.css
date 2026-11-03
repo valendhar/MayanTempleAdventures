@@ -226,10 +226,16 @@ p { margin: 0 0 1em; }
 /* ---------- home: hero ---------- */
 .hero { position: relative; background: var(--canopy-deep); }
 .hero-art { position: relative; max-width: 1920px; margin: 0 auto; }
-/* Show the whole key art (its logo is painted in): never crop it. On wide, short screens the
+/* Show the whole key art: never crop it. On wide, short screens the
    frame narrows so the full picture still fits under the header, and its sides fade out. */
 .hero-art { max-width: min(1920px, calc((100svh - var(--header-h)) * 1672 / 941)); }
 .hero-art img { width: 100%; height: auto; }
+/* the title logo, layered over the painting; position and size as a share of the painting */
+.hero-logo { position: absolute; z-index: 1; margin: 0; left: var(--logo-x, 9%); top: var(--logo-y, 6%); width: var(--logo-w, 34%);
+  filter: drop-shadow(0 10px 24px rgba(7, 22, 18, .55)); }
+.hero-art .hero-logo img { display: block; width: 100%; height: auto; -webkit-mask-image: none; mask-image: none; }
+/* on narrow screens the painting is small, so the logo takes a larger share of it to stay readable */
+@media (max-width: 760px) { .hero-logo { --logo-x: 5%; --logo-y: 5%; --logo-w: 48%; } }
 @media (min-aspect-ratio: 17/9), (min-width: 1921px) {
   .hero-art img {
     -webkit-mask-image: linear-gradient(90deg, transparent, #000 7%, #000 93%, transparent);
