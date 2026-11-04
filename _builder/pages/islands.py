@@ -11,7 +11,7 @@ ISLANDS = [
      ("Deathrun", "Deathrun"), ("1–16 players", "1–16 Spieler")),
     ("islands/ascent.html", "ISL-ASCENT", "KEYART", "Ascent of the Sun Temple",
      ("Co-op adventure · the flagship", "Koop-Abenteuer · die Hauptinsel"), ("1–4 players", "1–4 Spieler")),
-    ("islands/kaan-expedition.html", "ISL-DIG", "A-04", "Kaan Expedition: Sun Temple Dig",
+    ("islands/sun-temple-dig.html", "ISL-DIG", "A-04", "Sun Temple Dig",
      ("Tycoon", "Tycoon"), ("1–8 players", "1–8 Spieler")),
     ("islands/illusion-depths.html", "ISL-DEPTHS", "T5A-SCENE", "Illusion Depths",
      ("Co-op escape rooms", "Koop-Escape-Rooms"), ("2–4 players", "2–4 Spieler")),
@@ -77,9 +77,9 @@ def overview(ctx):
           "Die Hauptinsel startet im Early Access: die Schwelle, The Shell mit Kaya und die Ebenen 1 bis 5. Mit jedem "
           "Inhaltsupdate folgt eine Stufe, die Prüfungen öffnen sich Stufe für Stufe, bis zum Himmelsaltar.")),
         (("Island 3", "Insel 3"),
-         ("Kaan Expedition, once the flagship is live: Isabel Kaan's abandoned camp as a tycoon, with real temple rooms "
+         ("Sun Temple Dig, once the flagship is live: Isabel Kaan's abandoned camp as a tycoon, with real temple rooms "
           "as short dives.",
-          "Kaan Expedition, sobald die Hauptinsel läuft: Isabel Kaans verlassenes Lager als Tycoon, mit echten "
+          "Sun Temple Dig, sobald die Hauptinsel läuft: Isabel Kaans verlassenes Lager als Tycoon, mit echten "
           "Tempelräumen als kurze Tauchgänge.")),
         (("Island 4", "Insel 4"),
          ("Illusion Depths, once the puzzle rooms of Tiers III and V exist in the flagship and can be recut for teams.",
@@ -153,7 +153,7 @@ BLURBS = {
         "shuffled Trials and Expedition replays.",
         "Der ganze Aufstieg von The Shell bis zum Himmelsaltar, mit Kampf, Rätseln, den Kugelkräften und der Geschichte, "
         "dazu die gemischten Prüfungen und die Expeditionen."),
-    "islands/kaan-expedition.html": (
+    "islands/sun-temple-dig.html": (
         "Restore Dr. Isabel Kaan's abandoned dig at the foot of the pyramid, plot by plot, and dive into real temple "
         "rooms for the rare finds.",
         "Bau Dr. Isabel Kaans verlassene Grabung am Fuß der Pyramide Parzelle für Parzelle wieder auf und tauch in echte "
@@ -337,7 +337,7 @@ def ascent(ctx):
 
 
 # ------------------------------------------------------------------ island 3: tycoon
-def kaan_expedition(ctx):
+def sun_temple_dig(ctx):
     u, t = ctx.url, ctx.t
     card = facts([
         (t("Genre", "Genre"), t("Tycoon, simulation, adventure", "Tycoon, Simulation, Abenteuer")),
@@ -604,14 +604,14 @@ PAGES = {
         description=("Island 2: the co-op flagship, from the prologue with Kaya to the Sky Altar.",
                      "Insel 2: die Koop-Hauptinsel, vom Prolog mit Kaya bis zum Himmelsaltar."),
         body=ascent, og=["THUMB-ASCENT", "ISL-ASCENT", "KEYART"]),
-    "islands/kaan-expedition.html": dict(
-        title=("Kaan Expedition: Sun Temple Dig", "Kaan Expedition: Sun Temple Dig"), kicker=("Island 3 · Tycoon", "Insel 3 · Tycoon"),
+    "islands/sun-temple-dig.html": dict(
+        title=("Sun Temple Dig", "Sun Temple Dig"), kicker=("Island 3 · Tycoon", "Insel 3 · Tycoon"),
         banner=["THUMB-DIG", "ISL-DIG", "A-04"], banner_full=True,
         lede=("Restore Isabel Kaan's abandoned camp, plot by plot, and dive into the temple for the rare finds.",
               "Bau Isabel Kaans verlassenes Lager Parzelle für Parzelle wieder auf und tauch in den Tempel, um seltene Funde zu bergen."),
         description=("Island 3: a tycoon at the foot of the pyramid, with short dives into real temple rooms.",
                      "Insel 3: ein Tycoon am Fuß der Pyramide, mit kurzen Tauchgängen in echte Tempelräume."),
-        body=kaan_expedition, og=["THUMB-DIG", "ISL-DIG", "A-04"]),
+        body=sun_temple_dig, og=["THUMB-DIG", "ISL-DIG", "A-04"]),
     "islands/illusion-depths.html": dict(
         title=("Illusion Depths", "Illusion Depths"), kicker=("Island 4 · Co-op escape rooms", "Insel 4 · Koop-Escape-Rooms"),
         banner=["THUMB-DEPTHS", "ISL-DEPTHS", "T5A-SCENE"], banner_full=True,

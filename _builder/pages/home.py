@@ -85,7 +85,7 @@ def body(ctx):
     islands = [
         ("islands/trap-galleries.html", ctx.pick("ISL-TRAPS", "T2A-SCENE"), "Trap Galleries", t("Deathrun · 1–16", "Deathrun · 1–16")),
         ("islands/ascent.html", ctx.pick("ISL-ASCENT", "KEYART"), "Ascent of the Sun Temple", t("Co-op adventure · 1–4", "Koop-Abenteuer · 1–4")),
-        ("islands/kaan-expedition.html", ctx.pick("ISL-DIG", "A-04"), "Kaan Expedition", t("Tycoon · 1–8", "Tycoon · 1–8")),
+        ("islands/sun-temple-dig.html", ctx.pick("ISL-DIG", "A-04"), "Sun Temple Dig", t("Tycoon · 1–8", "Tycoon · 1–8")),
         ("islands/illusion-depths.html", ctx.pick("ISL-DEPTHS", "T5A-SCENE"), "Illusion Depths", t("Co-op escape rooms · 2–4", "Koop-Escape-Rooms · 2–4")),
         ("islands/orb-raiders.html", ctx.pick("ISL-RAIDERS", "T4E-SCENE"), "Orb Raiders", t("PvPvE · 8–16", "PvPvE · 8–16")),
     ]

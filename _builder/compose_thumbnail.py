@@ -1,12 +1,13 @@
 """Island thumbnail: the island's painting + the main title logo + the island's subtitle plate, at 1920x1080.
 
-Usage (from the repo root):  python _builder/compose_thumbnail.py TRAPS [logo_width] [top]
+Usage (from the repo root):  python _builder/compose_thumbnail.py TRAPS [logo_width] [top] [plate_scale]
 Reads   _builder/images/originals/ISL-<KEY>.*  (painting without any logo)
         _builder/images/originals/SUB-<KEY>.*  (subtitle plate, transparent)
         _builder/images/originals/TITLE-LOGO.* (main logo, transparent)
 Writes  _builder/images/originals/THUMB-<KEY>.png  (the Fortnite island thumbnail; the site shows it as the page header)
 
 logo_width is a share of the image width (default 0.38), top a share of its height (default 0.02).
+plate_scale enlarges a short plate (default 1; it never grows wider than the logo allows).
 """
 import sys
 from pathlib import Path
@@ -15,6 +16,7 @@ from PIL import Image, ImageFilter
 
 ORIGINALS = Path(__file__).resolve().parent / "images" / "originals"
 W, H = 1920, 1080
+PLATE_ASPECT = 4.68  # width/height of a full-length plate (SUB-TRAPS); sets the shared plate height
 
 
 def find(stem):
@@ -33,13 +35,17 @@ def main():
     key = sys.argv[1].upper()
     logo_w = float(sys.argv[2]) if len(sys.argv) > 2 else 0.38
     top = float(sys.argv[3]) if len(sys.argv) > 3 else 0.02
+    plate_scale = float(sys.argv[4]) if len(sys.argv) > 4 else 1.0
 
     bg = Image.open(find(f"ISL-{key}")).convert("RGBA").resize((W, H), Image.LANCZOS)
     logo, plate = trimmed(find("TITLE-LOGO")), trimmed(find(f"SUB-{key}"))
 
     lw = int(W * logo_w)
     logo = logo.resize((lw, round(logo.height * lw / logo.width)), Image.LANCZOS)
-    pw = int(lw * 0.86)  # the plate tucks under the logo, a little narrower than it
+    # the plate tucks under the logo, a little narrower than it. Every plate gets the same height, so a short title
+    # (a shorter plate) keeps the same letter size instead of being stretched to the full width.
+    ph = round(lw * 0.86 / PLATE_ASPECT * plate_scale)
+    pw = min(int(lw * 0.86), round(plate.width * ph / plate.height))
     plate = plate.resize((pw, round(plate.height * pw / plate.width)), Image.LANCZOS)
 
     lx, ly = (W - lw) // 2, int(H * top)
