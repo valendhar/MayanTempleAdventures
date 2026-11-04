@@ -9,7 +9,7 @@ from components import feature, facts
 ISLANDS = [
     ("islands/trap-galleries.html", "ISL-TRAPS", "T2A-SCENE", "Trap Galleries: 18 Floors",
      ("Deathrun", "Deathrun"), ("1–16 players", "1–16 Spieler")),
-    ("islands/ascent.html", "ISL-ASCENT", "KEYART", "Ascent of the Sun Temple: Climbers",
+    ("islands/ascent.html", "ISL-ASCENT", "KEYART", "Ascent of the Sun Temple",
      ("Co-op adventure · the flagship", "Koop-Abenteuer · die Hauptinsel"), ("1–4 players", "1–4 Spieler")),
     ("islands/kaan-expedition.html", "ISL-DIG", "A-04", "Kaan Expedition: Sun Temple Dig",
      ("Tycoon", "Tycoon"), ("1–8 players", "1–8 Spieler")),
@@ -596,7 +596,7 @@ PAGES = {
                      "Insel 1: ein Deathrun durch die Fallen des Sonnentempels für 1–16 Spieler."),
         body=trap_galleries, og=["THUMB-TRAPS", "ISL-TRAPS", "T2A-SCENE"]),
     "islands/ascent.html": dict(
-        title=("Ascent of the Sun Temple: Climbers", "Ascent of the Sun Temple: Climbers"),
+        title=("Ascent of the Sun Temple", "Ascent of the Sun Temple"),
         kicker=("Island 2 · The flagship", "Insel 2 · Die Hauptinsel"),
         banner=["THUMB-ASCENT", "ISL-ASCENT", "KEYART"], banner_full=True,
         lede=("The whole climb, for up to four friends: the Shell, seventeen floors and the Sky Altar.",

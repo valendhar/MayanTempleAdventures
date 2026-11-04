@@ -49,10 +49,10 @@ def overview(ctx):
 <section class="wrap section narrow-top">
   <div class="intro">
     <div class="prose">
-      <p class="big">{t("Ascent of the Sun Temple: Climbers is the flagship of Mayan Temple Adventures: a co-op climb for up "
+      <p class="big">{t("Ascent of the Sun Temple is the flagship of Mayan Temple Adventures: a co-op climb for up "
                         "to four players through an ancient Mayan sun temple that is alive. It rearranges itself and swallows "
                         "everyone who climbs it.",
-                        "Ascent of the Sun Temple: Climbers ist die Hauptinsel von Mayan Temple Adventures: ein Koop-Aufstieg "
+                        "Ascent of the Sun Temple ist die Hauptinsel von Mayan Temple Adventures: ein Koop-Aufstieg "
                         "für bis zu vier Spieler durch einen uralten Maya-Sonnentempel, der lebt. Er ordnet sich ständig neu "
                         "und verschlingt jeden, der ihn erklimmt.")}</p>
       <p>{t("You play a Climber, in your own Fortnite character. Kaya, a young explorer, climbs the first floor beside "
