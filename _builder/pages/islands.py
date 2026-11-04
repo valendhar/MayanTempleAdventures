@@ -1,6 +1,7 @@
 """The UEFN Islands tab: the five Fortnite islands built from the Sun Temple (English and German).
 
-Each island has a key-art slot (ISL-*) that falls back to an existing picture until its own art is uploaded.
+Each island has a painting (ISL-*, no logo) for cards, and a thumbnail (THUMB-*, made by _builder/compose_thumbnail.py)
+shown whole as the page header. Both fall back to an existing picture until uploaded.
 """
 from components import feature, facts
 
@@ -588,43 +589,43 @@ PAGES = {
         body=overview, og=["ISL-ALL", "KEYART"]),
     "islands/trap-galleries.html": dict(
         title=("Trap Galleries: 18 Floors", "Trap Galleries: 18 Floors"), kicker=("Island 1 · Deathrun", "Insel 1 · Deathrun"),
-        banner=["ISL-TRAPS", "T2A-SCENE"],
+        banner=["THUMB-TRAPS", "ISL-TRAPS", "T2A-SCENE"], banner_full=True,
         lede=("Eighteen trap stages up the inside of the temple. No enemies, no weapons, just timing.",
               "Achtzehn Fallenstufen im Inneren des Tempels hinauf. Keine Gegner, keine Waffen, nur Timing."),
         description=("Island 1: a deathrun through the Sun Temple's traps for 1–16 players.",
                      "Insel 1: ein Deathrun durch die Fallen des Sonnentempels für 1–16 Spieler."),
-        body=trap_galleries, og=["ISL-TRAPS", "T2A-SCENE"]),
+        body=trap_galleries, og=["THUMB-TRAPS", "ISL-TRAPS", "T2A-SCENE"]),
     "islands/ascent.html": dict(
         title=("Ascent of the Sun Temple: Climbers", "Ascent of the Sun Temple: Climbers"),
         kicker=("Island 2 · The flagship", "Insel 2 · Die Hauptinsel"),
-        banner=["ISL-ASCENT", "KEYART"],
+        banner=["THUMB-ASCENT", "ISL-ASCENT", "KEYART"], banner_full=True,
         lede=("The whole climb, for up to four friends: the Shell, seventeen floors and the Sky Altar.",
               "Der ganze Aufstieg, für bis zu vier Freunde: The Shell, siebzehn Ebenen und der Himmelsaltar."),
         description=("Island 2: the co-op flagship, from the prologue with Kaya to the Sky Altar.",
                      "Insel 2: die Koop-Hauptinsel, vom Prolog mit Kaya bis zum Himmelsaltar."),
-        body=ascent, og=["ISL-ASCENT", "KEYART"]),
+        body=ascent, og=["THUMB-ASCENT", "ISL-ASCENT", "KEYART"]),
     "islands/kaan-expedition.html": dict(
         title=("Kaan Expedition: Sun Temple Dig", "Kaan Expedition: Sun Temple Dig"), kicker=("Island 3 · Tycoon", "Insel 3 · Tycoon"),
-        banner=["ISL-DIG", "A-04"],
+        banner=["THUMB-DIG", "ISL-DIG", "A-04"], banner_full=True,
         lede=("Restore Isabel Kaan's abandoned camp, plot by plot, and dive into the temple for the rare finds.",
               "Bau Isabel Kaans verlassenes Lager Parzelle für Parzelle wieder auf und tauch in den Tempel, um seltene Funde zu bergen."),
         description=("Island 3: a tycoon at the foot of the pyramid, with short dives into real temple rooms.",
                      "Insel 3: ein Tycoon am Fuß der Pyramide, mit kurzen Tauchgängen in echte Tempelräume."),
-        body=kaan_expedition, og=["ISL-DIG", "A-04"]),
+        body=kaan_expedition, og=["THUMB-DIG", "ISL-DIG", "A-04"]),
     "islands/illusion-depths.html": dict(
         title=("Illusion Depths", "Illusion Depths"), kicker=("Island 4 · Co-op escape rooms", "Insel 4 · Koop-Escape-Rooms"),
-        banner=["ISL-DEPTHS", "T5A-SCENE"],
+        banner=["THUMB-DEPTHS", "ISL-DEPTHS", "T5A-SCENE"], banner_full=True,
         lede=("Five puzzle chambers where one player can see what the others must do.",
               "Fünf Rätselkammern, in denen ein Spieler sieht, was die anderen tun müssen."),
         description=("Island 4: co-op escape rooms recut from the temple's puzzle halls.",
                      "Insel 4: Koop-Escape-Rooms, umgebaut aus den Rätselhallen des Tempels."),
-        body=illusion_depths, og=["ISL-DEPTHS", "T5A-SCENE"]),
+        body=illusion_depths, og=["THUMB-DEPTHS", "ISL-DEPTHS", "T5A-SCENE"]),
     "islands/orb-raiders.html": dict(
         title=("Orb Raiders", "Orb Raiders"), kicker=("Island 5 · PvPvE", "Insel 5 · PvPvE"),
-        banner=["ISL-RAIDERS", "T4E-SCENE"],
+        banner=["THUMB-RAIDERS", "ISL-RAIDERS", "T4E-SCENE"], banner_full=True,
         lede=("Raid the elemental sanctums for relics and orbs, then make it to a Sun Portal before the temple seals.",
               "Plündere die Elementarheiligtümer nach Relikten und Kugeln und erreich ein Sonnenportal, bevor der Tempel sich versiegelt."),
         description=("Island 5: a light extraction raid on the four elemental sanctums.",
                      "Insel 5: ein leichter Extraction-Raid durch die vier Elementarheiligtümer."),
-        body=orb_raiders, og=["ISL-RAIDERS", "T4E-SCENE"]),
+        body=orb_raiders, og=["THUMB-RAIDERS", "ISL-RAIDERS", "T4E-SCENE"]),
 }
