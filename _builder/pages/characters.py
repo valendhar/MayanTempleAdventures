@@ -654,7 +654,7 @@ def group_page(intro_fn, sheet, members, extras=()):
   <div class="prose">{intro_fn(ctx)}</div>
 </section>
 <section class="band"><div class="wrap section">
-  {ctx.figure(sheet, t("Group sheet", "Gruppenblatt"), cls="sheet")}
+  {ctx.figure(sheet, t("In action", "In Aktion") if ctx.has("ACT-" + sheet) else t("Group sheet", "Gruppenblatt"), cls="sheet")}
   {extras_gallery(ctx, list(extras))}
 </div></section>
 <section class="wrap section">
@@ -799,7 +799,8 @@ def lineup(ctx):
     row_html = "".join(f"<tr><th scope='row'>{n}</th><td>{d}</td></tr>" for n, d in rows)
     return f"""
 <section class="wrap section narrow-top">
-  {ctx.figure("CS-LINEUP", t("The cast at true relative scale", "Die Figuren im echten Größenverhältnis"), cls="sheet")}
+  {ctx.figure("CS-LINEUP", t("The cast together in the Threshold", "Alle Figuren gemeinsam in der Schwelle") if ctx.has("ACT-CS-LINEUP")
+               else t("The cast at true relative scale", "Die Figuren im echten Größenverhältnis"), cls="sheet")}
 </section>
 <section class="band"><div class="wrap section">
   <p class="kicker">{t("Left to right", "Von links nach rechts")}</p><h2>{t("Who stands how tall", "Wer wie groß ist")}</h2>
