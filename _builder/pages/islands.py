@@ -793,7 +793,7 @@ def lost_passages(ctx):
     ])
     rows = "".join(f"<tr><th scope='row'>{t(*n)}</th><td>{t(*d)}</td></tr>" for _, n, d in LP_SCREENS)
     shots = [(f"LP1-{k}", t(*n)) for k, n, _ in LP_SCREENS if ctx.has(f"LP1-{k}")]
-    gallery = ctx.gallery(shots, cls="gallery-3") if shots else ""
+    gallery = ctx.gallery(shots, cls="gallery-3 gallery-169") if shots else ""
     return f"""
 <section class="wrap section narrow-top">
   <div class="intro">
@@ -822,7 +822,7 @@ def lost_passages(ctx):
       "<p>Eine feste Kamera zeigt jeweils einen Bildschirm und schneidet zum nächsten, sobald du den Rand überquerst. "
       "Jede Falle ist ganz zu sehen, bevor du dich festlegst, also fühlt sich der zweite Versuch klug an, nicht wie "
       "Glück.</p><p>Schätze und drei versteckte Große Idole locken gute Spieler vom sicheren Weg.</p>"))}
-  {feature(ctx, ctx.pick("LP1-S10", "P21"), t("The toolkit", "Die Ausrüstung"), t("Handle the traps, don't just dodge them", "Fallen bedienen, nicht nur ausweichen"),
+  {feature(ctx, ctx.pick("LP1-S02", "P21"), t("The toolkit", "Die Ausrüstung"), t("Handle the traps, don't just dodge them", "Fallen bedienen, nicht nur ausweichen"),
     t("<p><strong>Staff poke:</strong> trips wires and pressure stones from a safe distance and staggers guardians. "
       "<strong>Ember Charges:</strong> break cracked blocks and stun enemies, but step away from the hiss. "
       "<strong>Ropes:</strong> unroll from bronze anchors to reach secret ledges.</p><p>The main path never needs a "

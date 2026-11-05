@@ -600,6 +600,8 @@ p { margin: 0 0 1em; }
 }
 .gallery.gallery-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 @media (max-width: 640px) { .gallery.gallery-3 { grid-template-columns: 1fr; } }
+/* every preview the same 16:9 shape, so a tall screen does not break the rows; the lightbox shows it whole */
+.gallery.gallery-169 .fig img { aspect-ratio: 16 / 9; width: 100%; object-fit: cover; object-position: center top; }
 
 /* ---------- climb pages: K'in's tier line, floors and rooms ---------- */
 .kin-line { margin: 0 0 22px; padding: 0; }
