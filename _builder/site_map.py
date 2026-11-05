@@ -75,14 +75,6 @@ NAV = [
         (("The Sky Altar", "Der Himmelsaltar"), "climb/sky-altar.html", []),
         (("Shared Rooms", "Gemeinsame Räume"), "climb/shared-rooms.html", []),
     ]),
-    (("Art & Assets", "Kunst & Assets"), "art/index.html", [
-        (("Art Direction", "Art Direction"), "art/index.html", []),
-        (("Modular Kits", "Modulare Kits"), "art/kits.html", []),
-        (("Gameplay Props", "Gameplay-Objekte"), "art/props.html", []),
-        (("Hero Items & Relics", "Heldengegenstände & Relikte"), "art/relics.html", []),
-        (("Threshold & Forecourt", "Schwelle & Vorplatz"), "art/threshold-set.html", []),
-        (("Level Set Pieces", "Level-Setpieces"), "art/set-pieces.html", []),
-    ]),
 ]
 
 

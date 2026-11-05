@@ -155,8 +155,14 @@ class Ctx:
     def lang_url(self, lang):
         return self.root + PREFIX[lang] + self.path
 
+    @staticmethod
+    def swap(img_id):
+        """An action shot saved as ACT-<id> replaces the sheet <id> everywhere it is used."""
+        act = "ACT-" + img_id.upper()
+        return act if act in IMAGES else img_id
+
     def img_src(self, img_id, kind="thumb"):
-        return f"{self.root}assets/img/{kind}/{img_id}.webp"
+        return f"{self.root}assets/img/{kind}/{self.swap(img_id)}.webp"
 
     def has(self, img_id):
         return img_id.upper() in IMAGES
@@ -169,7 +175,7 @@ class Ctx:
         return ids[0]
 
     def figure(self, img_id, caption=None, alt=None, cls="", eager=False, link=True, show_caption=True):
-        img_id = img_id.upper()
+        img_id = self.swap(img_id.upper())
         alt = alt or caption or img_id
         cap = f"<figcaption>{caption}</figcaption>" if caption and show_caption else ""
         if img_id in IMAGES:
@@ -191,7 +197,7 @@ class Ctx:
         return f'<div class="gallery {cls}">{figs}</div>'
 
     def bg(self, img_id):
-        img_id = img_id.upper()
+        img_id = self.swap(img_id.upper())
         if img_id in IMAGES:
             return f"background-image:url('{self.img_src(img_id, 'full')}')"
         return ""
@@ -304,7 +310,7 @@ def page_shell(ctx, page, trail):
         bgimg = first_uploaded(page.get("banner"))
         if page.get("banner_full") and bgimg and ctx.has(bgimg):
             # whole picture, never cropped; the heading sits over its lower fade
-            m = IMAGES[bgimg.upper()]
+            m = IMAGES[ctx.swap(bgimg.upper())]
             header_block = f"""
 <section class="page-head page-head-art">
   <div class="page-head-frame"><img src="{ctx.img_src(bgimg.upper(), 'full')}" alt="" width="{m['w']}" height="{m['h']}" fetchpriority="high"></div>

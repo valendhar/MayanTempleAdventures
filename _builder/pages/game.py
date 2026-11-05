@@ -102,12 +102,12 @@ def overview(ctx):
       "limestone, jade inlay, hammered gold, glowing glyphs, mossy weathered stone, obsidian and torch flame.</p>"
       "<p>Four energy colours mark every interactive object: <span class='c-gold'>gold for sun</span>, "
       "<span class='c-blue'>blue for water</span>, <span class='c-red'>red for fire</span> and "
-      f"<span class='c-green'>green for growth</span>. <a href='{u('art/index.html')}'>More on the art direction →</a></p>",
+      "<span class='c-green'>green for growth</span>.</p>",
       "<p>Malerisch und stilisiert wie Ratchet &amp; Clank und Jak &amp; Daxter, aber glaubwürdig: behauener Kalkstein, "
       "Jade-Einlagen, gehämmertes Gold, leuchtende Glyphen, bemooster, verwitterter Stein, Obsidian und Fackelschein.</p>"
       "<p>Vier Energiefarben kennzeichnen jedes interaktive Objekt: <span class='c-gold'>Gold für die Sonne</span>, "
       "<span class='c-blue'>Blau für Wasser</span>, <span class='c-red'>Rot für Feuer</span> und "
-      f"<span class='c-green'>Grün für Wachstum</span>. <a href='{u('art/index.html')}'>Mehr zur Art Direction →</a></p>"),
+      "<span class='c-green'>Grün für Wachstum</span>.</p>"),
     flip=True)}
 </section>
 """

@@ -477,10 +477,7 @@ def tier_page(n):
 {"".join(sections)}
 {extra_html}
 <section class="band" id="set-pieces"><div class="wrap section">
-  <div class="section-head">
-    <h2>{t("Set pieces", "Setpieces")}</h2>
-    <a class="text-link" href="{u('art/set-pieces.html')}#tier-{n}">{t("All level set pieces", "Alle Level-Setpieces")}</a>
-  </div>
+  <h2>{t("Set pieces", "Setpieces")}</h2>
   {catalog(ctx, [(i, nm, None) for i, nm in tier["set_pieces"]], cls="catalog-3")}
 </div></section>
 """
@@ -602,10 +599,7 @@ def floor_0(ctx):
 </section>
 
 <section class="band"><div class="wrap section">
-  <div class="section-head">
-    <h2>{t("Set pieces", "Setpieces")}</h2>
-    <a class="text-link" href="{u('art/set-pieces.html')}#floor-0">{t("All level set pieces", "Alle Level-Setpieces")}</a>
-  </div>
+  <h2>{t("Set pieces", "Setpieces")}</h2>
   {catalog(ctx, set_pieces, cls="catalog-3")}
 </div></section>
 """
@@ -772,10 +766,7 @@ def threshold_hub(ctx):
 </section>
 
 <section class="band"><div class="wrap section">
-  <div class="section-head">
-    <h2>{t("Threshold and forecourt assets", "Assets für Schwelle und Vorplatz")}</h2>
-    <a class="text-link" href="{u('art/threshold-set.html')}">{t("The full set", "Das komplette Set")}</a>
-  </div>
+  <h2>{t("Threshold and forecourt assets", "Assets für Schwelle und Vorplatz")}</h2>
   {catalog(ctx, [("HUB03", ("Jungle foliage kit", "Dschungel-Pflanzen-Kit"), None),
                  ("HUB04", ("Pyramid exterior kit", "Kit für die Außenseite der Pyramide"), None),
                  ("A-04", ("The jungle and the camp", "Der Dschungel und das Lager"), None)], cls="catalog-3")}
@@ -817,10 +808,7 @@ def shared_rooms(ctx):
 <section class="band" id="portal-chamber"><div class="wrap section">{pc}</div></section>
 <section class="wrap section" id="spirit-shrine">{sr}</section>
 <section class="band"><div class="wrap section">
-  <div class="section-head">
-    <h2>{t("Set pieces", "Setpieces")}</h2>
-    <a class="text-link" href="{u('art/set-pieces.html')}#shared-rooms">{t("All level set pieces", "Alle Level-Setpieces")}</a>
-  </div>
+  <h2>{t("Set pieces", "Setpieces")}</h2>
   {catalog(ctx, [("PC01", ("Portal Chamber set", "Set der Portalkammer"), None),
                  ("SR01", ("Spirit Shrine set", "Set des Geisterschreins"), None)], cls="catalog-3")}
 </div></section>
@@ -876,10 +864,7 @@ def sky_altar(ctx):
 </div></section>
 
 <section class="wrap section">
-  <div class="section-head">
-    <h2>{t("Set pieces", "Setpieces")}</h2>
-    <a class="text-link" href="{u('art/set-pieces.html')}#sky-altar">{t("All level set pieces", "Alle Level-Setpieces")}</a>
-  </div>
+  <h2>{t("Set pieces", "Setpieces")}</h2>
   {catalog(ctx, [("SKY-01", ("Summit temple and Sun Portal", "Gipfeltempel und Sonnenportal"), None),
                  ("SKY-02", ("The four elemental braziers", "Die vier Elementar-Feuerbecken"), None),
                  ("SKY-03", ("Sun Orb altar and the two choice pedestals", "Altar der Sonnenkugel und die beiden Sockel der Wahl"), None)], cls="catalog-3")}
