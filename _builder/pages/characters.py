@@ -38,7 +38,9 @@ def character_page(c):
         t = ctx.t
         intro = "".join(f"<p>{T(ctx, p)}</p>" for p in c["intro"])
         facts = "".join(f"<div><dt>{T(ctx, k)}</dt><dd>{T(ctx, v)}</dd></div>" for k, v in c["facts"])
-        sheet = ctx.figure(c["sheet"], T(ctx, c.get("sheet_caption", ("Character sheet", "Charakterblatt"))), cls="sheet")
+        # once an action shot replaces the sheet (ACT-<id>), the caption no longer calls it a sheet
+        cap = ("In action", "In Aktion") if ctx.has("ACT-" + c["sheet"]) else c.get("sheet_caption", ("Character sheet", "Charakterblatt"))
+        sheet = ctx.figure(c["sheet"], T(ctx, cap), cls="sheet")
         # a scene already shown whole in the page header is not repeated in the gallery
         shown = c.get("banner") if own_scene(c) else None
         extra = extras_gallery(ctx, [e for e in c.get("extras", []) if e[0] != shown])
@@ -167,7 +169,7 @@ C["characters/kin.html"] = dict(
             "Warnung, Geheimnis in der Nähe, Singen, Trauer und Flackern) geben ihr ein vollständiges Spiel. Sie berührt nie den "
             "Boden, löst also nie eine Falle aus, und ihre Größe ist an Kayas Schulter festgelegt, damit sie nie wie ein "
             "Sammelobjekt wirkt."),
-    extras=[("W07", ("Light and VFX states", "Licht- und VFX-Zustände")), ("HOME-NEVERALONE", ("K'in draws the way", "K'in zeigt den Weg")),
+    extras=[("W07", ("K'in's light", "K'ins Licht")), ("HOME-NEVERALONE", ("K'in draws the way", "K'in zeigt den Weg")),
             ("HOME-KIN", ("Before the Spirit Mural", "Vor dem Geisterwandbild"))],
 )
 
