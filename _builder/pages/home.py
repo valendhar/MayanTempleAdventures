@@ -5,15 +5,6 @@ def body(ctx):
     u, t = ctx.url, ctx.t
     hero_style = ctx.bg("A-01")
 
-    facts = [
-        (t("Genre", "Genre"), t("Co-op action-adventure platformer", "Koop-Action-Adventure-Plattformer")),
-        (t("Platform", "Plattform"), t("Fortnite islands, built in UEFN", "Fortnite-Inseln, gebaut im UEFN")),
-        (t("Tone", "Stil"), "Ratchet &amp; Clank, Jak &amp; Daxter"),
-        (t("Structure", "Aufbau"), t("The Shell, six tiers, then the summit", "The Shell, sechs Stufen, dann der Gipfel")),
-        (t("Players", "Spieler"), t("1–4 co-op, as your own Fortnite character", "1–4 im Koop, als deine eigene Fortnite-Figur")),
-        (t("Islands", "Inseln"), t("Five, all set in one temple", "Fünf, alle im selben Tempel")),
-    ]
-    fact_html = "".join(f"<div><dt>{k}</dt><dd>{v}</dd></div>" for k, v in facts)
 
     pillars = [
         ("B-11", t("Ascend", "Aufsteigen"),
@@ -81,14 +72,32 @@ def body(ctx):
         f'<span class="step-line">{(oq + l + cq) if l else first_line}</span></a></li>'
         for k, (n, nm, l, p) in enumerate(tiers))
 
-    # One card per Fortnite island, in build order (see pages/islands.py).
+    # One card per game type, flagship first (same order as pages/islands.py).
     islands = [
-        ("islands/trap-galleries.html", ctx.pick("ISL-TRAPS", "T2A-SCENE"), "Trap Galleries", t("Deathrun · 1–16", "Deathrun · 1–16")),
         ("islands/ascent.html", ctx.pick("ISL-ASCENT", "KEYART"), "Ascent of the Sun Temple", t("Co-op adventure · 1–4", "Koop-Abenteuer · 1–4")),
+        ("islands/trap-galleries.html", ctx.pick("ISL-TRAPS", "T2A-SCENE"), "Trap Galleries", t("Deathrun · 1–16", "Deathrun · 1–16")),
         ("islands/sun-temple-dig.html", ctx.pick("ISL-DIG", "A-04"), "Sun Temple Dig", t("Tycoon · 1–8", "Tycoon · 1–8")),
         ("islands/illusion-depths.html", ctx.pick("ISL-DEPTHS", "T5A-SCENE"), "Illusion Depths", t("Co-op escape rooms · 2–4", "Koop-Escape-Rooms · 2–4")),
         ("islands/orb-raiders.html", ctx.pick("ISL-RAIDERS", "T4E-SCENE"), "Orb Raiders", t("PvPvE · 8–16", "PvPvE · 8–16")),
+        ("islands/hold-your-breath.html", ctx.pick("ISL-HYB", "HYB-SCENE1"), "Hold Your Breath", t("Party heist · 1–8", "Party-Raubzug · 1–8")),
+        ("islands/lost-passages.html", ctx.pick("ISL-LP", "LP1-S10", "T2E-SCENE"), "The Lost Passages", t("Trap platformer · 1", "Fallen-Plattformer · 1")),
+        ("islands/trap-architects.html", ctx.pick("ISL-TA", "T2C-SCENE"), "Trap Architects", t("Build and run · 2–8", "Bauen und laufen · 2–8")),
+        ("islands/calendar-fall.html", ctx.pick("ISL-CF", "T3B-SCENE"), "Calendar Fall", t("Knockout · 2–16", "Knockout · 2–16")),
     ]
+    words = {5: ("five", "fünf"), 6: ("six", "sechs"), 7: ("seven", "sieben"), 8: ("eight", "acht"), 9: ("nine", "neun"),
+             10: ("ten", "zehn"), 11: ("eleven", "elf"), 12: ("twelve", "zwölf")}
+    n_word = t(*words[len(islands)])
+    N_word = n_word[0].upper() + n_word[1:]
+
+    facts = [
+        (t("Genre", "Genre"), t("Co-op action-adventure platformer", "Koop-Action-Adventure-Plattformer")),
+        (t("Platform", "Plattform"), t("Fortnite islands, built in UEFN", "Fortnite-Inseln, gebaut im UEFN")),
+        (t("Tone", "Stil"), "Ratchet &amp; Clank, Jak &amp; Daxter"),
+        (t("Structure", "Aufbau"), t("The Shell, six tiers, then the summit", "The Shell, sechs Stufen, dann der Gipfel")),
+        (t("Players", "Spieler"), t("1–4 co-op, as your own Fortnite character", "1–4 im Koop, als deine eigene Fortnite-Figur")),
+        (t("Game types", "Spieltypen"), t(f"{N_word}, all set in one temple", f"{N_word}, alle im selben Tempel")),
+    ]
+    fact_html = "".join(f"<div><dt>{k}</dt><dd>{v}</dd></div>" for k, v in facts)
     island_html = "".join(
         f'<li><a class="island-card" href="{u(p)}">{ctx.figure(i, alt=n, link=False)}'
         f'<span class="island-num">{k + 1}</span><span class="island-name">{n}</span><span class="island-line">{g}</span></a></li>'
@@ -116,11 +125,11 @@ def body(ctx):
     <div class="hero-copy">
       {hero_title}
       <p class="hero-hook">{t("A Mayan pyramid that rearranges itself around you.", "Eine Maya-Pyramide, die sich um dich herum neu ordnet.")}</p>
-      <p class="hero-sub">{t("Five Fortnite islands in one living temple, built in UEFN. At their heart, a co-op climb for up to four friends.",
-                             "Fünf Fortnite-Inseln in einem lebenden Tempel, gebaut im UEFN. In ihrem Zentrum ein Koop-Aufstieg für bis zu vier Freunde.")}</p>
+      <p class="hero-sub">{t(f"{N_word} Fortnite game types in one living temple, built in UEFN. At their heart, a co-op climb for up to four friends.",
+                             f"{N_word} Fortnite-Spieltypen in einem lebenden Tempel, gebaut im UEFN. In ihrem Zentrum ein Koop-Aufstieg für bis zu vier Freunde.")}</p>
       <div class="cta-row">
         <a class="btn btn-gold" href="{u('climb/index.html')}">{t("Explore the climb", "Den Aufstieg erkunden")}</a>
-        <a class="btn btn-ghost" href="{u('islands/index.html')}">{t("See the five islands", "Die fünf Inseln ansehen")}</a>
+        <a class="btn btn-ghost" href="{u('islands/index.html')}">{t(f"See the {n_word} game types", f"Die {n_word} Spieltypen ansehen")}</a>
       </div>
     </div>
     <dl class="facts">{fact_html}</dl>
@@ -160,8 +169,8 @@ def body(ctx):
 
 <section class="wrap section islands-band">
   <div class="section-head">
-    <h2>{t("One temple, five islands", "Ein Tempel, fünf Inseln")}</h2>
-    <a class="text-link" href="{u('islands/index.html')}">{t("The islands and the roadmap", "Die Inseln und die Roadmap")}</a>
+    <h2>{t(f"One temple, {n_word} game types", f"Ein Tempel, {n_word} Spieltypen")}</h2>
+    <a class="text-link" href="{u('islands/index.html')}">{t("The game types and the roadmap", "Die Spieltypen und die Roadmap")}</a>
   </div>
   <ol class="island-grid">{island_html}</ol>
 </section>
@@ -229,8 +238,8 @@ def body(ctx):
 PAGES = {
     "index.html": dict(
         title=("Home", "Start"),
-        description=("Mayan Temple Adventures: five Fortnite islands in a living Mayan pyramid, led by a co-op climb for up to four players.",
-                     "Mayan Temple Adventures: fünf Fortnite-Inseln in einer lebenden Maya-Pyramide, angeführt von einem Koop-Aufstieg für bis zu vier Spieler."),
+        description=("Mayan Temple Adventures: nine Fortnite game types in a living Mayan pyramid, led by a co-op climb for up to four players.",
+                     "Mayan Temple Adventures: neun Fortnite-Spieltypen in einer lebenden Maya-Pyramide, angeführt von einem Koop-Aufstieg für bis zu vier Spieler."),
         body=body,
         custom_header=True,
         no_pager=True,

@@ -14,13 +14,17 @@ NAV = [
         (("Climbers & Co-op", "Kletterer & Koop"), "game/climbers-and-co-op.html", []),
         (("Weapons & Powers", "Waffen & Kräfte"), "game/weapons-and-powers.html", []),
     ]),
-    (("UEFN Islands", "UEFN-Inseln"), "islands/index.html", [
+    (("Game Types", "Spieltypen"), "islands/index.html", [
         (("Overview & Roadmap", "Überblick & Roadmap"), "islands/index.html", []),
-        (("1 · Trap Galleries", "1 · Trap Galleries"), "islands/trap-galleries.html", []),
-        (("2 · Ascent of the Sun Temple", "2 · Ascent of the Sun Temple"), "islands/ascent.html", []),
-        (("3 · Sun Temple Dig", "3 · Sun Temple Dig"), "islands/sun-temple-dig.html", []),
-        (("4 · Illusion Depths", "4 · Illusion Depths"), "islands/illusion-depths.html", []),
-        (("5 · Orb Raiders", "5 · Orb Raiders"), "islands/orb-raiders.html", []),
+        (("Ascent of the Sun Temple", "Ascent of the Sun Temple"), "islands/ascent.html", []),
+        (("Trap Galleries", "Trap Galleries"), "islands/trap-galleries.html", []),
+        (("Sun Temple Dig", "Sun Temple Dig"), "islands/sun-temple-dig.html", []),
+        (("Illusion Depths", "Illusion Depths"), "islands/illusion-depths.html", []),
+        (("Orb Raiders", "Orb Raiders"), "islands/orb-raiders.html", []),
+        (("Hold Your Breath", "Hold Your Breath"), "islands/hold-your-breath.html", []),
+        (("The Lost Passages", "The Lost Passages"), "islands/lost-passages.html", []),
+        (("Trap Architects", "Trap Architects"), "islands/trap-architects.html", []),
+        (("Calendar Fall", "Calendar Fall"), "islands/calendar-fall.html", []),
     ]),
     (("Story", "Geschichte"), "story/index.html", [
         (("The Story", "Die Geschichte"), "story/index.html", []),
