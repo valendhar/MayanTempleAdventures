@@ -51,14 +51,14 @@ UI = {
     "prev_img": ("Previous image", "Vorheriges Bild"),
     "next_img": ("Next image", "Nächstes Bild"),
     "lang_label": ("Language", "Sprache"),
-    "foot_by": ("Fortnite islands in design by {}. Planned in Unreal Editor for Fortnite (UEFN).",
-                "Fortnite-Inseln in Entwicklung von {}. Geplant im Unreal Editor for Fortnite (UEFN)."),
+    "foot_by": ("A single-player action adventure in development by {}, built in Unreal Engine 5.",
+                "Ein Action-Adventure für einen Spieler, in Entwicklung von {}, gebaut in der Unreal Engine 5."),
     "foot_note": ("In development. All art shown is concept and design work, not in-engine capture.",
                   "In Entwicklung. Alle gezeigten Bilder sind Konzept- und Designarbeiten, keine Aufnahmen aus der Engine."),
     "rights": ("All rights reserved.", "Alle Rechte vorbehalten."),
-    "trademark": ("Fortnite, Unreal Editor for Fortnite and Epic Games are trademarks of Epic Games, Inc. "
+    "trademark": ("Unreal and Unreal Engine are trademarks or registered trademarks of Epic Games, Inc. "
                   "This project is not affiliated with or endorsed by Epic Games.",
-                  "Fortnite, Unreal Editor for Fortnite und Epic Games sind Marken von Epic Games, Inc. "
+                  "Unreal und Unreal Engine sind Marken oder eingetragene Marken von Epic Games, Inc. "
                   "Dieses Projekt steht in keiner Verbindung zu Epic Games und wird nicht von Epic Games unterstützt."),
     "stub_kicker": ("Coming soon", "Demnächst"),
     "stub_prep": ("In preparation", "In Vorbereitung"),
