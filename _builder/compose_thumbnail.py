@@ -4,7 +4,7 @@ Usage (from the repo root):  python _builder/compose_thumbnail.py TRAPS [logo_wi
 Reads   _builder/images/originals/ISL-<KEY>.*  (painting without any logo)
         _builder/images/originals/SUB-<KEY>.*  (subtitle plate, transparent)
         _builder/images/originals/TITLE-LOGO.* (main logo, transparent)
-Writes  _builder/images/originals/THUMB-<KEY>.png  (a key image with the logo; the site can show it as a page header)
+Writes  _builder/images/originals/THUMB-<KEY>.png  (the Fortnite island thumbnail; the site shows it as the page header)
 
 logo_width is a share of the image width (default 0.38), top a share of its height (default 0.02).
 plate_scale enlarges a short plate (default 1; it never grows wider than the logo allows).

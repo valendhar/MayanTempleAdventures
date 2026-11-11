@@ -1,6 +1,6 @@
 # Mayan Temple Adventures — design site
 
-A visual design document for *Mayan Temple Adventures: Ascent of the Sun Temple*, a single-player action roguelite built in Unreal Engine 5. Kaya, a young scholar, climbs a living Mayan pyramid, dies, returns to the Threshold, and climbs again knowing more.
+A visual design document for *Mayan Temple Adventures*: five Fortnite islands set in and around one living Mayan pyramid, planned in Unreal Editor for Fortnite (UEFN). The flagship, *Ascent of the Sun Temple*, is a co-op climb for up to four players.
 
 The site is plain HTML, CSS and JavaScript. It needs no build step on GitHub and works by opening `index.html` in a browser.
 
