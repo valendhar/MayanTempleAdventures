@@ -8,6 +8,7 @@ Usage:  python3 _builder/build.py [output_dir]
 - Writes plain HTML pages (no Jekyll, no framework) into the output folder
 """
 import html
+import re
 import importlib.util
 import os
 import shutil
@@ -51,14 +52,14 @@ UI = {
     "prev_img": ("Previous image", "Vorheriges Bild"),
     "next_img": ("Next image", "Nächstes Bild"),
     "lang_label": ("Language", "Sprache"),
-    "foot_by": ("Fortnite islands in design by {}. Planned in Unreal Editor for Fortnite (UEFN).",
-                "Fortnite-Inseln in Entwicklung von {}. Geplant im Unreal Editor for Fortnite (UEFN)."),
+    "foot_by": ("A single-player action adventure in development by {}, built in Unreal Engine 5.",
+                "Ein Action-Adventure für einen Spieler, in Entwicklung von {}, gebaut in der Unreal Engine 5."),
     "foot_note": ("In development. All art shown is concept and design work, not in-engine capture.",
                   "In Entwicklung. Alle gezeigten Bilder sind Konzept- und Designarbeiten, keine Aufnahmen aus der Engine."),
     "rights": ("All rights reserved.", "Alle Rechte vorbehalten."),
-    "trademark": ("Fortnite, Unreal Editor for Fortnite and Epic Games are trademarks of Epic Games, Inc. "
+    "trademark": ("Unreal and Unreal Engine are trademarks or registered trademarks of Epic Games, Inc. "
                   "This project is not affiliated with or endorsed by Epic Games.",
-                  "Fortnite, Unreal Editor for Fortnite und Epic Games sind Marken von Epic Games, Inc. "
+                  "Unreal und Unreal Engine sind Marken oder eingetragene Marken von Epic Games, Inc. "
                   "Dieses Projekt steht in keiner Verbindung zu Epic Games und wird nicht von Epic Games unterstützt."),
     "stub_kicker": ("Coming soon", "Demnächst"),
     "stub_prep": ("In preparation", "In Vorbereitung"),
@@ -123,6 +124,19 @@ def process_images():
             IMAGES[img_id] = dict(w=f.size[0], h=f.size[1], tw=t.size[0], th=t.size[1])
 
 
+# Crew images: Kaya climbing with the other Climbers, made for the UEFN co-op version (kept on 12 Nov 2026 for a possible
+# co-op mode later). They are never picked automatically (no ACT- swap, pick or has); a page shows one only by naming it,
+# through Ctx.crew_figure, which marks it as co-op art.
+CREW = {"ACT-CS-AHKUK", "ACT-CS-CHAKTUN", "ACT-CS-GUARDIAN", "ACT-CS-IXNICTE", "ACT-CS-KAYA", "ACT-CS-KIN",
+        "ACT-CS-LINEUP", "ACT-CS-OXLAHUN", "ACT-CS-PRIEST", "ACT-W07", "HYB-SCENE1", "HYB-SCENE2", "HYB-SCENE3",
+        "HYB-SCENE4", "ISL-ASCENT", "ISL-DEPTHS", "ISL-DIG", "ISL-RAIDERS", "ISL-TRAPS", "SUB-DEPTHS", "SUB-DIG",
+        "SUB-RAIDERS", "SUB-TRAPS", "THUMB-ASCENT", "THUMB-DEPTHS", "THUMB-DIG", "THUMB-RAIDERS", "THUMB-TRAPS"}
+
+
+def is_crew(img_id):
+    return img_id.upper() in CREW
+
+
 # ---------------------------------------------------------------- helpers
 def esc(s):
     return html.escape(s, quote=True)
@@ -159,18 +173,22 @@ class Ctx:
     def swap(img_id):
         """An action shot saved as ACT-<id> replaces the sheet <id> everywhere it is used."""
         act = "ACT-" + img_id.upper()
-        return act if act in IMAGES else img_id
+        return act if act in IMAGES and not is_crew(act) else img_id
 
     def img_src(self, img_id, kind="thumb"):
         return f"{self.root}assets/img/{kind}/{self.swap(img_id)}.webp"
 
     def has(self, img_id):
+        return img_id.upper() in IMAGES and not is_crew(img_id)
+
+    def exists(self, img_id):
+        """The image is uploaded, crew images included (for pages that name a crew image on purpose)."""
         return img_id.upper() in IMAGES
 
     def pick(self, *ids):
         """First image id that has been uploaded; falls back to the first id (placeholder)."""
         for i in ids:
-            if i.upper() in IMAGES:
+            if i.upper() in IMAGES and not is_crew(i):
                 return i
         return ids[0]
 
@@ -279,8 +297,58 @@ def footer(ctx):
 </footer>"""
 
 
+def section_of(ctx):
+    """The deepest nav node that lists this page among two or more pages (Characters, or Risen Guardians for a
+    guardian's page). Its pages become the tab strip."""
+    found = None
+
+    def walk(nodes):
+        nonlocal found
+        for label, path, kids in nodes:
+            if len(kids) > 1 and any(k[1] == ctx.path for k in kids):
+                found = (label, path, kids)
+            walk(kids)
+    walk(NAV)
+    return found
+
+
+# short names for the tab strip, where the full page titles would not fit
+TAB_SHORT = {
+    "game/index.html": ("Overview", "Überblick"), "story/index.html": ("The Story", "Die Geschichte"),
+    "story/chapter-1.html": ("Chapter 1", "Kapitel 1"), "world/index.html": ("The Living Temple", "Der lebende Tempel"),
+    "characters/guardians/index.html": ("Guardians", "Wächter"), "characters/climbers/index.html": ("Carved Climbers", "Gemeißelte Kletterer"),
+    "characters/hollow-high-priest.html": ("High Priest", "Hohepriester"), "characters/creatures.html": ("Creatures", "Kreaturen"),
+    "characters/lineup.html": ("Lineup", "Größen"), "climb/index.html": ("Pyramid", "Pyramide"),
+    "climb/threshold.html": ("Threshold", "Schwelle"), "climb/floor-0.html": ("Shell", "Shell"),
+    "climb/tier-1.html": ("Tier I", "Stufe I"), "climb/tier-2.html": ("Tier II", "Stufe II"),
+    "climb/tier-3.html": ("Tier III", "Stufe III"), "climb/tier-4.html": ("Tier IV", "Stufe IV"),
+    "climb/tier-5.html": ("Tier V", "Stufe V"), "climb/tier-6.html": ("Tier VI", "Stufe VI"),
+    "climb/sky-altar.html": ("Sky Altar", "Himmelsaltar"), "climb/shared-rooms.html": ("Shared Rooms", "Gemeinsame Räume"),
+    "climb/builders-ways.html": ("Builders' Ways", "Wege der Erbauer"),
+}
+
+
+def section_tabs(ctx):
+    """Every page of the current section as a row of tabs under the page head (from the Valendhar site). It sticks
+    under the header while scrolling, so the section's other pages are always in reach."""
+    sec = section_of(ctx)
+    if not sec:
+        return ""
+    label, path, kids = sec
+    name = tr(label, ctx.lang)
+    tabs = "".join(
+        f'<li><a href="{ctx.url(p)}"{" aria-current=\"page\"" if p == ctx.path else ""}>{esc(tr(TAB_SHORT.get(p, l), ctx.lang))}</a></li>'
+        for l, p, _ in kids)
+    pos = [k[1] for k in kids].index(ctx.path) + 1
+    count = f'<span class="sr">{ctx.t("Page", "Seite")} </span>{pos} / {len(kids)}'
+    return (f'<nav class="section-tabs" aria-label="{esc(name)}"><div class="wrap st-inner">'
+            f'<a class="st-name" href="{ctx.url(path)}">{esc(name)}</a>'
+            f'<ol class="st-list">{tabs}</ol><span class="st-count">{count}</span></div></nav>')
+
+
 def crumbs(ctx, trail):
-    if ctx.path == "index.html" or len(trail) < 2:
+    # pages in a section get the tab strip instead, which names the section and shows where you are in it
+    if ctx.path == "index.html" or len(trail) < 2 or section_of(ctx):
         return ""
     parts = [f'<a href="{ctx.url("index.html")}">{ctx.ui("home")}</a>'] + [esc(tr(t, ctx.lang)) for t in trail[:-1]]
     return f'<p class="crumbs">{" / ".join(parts)}</p>'
@@ -294,6 +362,17 @@ def first_uploaded(ids):
     return ids
 
 
+def promote_leading_h3(body):
+    """Headings must not skip a level: h3s that come before the page's first h2 are top-level sections, so they
+    become h2 (class "h3" keeps their size)."""
+    first_h2 = body.find("<h2")
+    head, tail = (body, "") if first_h2 < 0 else (body[:first_h2], body[first_h2:])
+    head = re.sub(r"<h3([^>]*)>(.*?)</h3>",
+                  lambda m: "<h2%s>%s</h2>" % (m.group(1).replace('class="', 'class="h3 ') if 'class="' in m.group(1)
+                                               else m.group(1) + ' class="h3"', m.group(2)), head, flags=re.S)
+    return head + tail
+
+
 def page_shell(ctx, page, trail):
     L = ctx.lang
     title = tr(page["title"], L)
@@ -302,13 +381,14 @@ def page_shell(ctx, page, trail):
     og = first_uploaded(page.get("og", "A-01")) or ""
     og_tag = (f'<meta property="og:image" content="{ctx.img_src(og.upper(), "full")}">'
               if og.upper() in IMAGES else "")
-    body = page["body"](ctx)
+    body = page["body"](ctx) + "".join(band(ctx) for band in PAGE_BANDS)
+    body = promote_leading_h3(body)
     header_block = ""
     if not page.get("custom_header"):
         kicker = f'<p class="kicker">{esc(tr(page["kicker"], L))}</p>' if page.get("kicker") else ""
         lede = f'<p class="lede">{tr(page["lede"], L)}</p>' if page.get("lede") else ""
         bgimg = first_uploaded(page.get("banner"))
-        if page.get("banner_full") and bgimg and ctx.has(bgimg):
+        if page.get("banner_full") and bgimg and ctx.exists(bgimg):
             # whole picture, never cropped; the heading sits over its lower fade
             m = IMAGES[ctx.swap(bgimg.upper())]
             header_block = f"""
@@ -317,7 +397,7 @@ def page_shell(ctx, page, trail):
   <div class="wrap page-head-text">{crumbs(ctx, trail)}{kicker}<h1>{esc(title)}</h1>{lede}</div>
 </section>"""
         else:
-            style = f' style="{ctx.bg(bgimg)}"' if bgimg and ctx.has(bgimg) else ""
+            style = f' style="{ctx.bg(bgimg)}"' if bgimg and ctx.exists(bgimg) else ""
             cls = " has-bg" if style else ""
             header_block = f"""
 <section class="page-head{cls}"{style}><div class="wrap">
@@ -350,6 +430,7 @@ def page_shell(ctx, page, trail):
 {nav_html(ctx)}
 <main id="main">
 {header_block}
+{section_tabs(ctx) if not page.get("custom_header") else ""}
 {body}
 <div class="wrap">{pager(ctx) if not page.get("no_pager") else ""}</div>
 </main>
@@ -363,6 +444,9 @@ def page_shell(ctx, page, trail):
 
 
 # ---------------------------------------------------------------- pages
+PAGE_BANDS = []   # functions from page modules that add a band to the end of any page (pages/crew.py)
+
+
 def load_pages():
     pages = {}
     for f in sorted((HERE / "pages").glob("*.py")):
@@ -370,6 +454,7 @@ def load_pages():
         mod = importlib.util.module_from_spec(spec)
         spec.loader.exec_module(mod)
         pages.update(getattr(mod, "PAGES", {}))
+        PAGE_BANDS.extend(getattr(mod, "PAGE_BANDS", []))
     return pages
 
 

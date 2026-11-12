@@ -163,3 +163,21 @@
     if (e.key === "ArrowRight") show(idx + 1);
   });
 })();
+
+// section tabs: on a narrow screen the row scrolls; bring the current page into view and fade only the edges that go on
+(() => {
+  const stList = document.querySelector(".st-list");
+  if (!stList) return;
+  const cur = stList.querySelector('[aria-current="page"]');
+  if (cur && stList.scrollWidth > stList.clientWidth) {
+    const r = cur.getBoundingClientRect(), box = stList.getBoundingClientRect();
+    stList.scrollLeft += r.left - box.left - (box.width - r.width) / 2;
+  }
+  const edges = () => {
+    stList.classList.toggle("at-end", stList.scrollLeft + stList.clientWidth >= stList.scrollWidth - 4);
+    stList.classList.toggle("not-start", stList.scrollLeft > 4);
+  };
+  stList.addEventListener("scroll", edges, { passive: true });
+  addEventListener("resize", edges);
+  edges();
+})();

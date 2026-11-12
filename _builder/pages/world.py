@@ -40,11 +40,11 @@ def living_temple(ctx):
   {feature(ctx, "HOME-CLIMB", t("Inside", "Im Inneren"), t("A pyramid that climbs toward the sun", "Eine Pyramide, die zur Sonne aufsteigt"),
     t("<p>Six tiers stack inside the pyramid: flooded foundations, trap galleries, shifting vaults, four elemental sanctums, the illusion "
       "depths and a final ascension. Each tier has its own look, its own hazards and its own piece of the temple's history.</p>"
-      f"<p>On the flat summit stands the small temple with the great Sun Portal, dark since the sealing. <a href='{u('climb/index.html')}'>The climb, tier by tier →</a></p>",
+      f"<p>On the flat summit stands the small temple with the great Sun Portal, dark since the sealing. <a href='{u('climb/index.html')}'>The climb, tier by tier</a></p>",
       "<p>Sechs Stufen liegen übereinander im Inneren der Pyramide: überflutete Fundamente, Fallengalerien, wandernde Gewölbe, vier "
       "Elementarheiligtümer, die Tiefen der Täuschung und eine letzte Erhebung. Jede Stufe hat ihren eigenen Look, ihre eigenen Gefahren "
       "und ihr eigenes Stück Tempelgeschichte.</p><p>Auf dem flachen Gipfel steht der kleine Tempel mit dem großen Sonnenportal, dunkel "
-      f"seit der Versiegelung. <a href='{u('climb/index.html')}'>Der Aufstieg, Stufe für Stufe →</a></p>"))}
+      f"seit der Versiegelung. <a href='{u('climb/index.html')}'>Der Aufstieg, Stufe für Stufe</a></p>"))}
   {feature(ctx, "HUB05", t("The way in", "Der Eingang"), t("The serpent-headed tunnel", "Der Tunnel der Schlangenköpfe"),
     t("<p>Two enormous feathered serpents guard the entrance, their bodies carved up the first terrace, a sun mask on the lintel between "
       "them. A few worn steps lead down into the dark, toward a faint golden glow.</p>",
@@ -115,10 +115,10 @@ def threshold(ctx):
   {feature(ctx, "HUB10", t("The trade", "Der Handel"), t("The Offering Table", "Der Opfertisch"),
     t("<p>Oxlahun's stall: lamps, copal, jade beads, a bent brass lantern, a surveyor's notched staff, and a tray of glowing Spirit "
       "Fragments laid out like sweets, every item wearing a blank bark-paper tag. An offering place has become a market, and the "
-      f"difference matters. <a href='{u('characters/oxlahun.html')}'>Oxlahun →</a></p>",
+      f"difference matters. <a href='{u('characters/oxlahun.html')}'>Oxlahun</a></p>",
       "<p>Oxlahuns Stand: Lampen, Kopal, Jadeperlen, eine verbogene Messinglaterne, der gekerbte Stab eines Landvermessers und ein Tablett "
       "mit leuchtenden Geistsplittern, ausgelegt wie Süßigkeiten, jedes Stück mit einem leeren Anhänger aus Rindenpapier. Aus einem "
-      f"Opferplatz ist ein Markt geworden, und dieser Unterschied zählt. <a href='{u('characters/oxlahun.html')}'>Oxlahun →</a></p>"),
+      f"Opferplatz ist ein Markt geworden, und dieser Unterschied zählt. <a href='{u('characters/oxlahun.html')}'>Oxlahun</a></p>"),
     flip=True)}
   {feature(ctx, "HUB11", t("The quiet witness", "Der stille Zeuge"), t("The Lectern and Codex", "Lesepult und Codex"),
     t("<p>A stone lectern shaped like a crouching jaguar, carved with a scribe-monkey, holds an open screenfold codex painted with maps "
@@ -147,12 +147,12 @@ def relics(ctx):
     t("<p>One likeness for every climber K'in has lost: a surveyor sighting along his notched staff, a woman with a rope coil and an "
       "empty loop, a young man holding up an open lantern, a small figure with a satchel, a carving left half finished, a warden looking "
       "back over his shoulder, and the newest of all, a young explorer with goggles and twin braids, still pale with fresh dust.</p>"
-      f"<p><a href='{u('characters/climbers/index.html')}'>Meet the Carved Climbers →</a></p>",
+      f"<p><a href='{u('characters/climbers/index.html')}'>Meet the Carved Climbers</a></p>",
       "<p>Ein Abbild für jeden Kletterer, den K'in verloren hat: ein Landvermesser, der an seinem gekerbten Stab entlangpeilt, eine Frau "
       "mit Seilrolle und leerer Schlinge, ein junger Mann mit erhobener, offener Laterne, eine kleine Gestalt mit Umhängetasche, ein nur "
       "zur Hälfte vollendetes Relief, ein Wächter, der über die Schulter zurückblickt, und das neueste von allen, eine junge Entdeckerin "
       "mit Schutzbrille und zwei Zöpfen, noch hell vom frischen Staub.</p>"
-      f"<p><a href='{u('characters/climbers/index.html')}'>Zu den gemeißelten Kletterern →</a></p>"))}
+      f"<p><a href='{u('characters/climbers/index.html')}'>Zu den gemeißelten Kletterern</a></p>"))}
   {feature(ctx, "HUB13", t("Around the hall", "In der Halle"), t("Traces in the Threshold", "Spuren in der Schwelle"),
     t("<p>A cross-shaped game board scratched into a step, with dried beans for counters. A broom worn into a long slant. A patch of "
       "lime floor polished to glass. A folded palm-leaf whistle and a flower glazed in amber wax. A scrap of modern twill that does not "

@@ -235,7 +235,7 @@ p { margin: 0 0 1em; }
   filter: drop-shadow(0 10px 24px rgba(7, 22, 18, .55)); }
 .hero-art .hero-logo img { display: block; width: 100%; height: auto; -webkit-mask-image: none; mask-image: none; }
 /* on narrow screens the painting is small, so the logo takes a larger share of it to stay readable */
-@media (max-width: 760px) { .hero-logo { --logo-x: 5%; --logo-y: 5%; --logo-w: 48%; } }
+@media (max-width: 760px) { .hero-logo { --logo-x: 3%; --logo-y: 2%; --logo-w: 42%; } }
 @media (min-aspect-ratio: 17/9), (min-width: 1921px) {
   .hero-art img {
     -webkit-mask-image: linear-gradient(90deg, transparent, #000 7%, #000 93%, transparent);
@@ -772,3 +772,137 @@ a.reader-next:hover { border-color: var(--accent); color: var(--accent); }
 .loops.loops-grid li, .loops.loops-grid li + li { border: 1px solid var(--line); border-radius: var(--radius); }
 @media (max-width: 1000px) { .loops.loops-grid { grid-template-columns: 1fr 1fr; } }
 @media (max-width: 640px) { .loops.loops-grid { grid-template-columns: 1fr; } }
+
+/* ---------- climbing together: co-op concept art (pages/crew.py) ----------
+   One signature wherever crew art appears: a twisted gold rope opens the band (climbers rope up together),
+   and every crew picture carries a jade frame set off its edge, so it never reads as the solo game. */
+.crew-band { position: relative; padding: 76px 0 88px; background: linear-gradient(180deg, #0B201B 0%, var(--canopy-deep) 100%); }
+.crew-band::before {
+  content: ""; position: absolute; left: 0; right: 0; top: -4px; height: 9px; border-radius: 5px;
+  /* hemp rope: twisted strands, lit from above, shaded below so it reads round */
+  background:
+    linear-gradient(180deg, rgba(255, 240, 205, .45) 0, rgba(255, 240, 205, 0) 45%, rgba(0, 0, 0, .4) 100%),
+    repeating-linear-gradient(62deg, #D8A75E 0 5px, #A9742F 5px 8px, #6F4719 8px 9px);
+  box-shadow: 0 3px 6px rgba(0, 0, 0, .45);
+}
+.crew-head { max-width: 640px; margin-bottom: 30px; }
+.crew-head h2 { margin: 0 0 10px; }
+.crew-head p { color: var(--limestone-dim); margin: 0 0 10px; }
+.crew-grid { display: grid; gap: 28px 24px; }
+.crew-cols-2 { grid-template-columns: repeat(2, 1fr); }
+.crew-cols-3 { grid-template-columns: repeat(3, 1fr); }
+.crew-cols-4 { grid-template-columns: repeat(4, 1fr); }
+.crew-cols-5 { grid-template-columns: repeat(5, 1fr); }
+.crew-one { max-width: 880px; }
+.crew-fig img { outline: 2px solid rgba(69, 224, 184, .7); outline-offset: 4px; }
+.crew-fig figcaption { color: var(--limestone-dim); margin-top: 12px; }
+.crew-section { padding-top: 80px; padding-bottom: 80px; }
+.crew-intro { display: grid; grid-template-columns: 1fr 1.25fr; gap: 56px; align-items: center; }
+.crew-intro .big { margin-top: 0; }
+.crew-ideas { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; margin-top: 64px; }
+.crew-ideas > div { border-top: 2px solid var(--line); padding-top: 18px; }
+.crew-ideas h3 { font-size: 1.25rem; margin: 0 0 8px; }
+.crew-ideas p { color: var(--limestone-dim); margin: 0; }
+.proto-fig img { outline-color: rgba(255, 184, 48, .55); }
+@media (max-width: 960px) {
+  .crew-cols-4 { grid-template-columns: repeat(2, 1fr); }
+  .crew-cols-5 { grid-template-columns: repeat(3, 1fr); }
+  .crew-intro { grid-template-columns: 1fr; gap: 32px; }
+  .crew-ideas { grid-template-columns: 1fr; gap: 24px; margin-top: 40px; }
+}
+@media (max-width: 680px) {
+  .crew-cols-2, .crew-cols-3, .crew-cols-4, .crew-cols-5 { grid-template-columns: 1fr; }
+  .crew-band { padding: 56px 0 64px; }
+}
+
+/* ---------- 12 Nov 2026: light the site like the paintings ----------
+   Signature: one carved step-fret frieze (xicalcoliuhqui, the motif of the kit's trim sheets) marks where a new
+   band of the temple begins. Bands are lit by torch-gold from above instead of fading to cold blue-black.
+   Jade is the game's inlay jade, not neon mint. Cards read as carved panels with a faint lit edge. */
+:root {
+  --jade: #4CD6AC;
+  --torch: rgba(255, 176, 64, .10);
+  --fret: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='16' viewBox='0 0 48 16'%3E%3Cpath d='M0 15h8V5h12v6h-6V9' fill='none' stroke='%23C77F12' stroke-width='2.2' stroke-linecap='square'/%3E%3Cpath d='M24 1h-8v10H4V5h6v2' fill='none' stroke='%23C77F12' stroke-width='2.2' stroke-linecap='square' transform='translate(24 0)'/%3E%3Cpath d='M0 15h48M0 1h48' stroke='%23C77F12' stroke-width='1.2' opacity='.6'/%3E%3C/svg%3E");
+}
+.band {
+  position: relative;
+  background:
+    radial-gradient(120% 70% at 50% 0%, var(--torch), transparent 70%),
+    linear-gradient(180deg, var(--stone) 0%, var(--canopy-deep) 100%);
+  border-top: 0;
+}
+.band::before, .page-head::after {
+  content: ""; position: absolute; left: 0; right: 0; height: 16px; pointer-events: none;
+  background: var(--fret) repeat-x center / 48px 16px; opacity: .55;
+}
+.band::before { top: -8px; }
+.page-head { position: relative; border-bottom: 0; }
+.page-head::after { bottom: -8px; z-index: 2; }
+.page-head-art { border-bottom: 0; }
+/* the crew band keeps its rope, not the fret */
+.crew-band.band::before { display: none; }
+
+/* carved panels: a faint lit top edge, one shadow depth, radius by size */
+.card, .facts, .island-card {
+  box-shadow: inset 0 1px 0 rgba(255, 236, 200, .10), inset 0 0 0 1px rgba(244, 231, 200, .06), 0 14px 30px rgba(0, 0, 0, .28);
+}
+.card:hover .card-title { color: #FFC857; }
+.facts { background: linear-gradient(180deg, #1A4036 0%, var(--stone) 100%); }
+.facts dt { letter-spacing: .06em; text-transform: none; font-size: .86rem; }
+
+/* sections promoted from h3 (heading order) keep the h3 look */
+h2.h3 { font-size: 1.3rem; margin: .8em 0 .3em; }
+.feature-text h2.h3 { font-size: clamp(1.35rem, 2.2vw, 1.75rem); margin-top: 0; }
+
+/* story quotes and captions: the serif is the temple's voice */
+blockquote { font-family: var(--story); }
+.fig figcaption { line-height: 1.45; }
+
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+/* the home page's own bands start with the same frieze */
+.cast-band, .ascent-band, .story-band { position: relative; }
+.cast-band::before, .ascent-band::before, .story-band::before {
+  content: ""; position: absolute; left: 0; right: 0; top: -8px; height: 16px; pointer-events: none; z-index: 1;
+  background: var(--fret) repeat-x center / 48px 16px; opacity: .55;
+}
+.cast-band { background: radial-gradient(120% 60% at 50% 0%, var(--torch), transparent 70%), var(--canopy-deep); }
+
+/* ---------- section tabs: every page of a section under the page head; sticks under the header (from Valendhar) ---------- */
+.section-tabs { position: sticky; top: var(--header-h); z-index: 40; background: rgba(7, 22, 18, .95); border-bottom: 1px solid var(--line);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, .35); }
+@media (min-width: 1081px) { .section-tabs { background: rgba(7, 22, 18, .86); backdrop-filter: blur(8px); } }
+.st-inner { display: flex; align-items: stretch; min-height: 54px; }
+.st-name { display: flex; align-items: center; flex-shrink: 0; padding-right: 22px; margin-right: 6px; text-decoration: none;
+  font: 800 1.08rem/1 var(--display); font-stretch: 82%; color: var(--gold); border-right: 1px solid var(--line); }
+.st-name:hover { color: #FFD27A; }
+.st-list { list-style: none; margin: 0; padding: 0; display: flex; gap: 2px; flex: 1; min-width: 0;
+  overflow-x: auto; scrollbar-width: none; overscroll-behavior-x: contain; }
+.st-list::-webkit-scrollbar { display: none; }
+.st-list li { flex-shrink: 0; display: flex; }
+.st-list a { position: relative; display: flex; align-items: center; padding: 0 14px; white-space: nowrap; text-decoration: none;
+  font-size: .98rem; font-weight: 600; color: var(--limestone-dim); transition: color .15s, background-color .15s; }
+.st-list a:hover { color: var(--limestone); background: rgba(244, 231, 200, .05); }
+/* the current page: torch-lit, with a gold bar cut like a carved step */
+.st-list a[aria-current="page"] { color: var(--limestone); background: linear-gradient(180deg, rgba(255, 184, 48, .03), rgba(255, 184, 48, .14)); }
+.st-list a[aria-current="page"]::after { content: ""; position: absolute; left: 8px; right: 8px; bottom: 0; height: 4px;
+  background: var(--gold); clip-path: polygon(0 100%, 0 50%, 4px 50%, 4px 0, calc(100% - 4px) 0, calc(100% - 4px) 50%, 100% 50%, 100% 100%); }
+.st-list a:focus-visible { outline-offset: -3px; }
+.st-count { display: flex; align-items: center; flex-shrink: 0; padding-left: 18px; font: italic 400 1rem/1 var(--story); color: var(--muted); white-space: nowrap; }
+@media (min-width: 761px) { .st-list { flex-wrap: wrap; overflow: visible; } .st-list a { min-height: 54px; } }
+@media (max-width: 1100px) { .st-count { display: none; } }
+@media (max-width: 760px) {
+  .st-inner { padding-right: 0; min-height: 50px; }
+  .st-name { font-size: 1rem; padding-right: 14px; }
+  .st-list a { padding: 0 12px; font-size: .95rem; }
+  .st-list { --fl: 0px; --fr: 36px;
+    -webkit-mask-image: linear-gradient(90deg, transparent, #000 var(--fl), #000 calc(100% - var(--fr)), transparent);
+    mask-image: linear-gradient(90deg, transparent, #000 var(--fl), #000 calc(100% - var(--fr)), transparent); }
+  .st-list.not-start { --fl: 36px; }
+  .st-list.at-end { --fr: 0px; }
+}
+/* the header's fret sits under the tabs, not over them */
+.page-head::after { z-index: 1; }
+html { scroll-padding-top: calc(var(--header-h) + 62px); }
+@media (min-width: 1101px) { .st-list a { padding: 0 11px; font-size: .95rem; } .st-name { padding-right: 18px; } .st-count { padding-left: 12px; } }
+/* with section tabs right under the header, the frieze sits wholly inside the header so the tab bar can't cover half of it */
+.page-head:has(+ .section-tabs)::after { bottom: 2px; }

@@ -11,20 +11,10 @@ NAV = [
     (("The Game", "Das Spiel"), "game/index.html", [
         (("Overview & Pillars", "Überblick & Säulen"), "game/index.html", []),
         (("How It Plays", "So wird gespielt"), "game/how-it-plays.html", []),
-        (("Climbers & Co-op", "Kletterer & Koop"), "game/climbers-and-co-op.html", []),
+        (("The Return", "Die Rückkehr"), "game/the-return.html", []),
+        (("Reading the Temple", "Den Tempel lesen"), "game/reading.html", []),
         (("Weapons & Powers", "Waffen & Kräfte"), "game/weapons-and-powers.html", []),
-    ]),
-    (("Game Types", "Spieltypen"), "islands/index.html", [
-        (("Overview & Roadmap", "Überblick & Roadmap"), "islands/index.html", []),
-        (("Ascent of the Sun Temple", "Ascent of the Sun Temple"), "islands/ascent.html", []),
-        (("Trap Galleries", "Trap Galleries"), "islands/trap-galleries.html", []),
-        (("Sun Temple Dig", "Sun Temple Dig"), "islands/sun-temple-dig.html", []),
-        (("Illusion Depths", "Illusion Depths"), "islands/illusion-depths.html", []),
-        (("Orb Raiders", "Orb Raiders"), "islands/orb-raiders.html", []),
-        (("Hold Your Breath", "Hold Your Breath"), "islands/hold-your-breath.html", []),
-        (("The Lost Passages", "The Lost Passages"), "islands/lost-passages.html", []),
-        (("Trap Architects", "Trap Architects"), "islands/trap-architects.html", []),
-        (("Calendar Fall", "Calendar Fall"), "islands/calendar-fall.html", []),
+        (("Climbing Together", "Gemeinsam klettern"), "game/climbing-together.html", []),
     ]),
     (("Story", "Geschichte"), "story/index.html", [
         (("The Story", "Die Geschichte"), "story/index.html", []),
@@ -74,6 +64,7 @@ NAV = [
         (("Tier VI · The Ascension", "Stufe VI · Die Erhebung"), "climb/tier-6.html", []),
         (("The Sky Altar", "Der Himmelsaltar"), "climb/sky-altar.html", []),
         (("Shared Rooms", "Gemeinsame Räume"), "climb/shared-rooms.html", []),
+        (("The Builders' Ways", "Die Wege der Erbauer"), "climb/builders-ways.html", []),
     ]),
 ]
 

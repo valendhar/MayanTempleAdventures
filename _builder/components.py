@@ -44,15 +44,23 @@ def catalog(ctx, rows, cls=""):
 
 def room(ctx, code, name, text, scene, map_id, codex_id, tag_pairs=(), flip=False, extra=None):
     """One room of a floor: scene beside the text, with its codex page and top-down map underneath the text.
-    text: list of (en, de) paragraphs. extra: optional (image_id, caption) shown only once uploaded."""
+    text: list of (en, de) paragraphs. extra: optional (image_id, caption), or a list of them, shown only once uploaded."""
     t = ctx.t
     nm = T(ctx, name)
     paras = "".join(f"<p>{T(ctx, p)}</p>" for p in text)
+    extras = [e for e in (extra if isinstance(extra, list) else [extra]) if e and ctx.has(e[0])]
     extra_html = ""
-    if extra and ctx.has(extra[0]):
-        extra_html = f'<div class="room-extra">{ctx.figure(extra[0], T(ctx, extra[1]))}</div>'
-    drawings = (f'<div class="room-drawings">{ctx.figure(codex_id, t("Codex page", "Codexseite"), cls="codex")}'
-                f'{ctx.figure(map_id, t("From above", "Draufsicht"), cls="map")}</div>')
+    if len(extras) == 1:
+        extra_html = f'<div class="room-extra">{ctx.figure(extras[0][0], T(ctx, extras[0][1]))}</div>'
+    elif extras:
+        extra_html = f'<div class="room-extra">{ctx.gallery([(i, T(ctx, c)) for i, c in extras], cls="gallery-3")}</div>'
+    # a new room may not have its codex page or map yet: only show what exists
+    parts = ""
+    if ctx.has(codex_id):
+        parts += ctx.figure(codex_id, t("Codex page", "Codexseite"), cls="codex")
+    if ctx.has(map_id):
+        parts += ctx.figure(map_id, t("From above", "Draufsicht"), cls="map")
+    drawings = f'<div class="room-drawings">{parts}</div>' if parts else ""
     return (f'<article class="room{" flip" if flip else ""}" id="{code.lower()}">'
             f'<div class="room-scene">{ctx.figure(scene, alt=nm)}</div>'
             f'<div class="room-body"><p class="room-code">{code}</p><h3>{nm}</h3>{tags(ctx, tag_pairs)}{paras}{drawings}</div>'
