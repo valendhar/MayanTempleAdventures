@@ -175,6 +175,19 @@ class Ctx:
         act = "ACT-" + img_id.upper()
         return act if act in IMAGES and not is_crew(act) else img_id
 
+    def page_key(self):
+        """characters/guardians/ah-kuk.html -> CHAR-AH-KUK; climb/tier-2.html -> CLIMB-TIER-2 (action-shot names)."""
+        top = {"characters": "CHAR", "climb": "CLIMB", "game": "GAME", "story": "STORY", "world": "WORLD"}
+        parts = self.path[:-5].split("/")
+        first = top.get(parts[0], parts[0].upper())
+        name = parts[-1] if parts[-1] != "index" else (parts[-2] if len(parts) > 1 else "HOME")
+        return first if name.upper() == parts[0].upper() else f"{first}-{name.upper()}"
+
+    def page_shot(self, img_id, head=False):
+        """The action shot made for this page in place of a sheet: AS-<page>-<sheet>[-HEAD], once it is uploaded."""
+        shot = f"AS-{self.page_key()}-{img_id.upper()}" + ("-HEAD" if head else "")
+        return shot if shot in IMAGES else None
+
     def img_src(self, img_id, kind="thumb"):
         return f"{self.root}assets/img/{kind}/{self.swap(img_id)}.webp"
 
@@ -193,7 +206,10 @@ class Ctx:
         return ids[0]
 
     def figure(self, img_id, caption=None, alt=None, cls="", eager=False, link=True, show_caption=True):
-        img_id = self.swap(img_id.upper())
+        shot = self.page_shot(img_id)
+        if shot and caption and re.search(r"\b(sheet|turnaround)\b|blatt\b", caption, re.I):
+            caption = None   # "Character sheet" no longer describes the action shot that replaced it
+        img_id = shot or self.swap(img_id.upper())
         alt = alt or caption or img_id
         cap = f"<figcaption>{caption}</figcaption>" if caption and show_caption else ""
         if img_id in IMAGES:
@@ -215,7 +231,7 @@ class Ctx:
         return f'<div class="gallery {cls}">{figs}</div>'
 
     def bg(self, img_id):
-        img_id = self.swap(img_id.upper())
+        img_id = self.page_shot(img_id, head=True) or self.swap(img_id.upper())
         if img_id in IMAGES:
             return f"background-image:url('{self.img_src(img_id, 'full')}')"
         return ""

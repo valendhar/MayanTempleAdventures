@@ -39,7 +39,7 @@ def character_page(c):
         intro = "".join(f"<p>{T(ctx, p)}</p>" for p in c["intro"])
         facts = "".join(f"<div><dt>{T(ctx, k)}</dt><dd>{T(ctx, v)}</dd></div>" for k, v in c["facts"])
         # once an action shot replaces the sheet (ACT-<id>), the caption no longer calls it a sheet
-        cap = ("In action", "In Aktion") if ctx.has("ACT-" + c["sheet"]) else c.get("sheet_caption", ("Character sheet", "Charakterblatt"))
+        cap = ("In action", "In Aktion") if (ctx.has("ACT-" + c["sheet"]) or ctx.page_shot(c["sheet"])) else c.get("sheet_caption", ("Character sheet", "Charakterblatt"))
         sheet = ctx.figure(c["sheet"], T(ctx, cap), cls="sheet")
         # a scene already shown whole in the page header is not repeated in the gallery
         shown = c.get("banner") if own_scene(c) else None
