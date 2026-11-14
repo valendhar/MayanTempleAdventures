@@ -85,8 +85,6 @@ def threshold(ctx):
           "Grundriss verleiht ihr nach dem Durcheinander der oberen Ebenen eine beunruhigende Ruhe. Die Architektur verändert sich hier nie. "
           "Was sich verändert, ist die Aufzeichnung.")}</p>
   </div>
-  {pair(ctx, "A-02", t("The hall and the forecourt from above", "Halle und Vorplatz von oben"),
-        "CX-HUB", t("The same hall as a page of the codex Kaya finds", "Dieselbe Halle als Seite des Codex, den Kaya findet"))}
 </section>
 
 <section class="band"><div class="wrap section">

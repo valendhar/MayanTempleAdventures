@@ -1,4 +1,12 @@
 """Home page (English and German)."""
+from components import run_strip
+
+
+LP_STRIP = [(f"LP1-S{k:02d}", n) for k, n in enumerate([
+    ("The crack", "Der Spalt"), ("Dart hall", "Pfeilhalle"), ("Guardian gallery", "Wächtergalerie"), ("The sealed floor", "Der versiegelte Boden"),
+    ("Bat shaft", "Fledermausschacht"), ("Pendulum hall", "Pendelhalle"), ("Fire vents", "Feuerdüsen"), ("Crusher chamber", "Stampferkammer"),
+    ("The long drop", "Der lange Fall"), ("Boulder run", "Felsenflucht"), ("Boulder run, the slot", "Felsenflucht, die Nische"),
+    ("Spear corridor", "Speergang"), ("Calendar lift", "Kalenderaufzug"), ("The Sun Door", "Die Sonnentür")], 1)]
 
 
 def body(ctx):
@@ -7,12 +15,13 @@ def body(ctx):
 
 
     facts = [
-        (t("Genre", "Genre"), t("Single-player action roguelite", "Action-Roguelite für einen Spieler")),
+        (t("Genre", "Genre"), t("2.5D side-scrolling action platformer", "2.5D-Action-Plattformer mit seitlichem Scrollen")),
         (t("Engine", "Engine"), t("Built in Unreal Engine 5", "Gebaut in der Unreal Engine 5")),
         (t("You play", "Du spielst"), t("Kaya, a scholar who reads what kills her", "Kaya, eine Gelehrte, die liest, was sie tötet")),
-        (t("The climb", "Der Aufstieg"), t("27 floors in six tiers, then the summit", "27 Ebenen in sechs Stufen, dann der Gipfel")),
-        (t("A run", "Ein Durchlauf"), t("25 to 45 minutes, until you die or walk home", "25 bis 45 Minuten, bis du stirbst oder nach Hause gehst")),
-        (t("Tone", "Stil"), "Ratchet &amp; Clank, Jak &amp; Daxter, Hades"),
+        (t("The climb", "Der Aufstieg"), t("27 hand-built floors, side-on, then the summit", "27 handgebaute Ebenen von der Seite, dann der Gipfel")),
+        (t("A run", "Ein Durchlauf"), t("From the Threshold up, until you die or walk home", "Von der Schwelle aufwärts, bis du stirbst oder nach Hause gehst")),
+        (t("Feels like", "Fühlt sich an wie"), t("Hollow Knight and Blasphemous on the climb, Hades on the way home, Ratchet &amp; Clank in the look",
+                                                  "Hollow Knight und Blasphemous beim Aufstieg, Hades auf dem Heimweg, Ratchet &amp; Clank im Look")),
     ]
     fact_html = "".join(f"<div><dt>{k}</dt><dd>{v}</dd></div>" for k, v in facts)
 
@@ -21,11 +30,11 @@ def body(ctx):
          t("Kaya wins by understanding. Her goggles read enemies, traps, floors and walls, and what she learns is the one thing death can't take.",
            "Kaya gewinnt, indem sie versteht. Ihre Brille liest Gegner, Fallen, Böden und Wände, und was sie lernt, ist das Einzige, was ihr der Tod nicht nehmen kann.")),
         ("B-10", t("Fight", "Kämpfen"),
-         t("Most chambers are fights against cursed priests and awakened creatures, and every trap in the room hurts them too.",
-           "Die meisten Kammern sind Kämpfe gegen verfluchte Priester und erwachte Kreaturen, und jede Falle im Raum trifft auch sie.")),
+         t("Readable, punishing, fair: every attack has a tell, a parry wins the duel, and every trap in the room hurts them too.",
+           "Lesbar, fordernd, fair: Jeder Angriff hat ein Warnzeichen, eine Parade gewinnt das Duell, und jede Falle im Raum trifft auch sie.")),
         ("B-11", t("Ascend", "Aufsteigen"),
-         t("Twenty-seven floors up one pyramid, with the summit in view from the first minute.",
-           "Siebenundzwanzig Ebenen eine Pyramide hinauf, mit dem Gipfel im Blick von der ersten Minute an.")),
+         t("Twenty-seven hand-built levels up one pyramid. Every new ability is also a key to a door you passed long ago.",
+           "Siebenundzwanzig handgebaute Level eine Pyramide hinauf. Jede neue Fähigkeit ist auch ein Schlüssel zu einer Tür, an der du längst vorbeigegangen bist.")),
         (ctx.pick("ACT-RETURN", "A-03"), t("Return", "Zurückkehren"),
          t("Death moves the story. Every return brings a new line, a sale, a reading, a carving of whatever got you.",
            "Der Tod treibt die Geschichte voran. Jede Rückkehr bringt einen neuen Satz, einen Verkauf, eine Lesart, eine Schnitzerei von dem, was dich erwischt hat.")),
@@ -85,10 +94,10 @@ def body(ctx):
     # Five floors unlike the rest of the climb. Each falls back to a picture that shows only Kaya until its own art exists.
     islands = [
         ("climb/tier-2.html#floor-6", ctx.pick("F6-SCENE", "T2A-SCENE"), t("The Builders' Workshop", "Die Werkstatt der Erbauer"), t("Build the traps, then run them", "Bau die Fallen, dann lauf hindurch")),
-        ("climb/tier-2.html#floor-7", ctx.pick("HYB-SCENE1", "HYB-MAP"), t("The Breathing Court", "Der atmende Hof"), t("Freeze when the temple looks", "Erstarre, wenn der Tempel hinsieht")),
+        ("climb/tier-2.html#floor-7", ctx.pick("HYB-SCENE1", "T2A-SCENE"), t("The Breathing Court", "Der atmende Hof"), t("Freeze when the temple looks", "Erstarre, wenn der Tempel hinsieht")),
         ("climb/tier-3.html#floor-10", ctx.pick("CF-SCENE1", "T3B-SCENE"), t("The Counting Well", "Der zählende Brunnen"), t("The signs fall when K'in calls", "Die Zeichen fallen, wenn K'in ruft")),
         ("climb/tier-5.html#floor-20", ctx.pick("F20-TWIN", "T5C-SCENE"), t("The Hall of Lies", "Die Halle der Lügen"), t("Your Echo walks beside you", "Dein Echo geht neben dir")),
-        ("climb/builders-ways.html", ctx.pick("LP1-S10", "T2E-SCENE"), t("The Builders' Ways", "Die Wege der Erbauer"), t("Secret side-view escape routes", "Geheime Fluchtwege in Seitenansicht")),
+        ("climb/builders-ways.html", ctx.pick("LP1-S10", "T2E-SCENE"), t("The Builders' Ways", "Die Wege der Erbauer"), t("One screen, one touch, five lives", "Ein Bildschirm, eine Berührung, fünf Leben")),
     ]
     island_html = "".join(
         f'<li><a class="island-card" href="{u(p)}">{ctx.figure(i, alt=n, link=False)}'
@@ -117,8 +126,8 @@ def body(ctx):
     <div class="hero-copy">
       {hero_title}
       <p class="hero-hook">{t("A Mayan pyramid that rearranges itself around you.", "Eine Maya-Pyramide, die sich um dich herum neu ordnet.")}</p>
-      <p class="hero-sub">{t("Climb it, die in it, wake up and go back knowing more. A single-player action roguelite, built in Unreal Engine 5.",
-                             "Erklimm sie, stirb in ihr, wach auf und steig mit mehr Wissen wieder hinauf. Ein Action-Roguelite für einen Spieler, gebaut in der Unreal Engine 5.")}</p>
+      <p class="hero-sub">{t("Climb it side-on, die in it, wake up and go back knowing more. A single-player 2.5D action platformer, built in Unreal Engine 5.",
+                             "Erklimm sie von der Seite, stirb in ihr, wach auf und steig mit mehr Wissen wieder hinauf. Ein 2.5D-Action-Plattformer für einen Spieler, gebaut in der Unreal Engine 5.")}</p>
       <div class="cta-row">
         <a class="btn btn-gold" href="{u('climb/index.html')}">{t("Explore the climb", "Den Aufstieg erkunden")}</a>
         <a class="btn btn-ghost" href="{u('game/how-it-plays.html')}">{t("How it plays", "So wird gespielt")}</a>
@@ -135,15 +144,27 @@ def body(ctx):
     <p class="big">{t("You are Kaya, a young scholar looking for her missing mother. The Sun Temple is alive: it rearranges itself and swallows everyone who climbs it.",
                       "Du bist Kaya, eine junge Gelehrte auf der Suche nach ihrer verschwundenen Mutter. Der Sonnentempel lebt: Er ordnet sich ständig neu und verschlingt jeden, der ihn erklimmt.")}</p>
     <p>{t("On your first morning it kills you. You wake at the Threshold, unhurt, to find yourself freshly carved into the temple's wall, and K'in, its last spirit, "
-          "greets you as if nothing happened. So you go back. Floor by floor you fight the risen guardians, turn the traps on them, read what's written on the walls and earn the "
-          "elemental powers the builders once held. Oxlahun buys what you carry out and pours the tea. Each time you fall, you come back knowing more. At the summit you carry "
+          "greets you as if nothing happened. So you go back. Level by level you fight the risen guardians, turn the traps on them, read what's written on the walls and earn the "
+          "elemental powers the builders once held, each one a key to doors you passed on the way up. Oxlahun buys what you carry out and pours the tea. Each time you fall, you come back knowing more. At the summit you carry "
           "the Sun Orb to the great portal and decide the temple's fate: restore the cycle, or break it.",
           "An deinem ersten Morgen tötet er dich. Du erwachst unversehrt an der Schwelle und findest dich frisch in die Wand des Tempels gemeißelt, und K'in, sein letzter Geist, "
-          "begrüßt dich, als wäre nichts geschehen. Also gehst du zurück. Ebene für Ebene kämpfst du gegen die erweckten Wächter, richtest die Fallen gegen sie, liest, was an den Wänden "
-          "steht, und erringst die Elementarkräfte, die einst die Erbauer besaßen. Oxlahun kauft, was du heraustragst, und gießt den Tee ein. Jedes Mal, wenn du fällst, kommst du mit mehr "
+          "begrüßt dich, als wäre nichts geschehen. Also gehst du zurück. Level für Level kämpfst du gegen die erweckten Wächter, richtest die Fallen gegen sie, liest, was an den Wänden "
+          "steht, und erringst die Elementarkräfte, die einst die Erbauer besaßen, jede ein Schlüssel zu Türen, an denen du auf dem Weg nach oben vorbeigekommen bist. Oxlahun kauft, was du heraustragst, und gießt den Tee ein. Jedes Mal, wenn du fällst, kommst du mit mehr "
           "Wissen zurück. Auf dem Gipfel trägst du die Sonnenkugel zum großen Portal und entscheidest über das Schicksal des Tempels: den Kreislauf wiederherstellen oder ihn durchbrechen.")}</p>
     <a class="text-link" href="{u('game/index.html')}">{t("Read the full overview", "Zum vollständigen Überblick")}</a>
   </div>
+</section>
+
+<section class="strip-band home-strip">
+  <div class="wrap section-tight">
+    <div class="section-head">
+      <h2>{t("Played side-on", "Von der Seite gespielt")}</h2>
+      <a class="text-link" href="{u('climb/floor-0.html')}">{t("Walk the first level", "Das erste Level ablaufen")}</a>
+    </div>
+    <p class="lede-sm">{t("Gameplay on one plane, the temple in depth behind it. These fourteen screens run one after another, down through a hidden passage in the pyramid's wall.",
+                          "Das Spiel auf einer Ebene, der Tempel in der Tiefe dahinter. Diese vierzehn Bildschirme folgen aufeinander, hinab durch einen verborgenen Gang in der Wand der Pyramide.")}</p>
+  </div>
+  {run_strip(ctx, LP_STRIP, t("Fourteen side-view screens", "Vierzehn Bildschirme in Seitenansicht"))}
 </section>
 
 <section class="sunlit">
@@ -201,7 +222,7 @@ def body(ctx):
               "Jede Stufe endet in einer Portalkammer, wo ein Fragment des Wandbilds und ein Satz von K'in das nächste Stück "
               "der Tempelgeschichte enthüllen.")}</p>
       </div>
-      {ctx.figure(ctx.pick("HOME-CLIMB", "CX-00"), alt=t("The pyramid and its six tiers", "Die Pyramide und ihre sechs Stufen"), cls="ascent-map")}
+      {ctx.figure("HOME-CLIMB", alt=t("The pyramid and its six tiers", "Die Pyramide und ihre sechs Stufen"), cls="ascent-map")}
     </div>
     <ol class="ascent">{tier_html}</ol>
   </div>
@@ -224,8 +245,8 @@ def body(ctx):
 PAGES = {
     "index.html": dict(
         title=("Home", "Start"),
-        description=("Ascent of the Sun Temple: a single-player action roguelite in a living Mayan pyramid, built in Unreal Engine 5.",
-                     "Ascent of the Sun Temple: ein Action-Roguelite für einen Spieler in einer lebenden Maya-Pyramide, gebaut in der Unreal Engine 5."),
+        description=("Ascent of the Sun Temple: a single-player 2.5D side-scrolling action platformer in a living Mayan pyramid, built in Unreal Engine 5.",
+                     "Ascent of the Sun Temple: ein 2.5D-Action-Plattformer für einen Spieler in einer lebenden Maya-Pyramide, gebaut in der Unreal Engine 5."),
         body=body,
         custom_header=True,
         no_pager=True,

@@ -43,11 +43,11 @@ def overview(ctx):
          t("Kaya is a scholar, and she wins by understanding. Her goggles read enemies, traps, floors and walls, and what she learns is the one thing death can't take.",
            "Kaya ist Gelehrte, und sie gewinnt, indem sie versteht. Ihre Brille liest Gegner, Fallen, Böden und Wände, und was sie lernt, ist das Einzige, was ihr der Tod nicht nehmen kann.")),
         ("02", t("Fight", "Kämpfen"),
-         t("Most chambers are fights: cursed priests, awakened creatures, stone that charges. Traps hurt everyone, so a good reader turns the temple's defences on its own guards.",
-           "Die meisten Kammern sind Kämpfe: verfluchte Priester, erwachte Kreaturen, Stein, der angreift. Fallen treffen alle, also richtet eine gute Leserin die Verteidigung des Tempels gegen seine eigenen Wächter.")),
+         t("Short, readable, hard fights: cursed priests, awakened creatures, stone that charges. Every attack has a tell, a parry wins the duel, and traps hurt everyone, so a good reader turns the temple's defences on its own guards.",
+           "Kurze, lesbare, harte Kämpfe: verfluchte Priester, erwachte Kreaturen, Stein, der angreift. Jeder Angriff hat ein Warnzeichen, eine Parade gewinnt das Duell, und Fallen treffen alle, also richtet eine gute Leserin die Verteidigung des Tempels gegen seine eigenen Wächter.")),
         ("03", t("Ascend", "Aufsteigen"),
-         t("Twenty-seven floors up one pyramid, from flooded foundations to open sky. The summit is in view from the first minute.",
-           "Siebenundzwanzig Ebenen eine Pyramide hinauf, von überfluteten Fundamenten bis unter den freien Himmel. Der Gipfel ist von der ersten Minute an zu sehen.")),
+         t("Twenty-seven hand-built levels up one pyramid, from flooded foundations to open sky. Every ability she earns is also a key to a door she passed long ago. The summit is in view from the first minute.",
+           "Siebenundzwanzig handgebaute Level eine Pyramide hinauf, von überfluteten Fundamenten bis unter den freien Himmel. Jede Fähigkeit, die sie erringt, ist auch ein Schlüssel zu einer Tür, an der sie längst vorbeigekommen ist. Der Gipfel ist von der ersten Minute an zu sehen.")),
         ("04", t("Return", "Zurückkehren"),
          t("Death moves the story. Every return brings a new line, a new carving, a sale, a reading, something earned. You always come back with more than you left with.",
            "Der Tod treibt die Geschichte voran. Jede Rückkehr bringt einen neuen Satz, ein neues Relief, einen Verkauf, eine Lesart, etwas Verdientes. Du kommst immer mit mehr zurück, als du mitgenommen hast.")),
@@ -58,14 +58,14 @@ def overview(ctx):
     pillar_html = "".join(f'<li><span class="num">{n}</span><div><h3>{nm}</h3><p>{d}</p></div></li>' for n, nm, d in pillars)
 
     facts = [
-        (t("Genre", "Genre"), t("Single-player third-person action roguelite with platforming and puzzles",
-                                "Third-Person-Action-Roguelite für einen Spieler, mit Plattforming und Rätseln")),
+        (t("Genre", "Genre"), t("Single-player 2.5D side-scrolling action platformer: a hand-built climb with a run loop",
+                                "2.5D-Action-Plattformer mit seitlichem Scrollen für einen Spieler: ein handgebauter Aufstieg mit Durchlauf-Kreislauf")),
         (t("Engine", "Engine"), t("Unreal Engine 5", "Unreal Engine 5")),
         (t("You play", "Du spielst"), t("Kaya, a 23-year-old scholar looking for her mother", "Kaya, eine 23-jährige Gelehrte auf der Suche nach ihrer Mutter")),
-        (t("Inspirations", "Vorbilder"), t("Ratchet &amp; Clank and Jak &amp; Daxter for tone; Hades for the loop of dying and returning",
-                                          "Ratchet &amp; Clank und Jak &amp; Daxter für den Stil; Hades für den Kreislauf aus Sterben und Zurückkehren")),
-        (t("The climb", "Der Aufstieg"), t("27 floors in six tiers, from the Shell to the Sky Altar", "27 Ebenen in sechs Stufen, von The Shell bis zum Himmelsaltar")),
-        (t("A run", "Ein Durchlauf"), t("25 to 45 minutes", "25 bis 45 Minuten")),
+        (t("Inspirations", "Vorbilder"), t("Hollow Knight, Blasphemous and Castlevania for the climb and the fights; Hades for dying and returning; Ratchet &amp; Clank and Jak &amp; Daxter for the look",
+                                          "Hollow Knight, Blasphemous und Castlevania für Aufstieg und Kämpfe; Hades für Sterben und Zurückkehren; Ratchet &amp; Clank und Jak &amp; Daxter für den Look")),
+        (t("The climb", "Der Aufstieg"), t("27 floors in six tiers, about 500 screens, from the Shell to the Sky Altar", "27 Ebenen in sechs Stufen, rund 500 Bildschirme, von The Shell bis zum Himmelsaltar")),
+        (t("A run", "Ein Durchlauf"), t("From the Threshold, or a lit Sun Gate, until you die or walk home", "Von der Schwelle oder einem entzündeten Sonnentor aus, bis du stirbst oder nach Hause gehst")),
     ]
     fact_html = "".join(f"<div><dt>{k}</dt><dd>{v}</dd></div>" for k, v in facts)
     q1, q2 = t("“", "„"), t("”", "“")
@@ -79,11 +79,11 @@ def overview(ctx):
             "dying, sells what she carried out, reads what she copied, and goes back up knowing more. The temple takes her gold. It never takes her notes.",
             "Sie erwacht auf dem Steinboden der Schwelle, das Notizbuch trocken und die Erinnerung unversehrt, trinkt Tee mit dem Händler, der an ihrem Sterben "
             "verdient, verkauft, was sie herausgetragen hat, liest, was sie abgeschrieben hat, und steigt mit mehr Wissen wieder hinauf. Der Tempel nimmt ihr Gold. Ihre Notizen nimmt er nie.")}</p>
-      <p>{t(f"The story explains the structure. The temple <em>{q1}rearranges itself to trap greedy adventurers{q2}</em>, so shuffled chambers belong to the "
-            f"world rather than to a menu. And <em>{q1}the cycle begins again… unless you break it{q2}</em>: every death pulls Kaya back to the Threshold, and "
+      <p>{t(f"The story explains the structure. The floors are hand-built and stay put, so you can learn them, but the temple still <em>{q1}rearranges itself to trap greedy adventurers{q2}</em>: "
+            f"the doors to its treasure change their glyphs every run, and its machine rooms move between climbs. And <em>{q1}the cycle begins again… unless you break it{q2}</em>: every death pulls Kaya back to the Threshold, and "
             f"that is where the real game happens. <a href='{u('game/the-return.html')}'>The Return</a>",
-            f"Die Geschichte erklärt die Struktur. Der Tempel <em>{q1}ordnet sich neu, um gierige Abenteurer in die Falle zu locken{q2}</em>, also gehören wechselnde "
-            f"Kammern zur Welt und nicht zu einem Menü. Und <em>{q1}der Kreislauf beginnt von vorn … es sei denn, du durchbrichst ihn{q2}</em>: Jeder Tod zieht Kaya "
+            f"Die Geschichte erklärt die Struktur. Die Ebenen sind von Hand gebaut und bleiben, wie sie sind, damit du sie lernen kannst, aber der Tempel <em>{q1}ordnet sich trotzdem neu, um gierige Abenteurer in die Falle zu locken{q2}</em>: "
+            f"Die Türen zu seinen Schätzen wechseln in jedem Durchlauf ihre Glyphen, und seine Maschinenräume verschieben sich zwischen den Aufstiegen. Und <em>{q1}der Kreislauf beginnt von vorn … es sei denn, du durchbrichst ihn{q2}</em>: Jeder Tod zieht Kaya "
             f"zurück an die Schwelle, und genau dort spielt das eigentliche Spiel. <a href='{u('game/the-return.html')}'>Die Rückkehr</a>")}</p>
     </div>
     <dl class="facts">{fact_html}</dl>
@@ -97,13 +97,20 @@ def overview(ctx):
 </div></section>
 
 <section class="wrap section">
+  {feature(ctx, ctx.pick("SCR-05", "LP1-S03"), t("The view", "Die Ansicht"), t("One plane, a deep temple", "Eine Ebene, ein tiefer Tempel"),
+    t("<p>The game is played side-on. Everything Kaya touches, every enemy and every trap sits on one plane facing the camera, and the temple goes on behind it "
+      "in layers: carved back walls, deeper halls, shafts of sun. It's built in 3D, so the light, the water and the stone are real.</p>"
+      "<p>One screen is about thirty metres of temple. Kaya is a tenth of its height, small enough to show the room and big enough to read every move.</p>",
+      "<p>Das Spiel wird von der Seite gespielt. Alles, was Kaya berührt, jeder Gegner und jede Falle liegt auf einer Ebene, die zur Kamera zeigt, und der Tempel setzt sich dahinter "
+      "in Schichten fort: gemeißelte Rückwände, tiefere Hallen, Sonnenstrahlen. Gebaut ist er in 3D, also sind Licht, Wasser und Stein echt.</p>"
+      "<p>Ein Bildschirm zeigt rund dreißig Meter Tempel. Kaya ist ein Zehntel so hoch, klein genug, um den Raum zu zeigen, und groß genug, um jede Bewegung zu lesen.</p>"))}
   {feature(ctx, "A-04", t("First steps", "Erste Schritte"), t("The camp and the pyramid", "Das Lager und die Pyramide"),
     t("<p>Everything begins at the camp at the foot of the pyramid, Dr. Isabel Kaan's old dig: a canvas tent, a kettle on the fire, two straw training "
       "dummies and a carved target to practise on. Ahead, between two great feathered-serpent heads, the low tunnel leads into the Threshold.</p>"
       "<p>The camp is always a short walk from the hall, and it fills up as you restore it.</p>",
       "<p>Alles beginnt im Lager am Fuß der Pyramide, Dr. Isabel Kaans alter Grabung: ein Segeltuchzelt, ein Kessel über dem Feuer, zwei Trainingspuppen aus "
       "Stroh und eine geschnitzte Zielscheibe zum Üben. Vor dir führt der niedrige Tunnel zwischen zwei gewaltigen Federschlangenköpfen hinein in die Schwelle.</p>"
-      "<p>Das Lager liegt immer nur ein paar Schritte von der Halle entfernt und füllt sich, je mehr du es wiederherstellst.</p>"))}
+      "<p>Das Lager liegt immer nur ein paar Schritte von der Halle entfernt und füllt sich, je mehr du es wiederherstellst.</p>"), flip=True)}
   {feature(ctx, "KEYART", t("Look and feel", "Look and Feel"), t("Colourful, playful, grounded", "Farbenfroh, verspielt, glaubwürdig"),
     t("<p>Painterly and stylized in the register of Ratchet &amp; Clank and Jak &amp; Daxter, but believable: carved limestone, jade inlay, hammered gold, "
       "glowing glyphs, mossy weathered stone, obsidian and torch flame.</p>"
@@ -114,7 +121,7 @@ def overview(ctx):
       "leuchtende Glyphen, bemooster, verwitterter Stein, Obsidian und Fackelschein.</p>"
       "<p>Fünf Tageszeichen kennzeichnen alles im Tempel, jedes mit eigener Farbe und Form: <span class='c-gold'>Ajaw, die Sonne</span>, "
       "<span class='c-blue'>Imix, das Wasser</span>, <span class='c-red'>K'ak', das Feuer</span>, <span class='c-green'>K'an, das Wachstum</span> und "
-      "<span class='c-white'>Ik', der Wind</span>.</p>"), flip=True)}
+      "<span class='c-white'>Ik', der Wind</span>.</p>"))}
 </section>
 """
 
@@ -123,20 +130,20 @@ def overview(ctx):
 def how_it_plays(ctx):
     u, t = ctx.url, ctx.t
     loops = [
-        (t("Chamber", "Kammer"),
-         t("45 to 120 seconds. The door seals. Fight, cross, or both. Then choose the next gate by the reward carved on it.",
-           "45 bis 120 Sekunden. Die Tür schließt sich. Kämpfen, durchqueren oder beides. Dann wählst du das nächste Tor nach der Belohnung, die darauf gemeißelt ist.")),
+        (t("Screen", "Bildschirm"),
+         t("One frame of the camera, about thirty metres of temple. A jump, a trap, a fight: most screens ask one thing of you, and show it to you before you commit.",
+           "Ein Bild der Kamera, rund dreißig Meter Tempel. Ein Sprung, eine Falle, ein Kampf: Die meisten Bildschirme verlangen eine Sache von dir und zeigen sie dir, bevor du dich festlegst.")),
         (t("Floor", "Ebene"),
-         t("Two to four fights around the floor's authored rooms, then the Key Orb, then the Portal Chamber: take a rubbing, ring Oxlahun's bell, and decide whether to climb on.",
-           "Zwei bis vier Kämpfe rund um die von Hand gebauten Räume der Ebene, dann die Schlüsselkugel, dann die Portalkammer: Abrieb nehmen, Oxlahuns Glocke läuten und entscheiden, ob du weiter aufsteigst.")),
+         t("Six to twenty-eight screens: an Entry Shrine, a main path built around one new idea, reward doors and locked pockets on the side, a Mid Shrine, a boss, and the Portal Chamber, where you decide whether to climb on.",
+           "Sechs bis achtundzwanzig Bildschirme: ein Eingangsschrein, ein Hauptweg um eine neue Idee, Belohnungstüren und verschlossene Taschen am Rand, ein Mittlerer Schrein, ein Boss und die Portalkammer, wo du entscheidest, ob du weiter aufsteigst.")),
         (t("Run", "Durchlauf"),
-         t("25 to 45 minutes from a lit Sun Gate, until you die or walk home. Your health carries over from room to room, and healing is rare.",
-           "25 bis 45 Minuten von einem entzündeten Sonnentor aus, bis du stirbst oder nach Hause gehst. Deine Gesundheit bleibt von Raum zu Raum gleich, und Heilung ist selten.")),
+         t("From the Threshold or a lit Sun Gate, until you die or walk home. Your health carries over, and healing is Oxlahun's tea gourd: two sips, refilled at every Sun Shrine.",
+           "Von der Schwelle oder einem entzündeten Sonnentor aus, bis du stirbst oder nach Hause gehst. Deine Gesundheit bleibt, und Heilung ist Oxlahuns Teekürbis: zwei Schlucke, aufgefüllt an jedem Sonnenschrein.")),
         (t("Return", "Rückkehr"),
          t(f"Wake at the Threshold. Sell or study what you carried, spend what you earned, and go back. <a href='{u('game/the-return.html')}'>The Return</a>",
            f"An der Schwelle erwachen. Verkaufen oder erforschen, was du getragen hast, ausgeben, was du verdient hast, und wieder hinauf. <a href='{u('game/the-return.html')}'>Die Rückkehr</a>")),
     ]
-    gates = [
+    doors = [
         (t("Day sign stone", "Tageszeichenstein"), t("A blessing from that sign. The main way to build power in a run.", "Ein Segen dieses Zeichens. Der wichtigste Weg, in einem Durchlauf stärker zu werden.")),
         (t("Coin bowl", "Münzschale"), t("Coins to spend at the next Waystall or shrine.", "Münzen für den nächsten Rastplatz oder Schrein.")),
         (t("Satchel", "Tasche"), t("A cache of Finds to carry out and sell.", "Ein Vorrat an Funden, die du hinausträgst und verkaufst.")),
@@ -144,7 +151,7 @@ def how_it_plays(ctx):
         (t("Honey jar", "Honigtopf"), t("More maximum health. Rare.", "Mehr maximale Gesundheit. Selten.")),
         (t("Chisel", "Meißel"), t("A graving that changes your weapon for this run.", "Eine Gravur, die deine Waffe für diesen Durchlauf verändert.")),
         (t("Open book", "Offenes Buch"), t("A codex or lore page. Permanent.", "Eine Codex- oder Legendenseite. Dauerhaft.")),
-        (t("Water basin", "Wasserbecken"), t("A Spirit Shrine: heal and shop, no fight.", "Ein Geisterschrein: heilen und einkaufen, kein Kampf.")),
+        (t("Bell", "Glocke"), t("A Waystall: Oxlahun's tray slides out of the wall.", "Ein Rastplatz: Oxlahuns Tablett gleitet aus der Wand.")),
         (t("Red sigil", "Rotes Siegel"), t("An elite chamber. Harder, and worth double.", "Eine Elitekammer. Härter und doppelt so viel wert.")),
     ]
     signs = [
@@ -160,7 +167,7 @@ def how_it_plays(ctx):
         ("P08", t("Key Orb", "Schlüsselkugel"),
          t("One per floor. Socketing it opens the Portal Chamber's great door.", "Eine pro Ebene. Eingesetzt öffnet sie das große Tor der Portalkammer.")),
         ("P09", t("Golden Idols", "Goldene Idole"),
-         t("One hidden in every authored room, off the safe path. Worth a good price, and a line of lore.", "Eines in jedem von Hand gebauten Raum, abseits des sicheren Wegs. Einen guten Preis wert und eine Zeile Legende.")),
+         t("Hidden off the safe path, often behind a lock. Worth a good price, and a line of lore.", "Abseits des sicheren Wegs versteckt, oft hinter einem Schloss. Einen guten Preis wert und eine Zeile Legende.")),
         ("P10", t("Coins and Spirit Fragments", "Münzen und Geistsplitter"),
          t("Coins die with you. Fragments are what the spirit keeps.", "Münzen sterben mit dir. Die Splitter behält der Geist.")),
         ("P11", t("Codex pages and scrolls", "Codexseiten und Schriftrollen"),
@@ -182,12 +189,14 @@ def how_it_plays(ctx):
       f"<p>It runs on Focus, which you earn by fighting well. <a href='{u('game/reading.html')}'>Reading the Temple</a></p>",
       "<p>Halt eine Taste, und Kaya senkt die Bronzebrille ihrer Mutter. Die Zeit wird kurz langsamer. Schwachstellen der Gegner, Takt der Fallen, Trugböden und verborgene Risse zeigen sich.</p>"
       f"<p>Das kostet Fokus, den du durch guten Kampf verdienst. <a href='{u('game/reading.html')}'>Den Tempel lesen</a></p>"))}
-  {feature(ctx, "B-10", t("Fight", "Kämpfen"), t("Up to twelve at once", "Bis zu zwölf auf einmal"),
-    t("<p>Light combos, a heavy finisher, ranged tools and a quick dodge with a moment of invulnerability. Risen Guardians shamble, Bearers block, archers hold the high ground, "
-      "panthers flank, Stone Sentries charge, and Guardian Spirits can only be outrun.</p>"
+  {feature(ctx, "B-10", t("Fight", "Kämpfen"), t("Readable, hard, fair", "Lesbar, hart, fair"),
+    t("<p>Light combos, a heavy strike, a downward strike that bounces you off enemies and spikes, ranged tools, a roll with a moment of invulnerability, and a parry that wins the duel "
+      "when an enemy's mark burns gold. It's meant to be hard the way the old side-scrollers were hard: every attack has a tell, and nothing is random.</p>"
+      "<p>Risen Guardians shamble, Bearers block from the front, archers hold the high ground, panthers pounce, Stone Sentries charge into walls, and Guardian Spirits can only be outrun.</p>"
       f"<p><a href='{u('characters/creatures.html')}'>Meet the creatures and bosses</a></p>",
-      "<p>Leichte Kombos, ein schwerer Abschlussschlag, Fernwaffen und ein schnelles Ausweichen mit einem Moment der Unverwundbarkeit. Erweckte Wächter schlurfen heran, Schildträger blocken, "
-      "Schützen halten die Anhöhen, Panther greifen von der Seite an, Steinwächter stürmen los, und Wächtergeistern kann man nur davonlaufen.</p>"
+      "<p>Leichte Kombos, ein schwerer Schlag, ein Abwärtsschlag, mit dem du von Gegnern und Stacheln abfederst, Fernwaffen, eine Rolle mit einem Moment der Unverwundbarkeit und eine Parade, die das Duell gewinnt, "
+      "wenn das Zeichen eines Gegners golden glüht. Es soll so schwer sein, wie die alten Side-Scroller schwer waren: Jeder Angriff hat ein Warnzeichen, und nichts ist Zufall.</p>"
+      "<p>Erweckte Wächter schlurfen heran, Schildträger blocken von vorn, Schützen halten die Anhöhen, Panther springen an, Steinwächter rammen gegen Wände, und Wächtergeistern kann man nur davonlaufen.</p>"
       f"<p><a href='{u('characters/creatures.html')}'>Zu den Kreaturen und Bossen</a></p>"), flip=True)}
   {feature(ctx, "T2A-SCENE", t("Use the room", "Den Raum nutzen"), t("Traps hurt everyone", "Fallen treffen alle"),
     t("<p>Spikes, saws, pendulums, dart walls, fire vents, crushers and boulders fire on a beat you can learn, and they do triple damage to enemies. Luring a wave into a saw is often better than fighting it.</p>"
@@ -195,10 +204,12 @@ def how_it_plays(ctx):
       "<p>Stacheln, Sägen, Pendel, Pfeilwände, Feuerdüsen, Stampfer und Felsbrocken folgen einem Takt, den du lernen kannst, und sie richten bei Gegnern dreifachen Schaden an. Eine Welle in eine Säge zu locken ist oft besser, als sie zu bekämpfen.</p>"
       "<p>Auf Ebene 6 findet Kaya einen Meißel. Von da an kann sie die Glyphe einer Falle nachmeißeln, sodass sie für ein paar Sekunden nur noch ihre Feinde trifft.</p>"))}
   {feature(ctx, "B-05", t("Move", "Bewegen"), t("Platforming between the fights", "Plattforming zwischen den Kämpfen"),
-    t("<p>Run, sprint, jump, mantle and swim, across sliding slabs, swinging platforms, seesaws, rotating calendar discs, crumbling floors, phase steps, updrafts and lifts.</p>"
-      "<p>A missed jump costs a little health and puts you back on the last safe ledge. It never costs the room.</p>",
-      "<p>Laufen, sprinten, springen, hochziehen und schwimmen, über gleitende Steinplatten, schwingende Plattformen, Wippen, rotierende Kalenderscheiben, bröckelnde Böden, Phasenstufen, Aufwinde und Aufzüge.</p>"
-      "<p>Ein verpatzter Sprung kostet etwas Gesundheit und setzt dich auf den letzten sicheren Sims zurück. Den Raum kostet er nie.</p>"), flip=True)}
+    t("<p>Run, jump, grab ledges, swim, roll and bounce, across sliding slabs, swinging vines, seesaws, rotating calendar discs, crumbling floors, phase steps, updrafts and lifts. "
+      "Tight and exact: the jump is cut short when you let go, and you get a moment of grace at every edge.</p>"
+      "<p>A missed jump costs a little health and puts you back on the last safe ground. It never costs the room.</p>",
+      "<p>Laufen, springen, an Simsen festhalten, schwimmen, rollen und abfedern, über gleitende Steinplatten, schwingende Ranken, Wippen, rotierende Kalenderscheiben, bröckelnde Böden, Phasenstufen, Aufwinde und Aufzüge. "
+      "Präzise und genau: Der Sprung endet früher, wenn du loslässt, und an jeder Kante bleibt dir ein Moment Gnade.</p>"
+      "<p>Ein verpatzter Sprung kostet etwas Gesundheit und setzt dich auf den letzten sicheren Boden zurück. Den Raum kostet er nie.</p>"), flip=True)}
   {feature(ctx, "B-08", t("Solve", "Lösen"), t("Puzzles that come back changed", "Rätsel, die verändert zurückkommen"),
     t("<p>Carry energy orbs, press plates in a mural's order, bounce sunlight off mirrors, split beams through prisms, sing with the song stones, align animal totems.</p>"
       "<p>The first solve is a study. After that, the room is Known: the temple reseeds the answer, your notebook keeps the method, and the second solve takes thirty seconds with something trying to kill you.</p>",
@@ -207,22 +218,38 @@ def how_it_plays(ctx):
 </div></section>
 
 <section class="wrap section">
-  <p class="kicker">{t("Carved gates", "Gemeißelte Tore")}</p>
-  <h2>{t("Every exit is a choice", "Jeder Ausgang ist eine Entscheidung")}</h2>
-  <p class="lede-sm">{t("Most chambers end in two or three gates, each with a glowing glyph that shows what lies behind it.",
-                        "Die meisten Kammern enden in zwei oder drei Toren, jedes mit einer leuchtenden Glyphe, die zeigt, was dahinter liegt.")}</p>
-  {table([t("Glyph", "Glyphe"), t("What it gives you", "Was es dir bringt")], gates)}
+  <p class="kicker">{t("Reward doors", "Belohnungstüren")}</p>
+  <h2>{t("Choices inside a fixed level", "Entscheidungen in einem festen Level")}</h2>
+  <p class="lede-sm">{t("Every floor has two to four carved doors into side pockets. The pocket is always the same place, but the glyph on its door, what waits inside and what it holds are rolled at the start of each run. This run the coin bowl is up the dart shaft; the blessing is behind the elite fight.",
+                        "Jede Ebene hat zwei bis vier gemeißelte Türen zu Seitentaschen. Die Tasche ist immer am selben Ort, aber die Glyphe an ihrer Tür, was darin wartet und was sie enthält, wird zu Beginn jedes Durchlaufs ausgewürfelt. In diesem Durchlauf liegt die Münzschale oben im Pfeilschacht; der Segen hinter dem Elitekampf.")}</p>
+  {table([t("Glyph", "Glyphe"), t("What it gives you", "Was es dir bringt")], doors)}
 </section>
 
 <section class="band"><div class="wrap section">
+  <p class="kicker">{t("The level remembers", "Das Level erinnert sich")}</p>
+  <h2>{t("Shrines, shortcuts and doors you can't open yet", "Schreine, Abkürzungen und Türen, die du noch nicht öffnen kannst")}</h2>
+  {modes([
+    (t("Checkpoints", "Kontrollpunkte"), t("Sun Shrines", "Sonnenschreine"),
+     t(f"Light one and rest: the gourd refills and your place is saved, but the floor's enemies wake again. One stands before every boss door. <a href='{u('climb/shared-rooms.html')}#sun-shrine'>The Sun Shrine</a>",
+       f"Entzünde einen und raste: Der Kürbis füllt sich, dein Platz ist gesichert, aber die Gegner der Ebene erwachen wieder. Einer steht vor jeder Bosstür. <a href='{u('climb/shared-rooms.html')}#sun-shrine'>Der Sonnenschrein</a>")),
+    (t("Kept for good", "Für immer"), t("Shortcuts and changes", "Abkürzungen und Veränderungen"),
+     t("Every floor has a shortcut you open from the far side. Shrines you lit, water you drained and walls you broke stay that way, run after run.",
+       "Jede Ebene hat eine Abkürzung, die du von der anderen Seite öffnest. Entzündete Schreine, abgelassenes Wasser und eingeschlagene Wände bleiben so, Durchlauf für Durchlauf.")),
+    (t("Abilities are keys", "Fähigkeiten sind Schlüssel"), t("Locks you'll come back to", "Schlösser, zu denen du zurückkommst"),
+     t(f"Every floor shows you something you can't reach yet: a ledge too high, a glyph target too far, a crack in the wall. Every weapon and power Kaya earns opens one kind of lock, everywhere. <a href='{u('game/weapons-and-powers.html')}#keys'>The keys</a>",
+       f"Jede Ebene zeigt dir etwas, das du noch nicht erreichst: einen zu hohen Sims, ein zu fernes Glyphenziel, einen Riss in der Wand. Jede Waffe und Kraft, die Kaya erringt, öffnet eine Art von Schloss, überall. <a href='{u('game/weapons-and-powers.html')}#keys'>Die Schlüssel</a>")),
+  ])}
+</div></section>
+
+<section class="wrap section">
   <p class="kicker">{t("Blessings", "Segen")}</p>
   <h2>{t("Five day signs, a new build every run", "Fünf Tageszeichen, in jedem Durchlauf ein neuer Aufbau")}</h2>
   <p class="lede-sm">{t("Blessings change your strike, heavy attack, shot, dodge and goggles until you die. Two signs can combine into something rarer.",
                         "Segen verändern deinen Schlag, schweren Angriff, Schuss, dein Ausweichen und deine Brille, bis du stirbst. Zwei Zeichen können sich zu etwas Selteneren verbinden.")}</p>
   {table([t("Sign", "Zeichen"), t("Means", "Bedeutung"), t("Plays like", "Spielt sich wie")], signs)}
-</div></section>
+</section>
 
-<section class="wrap section">
+<section class="band"><div class="wrap section">
   <p class="kicker">{t("After the summit", "Nach dem Gipfel")}</p>
   <h2>{t("Two more portals", "Zwei weitere Portale")}</h2>
   {modes([
@@ -232,17 +259,17 @@ def how_it_plays(ctx):
     (t("Right portal", "Rechtes Portal"), t("Trials of the Shifting Temple", "Prüfungen des wandelnden Tempels"),
      t("Opens after the first summit. Choose curses from <em>Temple's Wrath</em> before a run: more undead, faster traps, a hunting spirit, a silent K'in. The higher the Wrath, the richer the reward.",
        "Öffnet sich nach dem ersten Gipfel. Wähle vor einem Durchlauf Flüche aus dem <em>Zorn des Tempels</em>: mehr Untote, schnellere Fallen, ein jagender Geist, eine schweigende K'in. Je höher der Zorn, desto reicher die Belohnung.")),
-    (t("Every chamber", "Jede Kammer"), t("Your own ghost", "Dein eigener Geist"),
-     t("Your best time through any chamber walks ahead of you as a faint golden figure, if you want something to race.",
-       "Deine beste Zeit durch jede Kammer läuft als schwache goldene Gestalt vor dir her, wenn du etwas zum Wettrennen suchst.")),
+    (t("Every floor", "Jede Ebene"), t("Your own ghost", "Dein eigener Geist"),
+     t("Your best time through any floor runs ahead of you as a faint golden figure, if you want something to race.",
+       "Deine beste Zeit durch jede Ebene läuft als schwache goldene Gestalt vor dir her, wenn du etwas zum Wettrennen suchst.")),
   ])}
-</section>
+</div></section>
 
-<section class="band"><div class="wrap section">
+<section class="wrap section">
   <p class="kicker">{t("Collectibles", "Sammelobjekte")}</p>
   <h2>{t("What Kaya carries out", "Was Kaya herausträgt")}</h2>
   <div class="items">{collect_html}</div>
-</div></section>
+</section>
 """
 
 
@@ -268,13 +295,13 @@ def the_return(ctx):
         (t("The Memory Wheel", "Das Erinnerungsrad"),
          t("Spend Spirit Fragments on permanent talents at the round altar.", "Gib am runden Altar Geistsplitter für dauerhafte Talente aus.")),
         (t("The portals", "Die Portale"),
-         t("Pick a Sun Gate, a weapon and a keepsake, and go back up. It all takes about a minute, and you can skip any of it.",
-           "Wähle ein Sonnentor, eine Waffe und ein Andenken, und steig wieder auf. Das Ganze dauert etwa eine Minute, und du kannst alles überspringen.")),
+         t("Pick a Sun Gate or a lit shrine, a weapon and a keepsake, and go back up. It all takes about a minute, and you can skip any of it.",
+           "Wähle ein Sonnentor oder einen entzündeten Schrein, eine Waffe und ein Andenken, und steig wieder auf. Das Ganze dauert etwa eine Minute, und du kannst alles überspringen.")),
     ]
     keep = [
         (t("Coins", "Münzen"), t("Lost", "Verloren"), t("Lost, so spend them", "Verloren, also ausgeben")),
         (t("Blessings and gravings", "Segen und Gravuren"), t("Lost", "Verloren"), t("Lost", "Verloren")),
-        (t("Finds in the satchel", "Funde in der Tasche"), t("Kept, but death-touched: they sell for 40%", "Behalten, aber vom Tod berührt: Verkauf für 40 %"), t("Clean, with the Long Carry bonus", "Sauber, mit dem Bonus fürs lange Tragen")),
+        (t("Finds in the satchel", "Funde in der Tasche"), t("Kept, but death-touched: sell for 40%, study for 50%, or hold them for your chalk mark", "Behalten, aber vom Tod berührt: Verkauf für 40 %, Studium für 50 %, oder aufheben für deine Kreidemarke"), t("Clean, with the Long Carry bonus", "Sauber, mit dem Bonus fürs lange Tragen")),
         (t("Spirit Fragments", "Geistsplitter"), t("All kept, plus a bonus for how high you got", "Alle behalten, dazu ein Bonus für die erreichte Höhe"), t("All kept", "Alle behalten")),
         (t("Notebook, rubbings, lexicon", "Notizbuch, Abriebe, Lexikon"), t("Always kept", "Immer behalten"), t("Always kept", "Immer behalten")),
         (t("Elemental Orbs, weapons, talents", "Elementarkugeln, Waffen, Talente"), t("Always kept", "Immer behalten"), t("Always kept", "Immer behalten")),
@@ -318,6 +345,17 @@ def the_return(ctx):
   <p class="kicker">{t("What death takes", "Was der Tod nimmt")}</p>
   <h2>{t("The temple takes your gold. It never takes your notes.", "Der Tempel nimmt dein Gold. Deine Notizen nimmt er nie.")}</h2>
   {table([t("Item", "Gegenstand"), t("If you die", "Wenn du stirbst"), t("If you walk home", "Wenn du nach Hause gehst")], keep)}
+  {modes([
+    (t("Where you fell", "Wo du gefallen bist"), t("The Chalk Mark", "Die Kreidemarke"),
+     t("When Kaya dies, she leaves a chalk mark, one more dot in her count, drawn on the last safe ground she stood on. Reach it on your next run and touch it: every Find you held becomes clean again, and the coins you died with are back in your purse.",
+       "Wenn Kaya stirbt, hinterlässt sie eine Kreidemarke, einen weiteren Punkt ihrer Zählung, gezeichnet auf den letzten sicheren Boden, auf dem sie stand. Erreich sie im nächsten Durchlauf und berühr sie: Jeder aufgehobene Fund ist wieder sauber, und die Münzen, mit denen du gestorben bist, sind zurück in deinem Beutel.")),
+    (t("If you don't make it", "Wenn du es nicht schaffst"), t("Washed out", "Ausgewaschen"),
+     t("Die again before you reach it, and the mark is gone. What you held stays death-touched for good. The mark is never left inside a trap or a fight.",
+       "Stirbst du, bevor du sie erreichst, ist die Marke fort. Was du aufgehoben hast, bleibt für immer vom Tod berührt. Die Marke liegt nie in einer Falle oder einem Kampf.")),
+    (t("K'in", "K'in"), t("“You drew yourself a door, Professor.”", "„Du hast dir eine Tür gezeichnet, Professorin.“"),
+     t("The souls-like hook, go back and win it back, without taking anything else away.",
+       "Der Souls-artige Haken, zurückgehen und es zurückgewinnen, ohne dir sonst etwas zu nehmen.")),
+  ])}
 </div></section>
 
 <section class="wrap section">
@@ -396,8 +434,10 @@ def reading(ctx):
 
 <section class="band"><div class="wrap section">
   {feature(ctx, ctx.pick("ACT-LENS", "T5C-SCENE"), t("Her mother's goggles", "Die Brille ihrer Mutter"), t("The Lens", "Die Linse"),
-    t("<p>The bronze goggles Isabel left behind. Hold a button to lower them, and the world answers.</p>",
-      "<p>Die Bronzebrille, die Isabel zurückließ. Halt eine Taste, um sie zu senken, und die Welt antwortet.</p>"))}
+    t("<p>The bronze goggles Isabel left behind. Hold a button to lower them, and the world answers.</p>"
+      "<p>On Floor 11 they learn to hold what they show: an invisible path turns solid for a few seconds while you look at it.</p>",
+      "<p>Die Bronzebrille, die Isabel zurückließ. Halt eine Taste, um sie zu senken, und die Welt antwortet.</p>"
+      "<p>Auf Ebene 11 lernt sie, festzuhalten, was sie zeigt: Ein unsichtbarer Pfad wird für ein paar Sekunden fest, solange du ihn ansiehst.</p>"))}
   {table([t("What you read", "Was du liest"), t("What it gives you", "Was es dir bringt")], lens)}
 </div></section>
 
@@ -408,8 +448,10 @@ def reading(ctx):
       "<p>K'ins Geisterpfad ist kostenlos, immer sicher und immer da. Die Linse kostet Fokus und ist immer wahr.</p>"
       "<p>Auf den unteren Ebenen stimmen beide überein. Weiter oben fällt dir vielleicht auf, woran ihr Pfad vorbeiführt.</p>"), flip=True)}
   {feature(ctx, ctx.pick("ACT-RECUT", "T2C-SCENE"), t("From Floor 6", "Ab Ebene 6"), t("Recut", "Nachmeißeln"),
-    t("<p>A chisel changes how Kaya sees the temple's defences. With the Lens on, she can recut a marked trap's glyph, and for a few seconds it hits only her enemies. The trap makers built everything to answer to the old glyphs, and she can read them.</p>",
-      "<p>Ein Meißel verändert, wie Kaya die Verteidigung des Tempels sieht. Mit der Linse kann sie die Glyphe einer markierten Falle nachmeißeln, und für ein paar Sekunden trifft sie nur noch ihre Feinde. Die Fallenbauer haben alles so gebaut, dass es auf die alten Glyphen hört, und sie kann sie lesen.</p>"))}
+    t("<p>A chisel changes how Kaya sees the temple's defences. With the Lens on, she can recut a marked trap's glyph, and for a few seconds it hits only her enemies. The trap makers built everything to answer to the old glyphs, and she can read them.</p>"
+      "<p>It also cuts handholds into walls marked with a carver's seam, so from then on she can climb them and kick between them.</p>",
+      "<p>Ein Meißel verändert, wie Kaya die Verteidigung des Tempels sieht. Mit der Linse kann sie die Glyphe einer markierten Falle nachmeißeln, und für ein paar Sekunden trifft sie nur noch ihre Feinde. Die Fallenbauer haben alles so gebaut, dass es auf die alten Glyphen hört, und sie kann sie lesen.</p>"
+      "<p>Er schlägt außerdem Griffe in Wände mit einer Steinmetzfuge, sodass sie diese ab dann hinaufklettern und zwischen ihnen hin und her springen kann.</p>"))}
 </section>
 
 <section class="band"><div class="wrap section">
@@ -436,17 +478,17 @@ def weapons(ctx):
     u, t = ctx.url, ctx.t
     arms = [
         ("W01", t("Obsidian Macuahuitl", "Obsidian-Macuahuitl"), t("Melee · found in the Shell", "Nahkampf · gefunden in The Shell"),
-         t("A flat war-club of dark hardwood edged with black obsidian blades, banded in hammered gold. Light combo plus a heavy finisher. Lifting it from the sword shrine is what wakes the first guardian.",
-           "Eine flache Kriegskeule aus dunklem Hartholz, besetzt mit schwarzen Obsidianklingen, mit Bändern aus gehämmertem Gold. Leichte Kombo plus schwerer Abschlussschlag. Wer sie aus dem Schwertschrein hebt, weckt den ersten Wächter.")),
+         t("A flat war-club of dark hardwood edged with black obsidian blades, banded in hammered gold. Light combo plus a heavy strike. Lifting it from the sword shrine is what wakes the first guardian, and it cuts the root curtains that block the way.",
+           "Eine flache Kriegskeule aus dunklem Hartholz, besetzt mit schwarzen Obsidianklingen, mit Bändern aus gehämmertem Gold. Leichte Kombo plus schwerer Schlag. Wer sie aus dem Schwertschrein hebt, weckt den ersten Wächter, und sie durchtrennt die Wurzelvorhänge, die den Weg versperren.")),
         ("W02", t("Spirit Blowgun", "Geisterblasrohr"), t("Ranged, fast · found on Floor 2", "Fernkampf, schnell · gefunden auf Ebene 2"),
-         t("A long reed tube with a carved jade hummingbird mouthpiece. It strikes glyph targets high on shrine walls and keeps archers honest.",
-           "Ein langes Schilfrohr mit einem geschnitzten Kolibri-Mundstück aus Jade. Es trifft Glyphenziele hoch an Schreinwänden und hält Bogenschützen in Schach.")),
-        ("W03", t("Sunburst Sling", "Sonnenschleuder"), t("Ranged, charged · from Oxlahun's table", "Fernkampf, aufladbar · von Oxlahuns Tisch"),
-         t("Braided cords and carved river stones that glow brighter the longer the shot is charged. A full charge cracks armour.",
-           "Geflochtene Schnüre und geschnitzte Flusssteine, die umso heller leuchten, je länger der Schuss aufgeladen wird. Voll aufgeladen knackt er Panzer.")),
+         t("A long reed tube with a carved jade hummingbird mouthpiece. It strikes glyph targets far out of reach, which open sluices and drop bridges, and it keeps archers honest.",
+           "Ein langes Schilfrohr mit einem geschnitzten Kolibri-Mundstück aus Jade. Es trifft Glyphenziele weit außer Reichweite, die Schleusen öffnen und Brücken senken, und es hält Bogenschützen in Schach.")),
+        ("W03", t("Sunburst Sling", "Sonnenschleuder"), t("Ranged, charged · found on Floor 4", "Fernkampf, aufladbar · gefunden auf Ebene 4"),
+         t("Braided cords and carved river stones that glow brighter the longer the shot is charged. A full charge knocks shields away, and a stone thrown at a jade ring wraps around it, so Kaya can swing.",
+           "Geflochtene Schnüre und geschnitzte Flusssteine, die umso heller leuchten, je länger der Schuss aufgeladen wird. Voll aufgeladen schlägt er Schilde weg, und ein Stein, auf einen Jadering geworfen, wickelt sich darum, sodass Kaya schwingen kann.")),
         ("W04", t("Ember Censer", "Glutweihrauchfass"), t("Short flame cone · found with the Fire Orb", "Kurzer Flammenkegel · gefunden mit der Feuerkugel"),
-         t("A clay burner shaped like an old fire god, swung on a bronze chain. It breathes a short cone of flame and lights braziers.",
-           "Ein Räuchergefäß aus Ton in Gestalt eines alten Feuergottes, an einer Bronzekette geschwungen. Es speit einen kurzen Flammenkegel und entzündet Feuerschalen.")),
+         t("A clay burner shaped like an old fire god, swung on a bronze chain. It breathes a short cone of flame, lights braziers and burns webs.",
+           "Ein Räuchergefäß aus Ton in Gestalt eines alten Feuergottes, an einer Bronzekette geschwungen. Es speit einen kurzen Flammenkegel, entzündet Feuerschalen und verbrennt Spinnweben.")),
     ]
     arm_html = "".join(
         f'<article class="item item-wide">{ctx.figure(i, n, show_caption=False)}<div><p class="kicker">{s}</p><h3>{n}</h3><p>{d}</p></div></article>'
@@ -457,10 +499,22 @@ def weapons(ctx):
         (t("A brass lantern", "Eine Messinglaterne"), t("Ranged, area", "Fernkampf, Fläche"), t("Throws burning oil. It also shows hidden things nearby without using Focus.", "Wirft brennendes Öl. Zeigt außerdem Verborgenes in der Nähe, ohne Fokus zu verbrauchen.")),
     ]
     orbs = [
-        (t("Fire", "Feuer"), "c-red", t("The Ember Forge", "Die Glutschmiede"), t("Ignite braziers, burn vines and rope", "Feuerschalen entzünden, Ranken und Seile verbrennen"), t("Flame burst", "Flammenstoß")),
-        (t("Earth", "Erde"), "c-green", t("The Buried Ossuary", "Das verschüttete Beinhaus"), t("Shatter cracked walls, weigh down plates", "Rissige Wände zertrümmern, Platten beschweren"), t("Ground pound that breaks shields", "Bodenstampfer, der Schilde bricht")),
-        (t("Wind", "Wind"), "c-white", t("The Broken Ramparts", "Die zerbrochenen Wälle"), t("Glide, air dash, ride updrafts", "Gleiten, Luftsprint, Aufwinde nutzen"), t("Gust that pushes enemies off ledges", "Windstoß, der Gegner von Simsen stößt")),
-        (t("Water", "Wasser"), "c-blue", t("The Sunken Reservoir", "Das versunkene Reservoir"), t("Part and lower water, douse fire", "Wasser teilen und absenken, Feuer löschen"), t("Surge that knocks down and soaks", "Welle, die umwirft und durchnässt")),
+        (t("Fire", "Feuer"), "c-red", t("The Ember Forge", "Die Glutschmiede"), t("Burn webs and dry roots, light braziers", "Spinnweben und trockene Wurzeln verbrennen, Feuerschalen entzünden"), t("Flame burst", "Flammenstoß")),
+        (t("Earth", "Erde"), "c-green", t("The Buried Ossuary", "Das verschüttete Beinhaus"), t("Break cracked walls, raise stone blocks into steps", "Rissige Wände brechen, Steinblöcke zu Stufen heben"), t("Ground pound that breaks shields", "Bodenstampfer, der Schilde bricht")),
+        (t("Wind", "Wind"), "c-white", t("The Broken Ramparts", "Die zerbrochenen Wälle"), t("Double jump and glide: the high ledges", "Doppelsprung und Gleiten: die hohen Simse"), t("Gust that pushes enemies off ledges", "Windstoß, der Gegner von Simsen stößt")),
+        (t("Water", "Wasser"), "c-blue", t("The Sunken Reservoir", "Das versunkene Reservoir"), t("Dive deep through currents, freeze water into platforms", "Tief durch Strömungen tauchen, Wasser zu Plattformen gefrieren"), t("Surge that knocks down and soaks", "Welle, die umwirft und durchnässt")),
+    ]
+    keys = [
+        (t("Obsidian Macuahuitl", "Obsidian-Macuahuitl"), t("The Shell", "The Shell"), t("Heavy cleave, breaks guards", "Schwerer Hieb, bricht Deckung"), t("Root and vine curtains", "Wurzel- und Rankenvorhänge")),
+        (t("The Lens", "Die Linse"), t("The Shell", "The Shell"), t("Weak points", "Schwachstellen"), t("Glyph paths and cracks only it can see", "Glyphenpfade und Risse, die nur sie zeigt")),
+        (t("Spirit Blowgun", "Geisterblasrohr"), t("Floor 2", "Ebene 2"), t("A stunning shot", "Ein betäubender Schuss"), t("Far glyph targets: sluices, bridges", "Ferne Glyphenziele: Schleusen, Brücken")),
+        (t("Sunburst Sling", "Sonnenschleuder"), t("Floor 4", "Ebene 4"), t("Arcing shots, knocks shields away", "Bogenschüsse, schlägt Schilde weg"), t("Jade rings to swing from", "Jaderinge zum Schwingen")),
+        (t("Isabel's Chisel", "Isabels Meißel"), t("Floor 6", "Ebene 6"), t("Recut a trap", "Eine Falle nachmeißeln"), t("Carver's seams: climb and kick between them", "Steinmetzfugen: klettern und dazwischen abspringen")),
+        (t("Serpent Roll", "Schlangenrolle"), t("Floor 7", "Ebene 7"), t("A longer roll through dart streams", "Eine längere Rolle durch Pfeilhagel"), t("Crawl gaps and dart curtains", "Kriechspalten und Pfeilvorhänge")),
+        (t("Lens II", "Linse II"), t("Floor 11", "Ebene 11"), t("Reads the next attack", "Liest den nächsten Angriff"), t("Invisible paths that hold while you look", "Unsichtbare Pfade, die tragen, solange du hinsiehst")),
+        (t("The four orbs", "Die vier Kugeln"), t("Floors 14 to 17", "Ebenen 14 bis 17"), t("Burn, stagger, gust, freeze", "Brennen, Taumeln, Windstoß, Frieren"), t("Webs, cracked walls, high ledges, deep water", "Spinnweben, rissige Wände, hohe Simse, tiefes Wasser")),
+        (t("Mirror Step", "Spiegelschritt"), t("Floor 18", "Ebene 18"), t("Reflects beams", "Wirft Strahlen zurück"), t("Step along a beam to the mirror it strikes", "Entlang eines Strahls zum Spiegel gehen, den er trifft")),
+        (t("The Sun Orb", "Die Sonnenkugel"), t("Floor 24, every run", "Ebene 24, jeder Durchlauf"), t("A charged sunburst", "Ein aufgeladener Sonnenstoß"), t("Shadow bridges, while it's carried", "Schattenbrücken, solange du sie trägst")),
     ]
     orb_rows = "".join(f'<tr><th scope="row" class="{c}">{n}</th><td>{w}</td><td>{tv}</td><td>{f}</td></tr>' for n, c, w, tv, f in orbs)
     return f"""
@@ -478,16 +532,24 @@ def weapons(ctx):
 <section class="band"><div class="wrap section">
   {feature(ctx, "W05", t("Permanent powers", "Dauerhafte Kräfte"), t("The four Elemental Orbs", "Die vier Elementarkugeln"),
     t(f"<p>The builders harnessed fire, earth, wind and water through four sacred orbs. Kaya claims them in the <a href='{u('climb/tier-4.html')}'>Elemental Sanctums</a>, in any order you choose, and they stay with her through every death.</p>"
-      "<p>Each orb is a way to move, a way to fight and a key. Every orb you own opens new routes in floors you've already climbed.</p>",
+      "<p>Each orb is a way to move, a way to fight and a key. Once all four are yours, every floor you've climbed opens again: Wind for the ledges, Earth for the walls, Water for the deep, Fire for the webs.</p>",
       f"<p>Die Erbauer bändigten Feuer, Erde, Wind und Wasser mit vier heiligen Kugeln. Kaya erringt sie in den <a href='{u('climb/tier-4.html')}'>Elementarheiligtümern</a>, in beliebiger Reihenfolge, und sie bleiben ihr über jeden Tod hinaus.</p>"
-      "<p>Jede Kugel ist Fortbewegung, Kampfkraft und Schlüssel zugleich. Jede Kugel, die du besitzt, öffnet neue Wege in Ebenen, die du schon erklommen hast.</p>"))}
+      "<p>Jede Kugel ist Fortbewegung, Kampfkraft und Schlüssel zugleich. Sobald alle vier dir gehören, öffnet sich jede Ebene, die du erklommen hast, von Neuem: Wind für die Simse, Erde für die Wände, Wasser für die Tiefe, Feuer für die Spinnweben.</p>"))}
   <div class="table-wrap"><table class="orb-table">
     <thead><tr><th>{t("Orb", "Kugel")}</th><th>{t("Earned in", "Errungen in")}</th><th>{t("Traversal", "Fortbewegung")}</th><th>{t("Combat", "Kampf")}</th></tr></thead>
     <tbody>{orb_rows}</tbody>
   </table></div>
 </div></section>
 
-<section class="wrap section">
+<section class="wrap section" id="keys">
+  <p class="kicker">{t("Every weapon is a key", "Jede Waffe ist ein Schlüssel")}</p>
+  <h2>{t("What each one opens", "Was jede öffnet")}</h2>
+  <p class="lede-sm">{t("Each ability is a move in a fight and a key out of it. Every lock of one kind looks the same everywhere, and each floor shows you a few you can't open yet. The main path never needs a key from a later floor.",
+                        "Jede Fähigkeit ist ein Zug im Kampf und ein Schlüssel außerhalb davon. Jedes Schloss einer Art sieht überall gleich aus, und jede Ebene zeigt dir ein paar, die du noch nicht öffnen kannst. Der Hauptweg braucht nie einen Schlüssel aus einer späteren Ebene.")}</p>
+  {table([t("Ability", "Fähigkeit"), t("Found", "Gefunden"), t("In a fight", "Im Kampf"), t("The lock it opens", "Das Schloss, das sie öffnet")], keys)}
+</section>
+
+<section class="band"><div class="wrap section">
   {feature(ctx, "W06", t("The goal", "Das Ziel"), t("The Sun Orb", "Die Sonnenkugel"),
     t("<p>The brightest thing in the game: a blazing golden orb with a living sun glyph at its core, cradled in four carved gold hands.</p>"
       "<p>It waits in a sealed vault behind the Priest's Lieutenant on Floor 24. Then Kaya has to carry it through a temple that's fully awake, all the way to the Sky Altar. "
@@ -499,24 +561,24 @@ def weapons(ctx):
     t(f"<p>Day sign blessings and weapon gravings last until you die. Keepsakes, carved by Oxlahun from whatever killed you, are permanent, and you pick one per run. <a href='{u('game/the-return.html')}'>The Return</a></p>",
       f"<p>Segen der Tageszeichen und Waffengravuren halten, bis du stirbst. Andenken, die Oxlahun aus dem schnitzt, was dich getötet hat, sind dauerhaft, und du wählst eines pro Durchlauf. <a href='{u('game/the-return.html')}'>Die Rückkehr</a></p>"), flip=True)}
 {art_row(ctx, WEAPON_ART)}
-</section>
+</div></section>
 """
 
 
 PAGES = {
     "game/index.html": dict(
         title=("Overview & Pillars", "Überblick & Säulen"), kicker=("The Game", "Das Spiel"), banner="B-11",
-        lede=("A single-player action roguelite inside a living Mayan pyramid, built in Unreal Engine 5.",
-              "Ein Action-Roguelite für einen Spieler in einer lebenden Maya-Pyramide, gebaut in der Unreal Engine 5."),
+        lede=("A single-player 2.5D action platformer inside a living Mayan pyramid, built in Unreal Engine 5.",
+              "Ein 2.5D-Action-Plattformer für einen Spieler in einer lebenden Maya-Pyramide, gebaut in der Unreal Engine 5."),
         description=("What Ascent of the Sun Temple is, and the five design pillars behind it.",
                      "Was Ascent of the Sun Temple ist und welche fünf Design-Säulen dahinterstehen."),
         body=overview, og="B-11"),
     "game/how-it-plays.html": dict(
         title=("How It Plays", "So wird gespielt"), kicker=("The Game", "Das Spiel"), banner="B-05",
-        lede=("Read, fight, move, solve. Then die, return to the Threshold, and climb again knowing more.",
-              "Lesen, kämpfen, bewegen, lösen. Dann sterben, an die Schwelle zurückkehren und mit mehr Wissen wieder aufsteigen."),
-        description=("The loops, gates, combat, traps, puzzles, blessings and modes of Ascent of the Sun Temple.",
-                     "Kreisläufe, Tore, Kampf, Fallen, Rätsel, Segen und Modi von Ascent of the Sun Temple."),
+        lede=("Move, read, fight, solve, side-on. Then die, return to the Threshold, and climb again knowing more.",
+              "Bewegen, lesen, kämpfen, lösen, von der Seite. Dann sterben, an die Schwelle zurückkehren und mit mehr Wissen wieder aufsteigen."),
+        description=("Screens, floors and runs; movement, combat, traps, puzzles, shrines, reward doors and blessings in Ascent of the Sun Temple.",
+                     "Bildschirme, Ebenen und Durchläufe; Bewegung, Kampf, Fallen, Rätsel, Schreine, Belohnungstüren und Segen in Ascent of the Sun Temple."),
         body=how_it_plays, og="B-05"),
     "game/the-return.html": dict(
         title=("The Return", "Die Rückkehr"), kicker=("The Game", "Das Spiel"), banner=["ACT-RETURN", "A-03"],
@@ -534,8 +596,8 @@ PAGES = {
         body=reading, og=["ACT-LENS", "HOME-ISABEL"]),
     "game/weapons-and-powers.html": dict(
         title=("Weapons & Powers", "Waffen & Kräfte"), kicker=("The Game", "Das Spiel"), banner="T4B-SCENE",
-        lede=("Seven weapons, four permanent Elemental Orbs and the one Sun Orb that opens the summit.",
-              "Sieben Waffen, vier dauerhafte Elementarkugeln und die eine Sonnenkugel, die den Gipfel öffnet."),
+        lede=("Weapons that are also keys, four permanent Elemental Orbs, and the one Sun Orb that opens the summit.",
+              "Waffen, die zugleich Schlüssel sind, vier dauerhafte Elementarkugeln und die eine Sonnenkugel, die den Gipfel öffnet."),
         description=("Kaya's weapons, the Elemental Orbs and the Sun Orb.", "Kayas Waffen, die Elementarkugeln und die Sonnenkugel."),
         body=weapons, og="W05"),
 }

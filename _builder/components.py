@@ -42,8 +42,47 @@ def catalog(ctx, rows, cls=""):
     return f'<div class="catalog {cls}">{"".join(items)}</div>'
 
 
-def room(ctx, code, name, text, scene, map_id, codex_id, tag_pairs=(), flip=False, extra=None):
-    """One room of a floor: scene beside the text, with its codex page and top-down map underneath the text.
+def run_strip(ctx, screens, label, start=1):
+    """The side-scrolling strip: 16:9 side-view screens laid edge to edge like one level, read left to right,
+    with a gold route line and the screen numbers under them.
+    screens: (image_id or list of ids to pick from, (en, de) name)."""
+    items = []
+    for n, (img, name) in enumerate(screens, start):
+        img = ctx.pick(*img) if isinstance(img, (list, tuple)) else img
+        nm = T(ctx, name)
+        items.append(f'<li class="strip-screen">{ctx.figure(img, alt=nm)}'
+                     f'<p class="strip-cap"><span class="strip-num">{n:02d}</span>{nm}</p></li>')
+    t = ctx.t
+    return (f'<div class="strip" data-strip>'
+            f'<div class="strip-view" role="region" aria-label="{label}" tabindex="0"><ol class="strip-track">{"".join(items)}</ol></div>'
+            f'<div class="strip-controls"><button type="button" class="strip-btn" data-dir="-1" aria-label="{t("Scroll left", "Nach links")}">'
+            f'<span aria-hidden="true">&#8249;</span></button><button type="button" class="strip-btn" data-dir="1" '
+            f'aria-label="{t("Scroll right", "Nach rechts")}"><span aria-hidden="true">&#8250;</span></button></div></div>')
+
+
+SHAPE_NAMES = {"H": ("Horizontal", "Waagerecht"), "V": ("Vertical", "Senkrecht"), "D": ("Diagonal, rising", "Diagonal, steigend"),
+               "R": ("Ring around a well", "Ring um einen Brunnen"), "A": ("Arena", "Arena")}
+
+
+def shape_glyph(ctx, code):
+    """A small drawn sign for a floor's shape: the direction the level runs in side view.
+    code: H, V, D, R or A, or two joined by '>' (e.g. 'H>V': runs across, then climbs)."""
+    paths = {
+        "H": '<path d="M3 12h16M15 8l4 4-4 4"/>',
+        "V": '<path d="M12 21V5M8 9l4-4 4 4"/>',
+        "D": '<path d="M4 20L19 5M12 5h7v7"/>',
+        "R": '<circle cx="12" cy="12" r="7"/><path d="M12 5v14"/>',
+        "A": '<rect x="4" y="7" width="16" height="11" rx="1"/><path d="M8 18v-4M16 18v-4"/>',
+    }
+    parts = code.split(">")
+    svgs = "".join(f'<svg viewBox="0 0 24 24" aria-hidden="true">{paths[p]}</svg>' for p in parts)
+    name = ctx.t(" then ", ", dann ").join(T(ctx, SHAPE_NAMES[p]) for p in parts)
+    return f'<span class="shape" title="{name}">{svgs}<span class="sr-only">{name}</span></span>'
+
+
+def room(ctx, code, name, text, scene, map_id=None, codex_id=None, tag_pairs=(), flip=False, extra=None):
+    """One room of a floor: its scene beside the text. (Top-down maps and codex plans were retired with the 3D design;
+    map_id and codex_id are accepted and ignored.)
     text: list of (en, de) paragraphs. extra: optional (image_id, caption), or a list of them, shown only once uploaded."""
     t = ctx.t
     nm = T(ctx, name)
@@ -54,13 +93,7 @@ def room(ctx, code, name, text, scene, map_id, codex_id, tag_pairs=(), flip=Fals
         extra_html = f'<div class="room-extra">{ctx.figure(extras[0][0], T(ctx, extras[0][1]))}</div>'
     elif extras:
         extra_html = f'<div class="room-extra">{ctx.gallery([(i, T(ctx, c)) for i, c in extras], cls="gallery-3")}</div>'
-    # a new room may not have its codex page or map yet: only show what exists
-    parts = ""
-    if ctx.has(codex_id):
-        parts += ctx.figure(codex_id, t("Codex page", "Codexseite"), cls="codex")
-    if ctx.has(map_id):
-        parts += ctx.figure(map_id, t("From above", "Draufsicht"), cls="map")
-    drawings = f'<div class="room-drawings">{parts}</div>' if parts else ""
+    drawings = ""
     return (f'<article class="room{" flip" if flip else ""}" id="{code.lower()}">'
             f'<div class="room-scene">{ctx.figure(scene, alt=nm)}</div>'
             f'<div class="room-body"><p class="room-code">{code}</p><h3>{nm}</h3>{tags(ctx, tag_pairs)}{paras}{drawings}</div>'

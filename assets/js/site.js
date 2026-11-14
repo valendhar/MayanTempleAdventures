@@ -181,3 +181,20 @@
   addEventListener("resize", edges);
   edges();
 })();
+
+// the run strip: arrow buttons scroll one screen; they dim at either end
+document.querySelectorAll("[data-strip]").forEach(strip => {
+  const view = strip.querySelector(".strip-view");
+  const btns = strip.querySelectorAll(".strip-btn");
+  const step = () => (view.querySelector(".strip-screen") || view).getBoundingClientRect().width + 3;
+  const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  btns.forEach(b => b.addEventListener("click", () =>
+    view.scrollBy({ left: step() * Number(b.dataset.dir), behavior: reduce ? "auto" : "smooth" })));
+  const ends = () => {
+    btns[0].disabled = view.scrollLeft <= 4;
+    btns[1].disabled = view.scrollLeft + view.clientWidth >= view.scrollWidth - 4;
+  };
+  view.addEventListener("scroll", ends, { passive: true });
+  addEventListener("resize", ends);
+  ends();
+});

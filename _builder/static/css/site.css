@@ -906,3 +906,58 @@ html { scroll-padding-top: calc(var(--header-h) + 62px); }
 @media (min-width: 1101px) { .st-list a { padding: 0 11px; font-size: .95rem; } .st-name { padding-right: 18px; } .st-count { padding-left: 12px; } }
 /* with section tabs right under the header, the frieze sits wholly inside the header so the tab bar can't cover half of it */
 .page-head:has(+ .section-tabs)::after { bottom: 2px; }
+
+/* ---------- side-view: the run strip ----------
+   Side-view screens laid edge to edge like one level, read left to right. The gold route line runs under them,
+   and each screen's number sits on it. The strip bleeds to the window edges; its first screen lines up with the text. */
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
+.section-tight { padding: 88px 20px 28px; }
+.strip-band .section { padding-bottom: 28px; }
+.strip { --gutter: max(20px, calc((100vw - var(--maxw)) / 2 + 20px)); padding-bottom: 88px; }
+.strip-view {
+  overflow-x: auto; overscroll-behavior-x: contain; scroll-snap-type: x proximity; scroll-padding-inline: var(--gutter);
+  scrollbar-width: none;
+  -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 var(--gutter), #000 calc(100% - 56px), transparent);
+          mask-image: linear-gradient(90deg, transparent 0, #000 var(--gutter), #000 calc(100% - 56px), transparent);
+}
+.strip-view::-webkit-scrollbar { display: none; }
+.strip-view:focus-visible { outline-offset: -3px; }
+.strip-track { list-style: none; margin: 0; padding: 0 var(--gutter) 22px; display: flex; gap: 3px; width: max-content; }
+.strip-screen { width: clamp(270px, 40vw, 600px); scroll-snap-align: start; }
+.strip-screen .fig { margin: 0; }
+.strip-screen .fig img, .strip-screen .ph-box { aspect-ratio: 16 / 9; width: 100%; object-fit: cover; border-radius: 0; }
+.strip-screen:first-child .fig img, .strip-screen:first-child .ph-box { border-radius: 12px 0 0 12px; }
+.strip-screen:last-child .fig img, .strip-screen:last-child .ph-box { border-radius: 0 12px 12px 0; }
+/* the route line: one continuous gold rule under the screens, brightening toward the end of the run */
+.strip-cap {
+  position: relative; margin: 14px 0 0; padding: 14px 16px 0 0; border-top: 2px solid rgba(255, 184, 48, .55);
+  display: flex; align-items: baseline; gap: 10px; color: var(--limestone-dim); font-weight: 600; font-size: .95rem; line-height: 1.3;
+}
+.strip-screen:last-child .strip-cap { border-top-color: var(--gold); }
+.strip-num {
+  flex: none; margin-top: -27px; align-self: flex-start; min-width: 36px; padding: 5px 6px; text-align: center; border-radius: 5px;
+  background: var(--limestone); color: var(--ink); box-shadow: 0 3px 0 #B6A57B;
+  font: 800 .95rem/1 var(--display); font-stretch: 80%; font-variant-numeric: tabular-nums;
+}
+.strip-screen:last-child .strip-num { background: var(--gold); box-shadow: 0 3px 0 var(--gold-deep), 0 0 24px rgba(255, 184, 48, .45); }
+.strip-controls { display: flex; justify-content: flex-end; gap: 10px; max-width: var(--maxw); margin: 6px auto 0; padding: 0 20px; }
+.strip-btn {
+  width: 44px; height: 44px; border-radius: 50%; border: 1px solid rgba(244, 231, 200, .3); background: transparent; color: var(--limestone);
+  font: 700 1.6rem/1 var(--display); cursor: pointer; display: grid; place-items: center;
+}
+.strip-btn:hover { border-color: var(--gold); color: var(--gold); }
+.strip-btn:disabled { opacity: .3; cursor: default; }
+.home-strip { border-top: 1px solid var(--line); }
+@media (max-width: 640px) {
+  .strip-screen { width: 82vw; }
+  .strip { padding-bottom: 64px; }
+  .section-tight { padding: 64px 20px 24px; }
+}
+
+/* ---------- side-view: a floor's shape, drawn as the direction its level runs ---------- */
+.shape { display: inline-flex; gap: 2px; vertical-align: -4px; color: var(--gold); }
+.shape svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+.campaign .shape-cell { white-space: nowrap; }
+.campaign .screens { margin-left: 8px; font-weight: 700; color: var(--limestone); font-variant-numeric: tabular-nums; }
+.tier-note { color: var(--limestone-dim); font-size: .98rem; }
+.anatomy { margin-top: 48px; }

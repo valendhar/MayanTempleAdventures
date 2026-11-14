@@ -2,7 +2,7 @@
 
 Images that are not uploaded yet render as placeholders that show their ID.
 """
-from components import T, catalog, facts, feature, pair, room, tags
+from components import T, catalog, facts, feature, pair, room, run_strip, shape_glyph, tags
 
 # ------------------------------------------------------------------ campaign data
 # One row per floor: number, name, rooms, new mechanic, enemies, reward (None = no reward).
@@ -10,26 +10,26 @@ FLOORS = {
     0: (("The Shell", "The Shell"), "F0", ("All core verbs, your first death", "Alle Grundverben, dein erster Tod"),
         ("Risen Guardian", "Erweckter Wächter"), ("Obsidian macuahuitl, the goggles, the Threshold", "Obsidian-Macuahuitl, die Brille, die Schwelle")),
     1: (("The Drowned Gallery", "Die ertrunkene Galerie"), "T1A · T1B",
-        ("Water, carved gates, Finds, the Portal Chamber's choice", "Wasser, gemeißelte Tore, Funde, die Wahl in der Portalkammer"),
+        ("Water as the level's state, Finds, the Portal Chamber's choice", "Wasser als Zustand der Ebene, Funde, die Wahl in der Portalkammer"),
         ("Risen Guardians, Risen Novices, Drowned Risen, Temple Leeches", "Erweckte Wächter, Erweckte Novizen, Ertrunkene Erweckte, Tempelegel"), ("Oxlahun's Waystall bell", "Oxlahuns Rastplatzglocke")),
     2: (("The Root Cellars", "Die Wurzelkeller"), "T1C · T1D",
         ("Swings, slick slopes, ranged combat, shields", "Schwingen, rutschige Hänge, Fernkampf, Schilde"),
-        ("Cave Bats, Risen Bearers", "Höhlenfledermäuse, Erweckte Schildträger"), ("Spirit Blowgun; the first hidden crack", "Geisterblasrohr; der erste verborgene Riss")),
+        ("Cave Bats, Risen Bearers", "Höhlenfledermäuse, Erweckte Schildträger"), ("Spirit Blowgun; the first Lens-only crack", "Geisterblasrohr; der erste Riss, den nur die Linse zeigt")),
     3: (("The Sump", "Der Sumpf"), "SUMP",
         ("Your first boss, your first Sun Gate", "Dein erster Boss, dein erstes Sonnentor"),
         ("The Mire Mother", "Die Schlammmutter"), ("Tier II Sun Gate", "Sonnentor zu Stufe II")),
     4: (("Hall of Blades", "Halle der Klingen"), "T2A · T2B",
         ("Saws, pendulums, plate order, luring enemies into traps", "Sägen, Pendel, Plattenfolge, Gegner in Fallen locken"),
-        ("Scarab Swarms, Husk Archers", "Skarabäenschwärme, Hülsenschützen"), ("Sunburst Sling on Oxlahun's table", "Sonnenschleuder auf Oxlahuns Tisch")),
+        ("Scarab Swarms, Husk Archers", "Skarabäenschwärme, Hülsenschützen"), ("Sunburst Sling, found on the floor", "Sonnenschleuder, auf der Ebene gefunden")),
     5: (("The Dart Colonnade", "Die Pfeilkolonnade"), "T2C · T2D",
         ("Darts, shield statues, thieves, a big wave fight", "Pfeile, Schildstatuen, Diebe, ein großer Wellenkampf"),
         ("Thief Monkeys, Obsidian Panther, Censer Priest", "Diebesaffen, Obsidianpanther, Räucherpriester"), None),
     6: (("The Builders' Workshop", "Die Werkstatt der Erbauer"), "WORK",
         ("Build your own traps; recut the temple's", "Eigene Fallen bauen; die des Tempels nachmeißeln"),
-        ("Marching waves of Risen", "Marschierende Wellen von Erweckten"), ("The chisel and the Trap Ledger", "Der Meißel und das Fallenverzeichnis")),
+        ("Marching waves of Risen", "Marschierende Wellen von Erweckten"), ("Isabel's Chisel and the Trap Ledger", "Isabels Meißel und das Fallenverzeichnis")),
     7: (("The Breathing Court", "Der atmende Hof"), "COURT",
         ("Watchers, freezing, the heist", "Wächteraugen, Erstarren, der Raubzug"),
-        ("Eye-Bearers, Thief Monkeys", "Augenträger, Diebesaffen"), ("The Great Idol, if you dare", "Das Große Idol, wenn du dich traust")),
+        ("Eye-Bearers, Thief Monkeys", "Augenträger, Diebesaffen"), ("Serpent Roll; the Great Idol, if you dare", "Schlangenrolle; das Große Idol, wenn du dich traust")),
     8: (("The Collapsing Stair", "Die einstürzende Treppe"), "T2E · T2F",
         ("Crumbling stairs, boulders, the first chase", "Bröckelnde Treppen, Felsbrocken, die erste Verfolgung"),
         ("Guardian Spirit, Chak Tun", "Wächtergeist, Chak Tun"), ("Tier III Sun Gate", "Sonnentor zu Stufe III")),
@@ -41,7 +41,7 @@ FLOORS = {
          ("Bone Hurlers, Risen Bearers, Stone Sentry", "Knochenwerfer, Erweckte Schildträger, Steinwächter"), ("The Sign Lexicon", "Das Zeichen-Lexikon")),
     11: (("The Vanishing Path", "Der verschwindende Pfad"), "T3C · T3D",
          ("Phasing platforms, song stones, the memory path", "Phasende Plattformen, Klangsteine, der Gedächtnispfad"),
-         ("Stone Sentries, Bone Hurlers", "Steinwächter, Knochenwerfer"), ("A stronger Lens", "Eine stärkere Linse")),
+         ("Stone Sentries, Bone Hurlers", "Steinwächter, Knochenwerfer"), ("Lens II: hidden paths hold while you look", "Linse II: verborgene Pfade tragen, solange du hinsiehst")),
     12: (("The Gear Ascent", "Der Zahnradaufstieg"), "T3E · B1",
          ("Lifts, gears, timed switches, a rival", "Aufzüge, Zahnräder, Zeitschalter, ein Rivale"),
          ("Gear Crawlers, the Priest's Lieutenant, the Gearwarden", "Zahnradkrabbler, der Leutnant des Priesters, der Zahnradwächter"), ("Tier IV Sun Gate", "Sonnentor zu Stufe IV")),
@@ -62,7 +62,7 @@ FLOORS = {
          ("Drowned Risen, Panthers, the Cenote Serpent Elder", "Ertrunkene Erweckte, Panther, die Alte Cenote-Schlange"), ("Water Orb", "Wasserkugel")),
     18: (("The Mirror Sanctum", "Das Spiegelheiligtum"), "T5A",
          ("Mirrors, the reading gallery", "Spiegel, die Lesegalerie"),
-         ("Mirror Shades, Husk Archers", "Spiegelschatten, Hülsenschützen"), ("Jaguar glyph", "Jaguarglyphe")),
+         ("Mirror Shades, Husk Archers", "Spiegelschatten, Hülsenschützen"), ("Mirror Step; the jaguar glyph", "Spiegelschritt; die Jaguarglyphe")),
     19: (("The Prism Vault", "Das Prismengewölbe"), "T5B",
          ("Colour mixing under attack", "Farben mischen unter Beschuss"),
          ("Mirror Shades, Stone Sentry", "Spiegelschatten, Steinwächter"), ("Serpent glyph", "Schlangenglyphe")),
@@ -89,8 +89,12 @@ FLOORS = {
          ("The Hollow High Priest", "Der Hohle Hohepriester"), ("The ending; the Trials open", "Das Ende; die Prüfungen öffnen sich")),
 }
 LAST_FLOOR = 26
-# floors with a Spirit Shrine before their end
-SHRINE_FLOORS = {2, 8, 12, 21}
+# Side view (DESIGN_SideScroller_Floors.md §5): the direction each floor runs in, and its size in screens.
+# H across, V up or down, D diagonal, R a ring around a well, A an arena; "H>A" runs across into an arena.
+SHAPES = {0: ("H>V", 17), 1: ("H", 20), 2: ("V", 26), 3: ("H>A", 10), 4: ("H", 28), 5: ("H", 22), 6: ("H", 12),
+          7: ("V", 18), 8: ("D", 18), 9: ("H", 22), 10: ("V", 12), 11: ("H", 20), 12: ("V", 26), 13: ("R", 10),
+          14: ("V", 20), 15: ("V", 20), 16: ("H", 20), 17: ("V", 20), 18: ("H", 18), 19: ("V", 18), 20: ("H", 20),
+          21: ("H>A", 16), 22: ("V", 28), 23: ("H", 22), 24: ("H>A", 16), 25: ("V", 20), 26: ("A", 6)}
 
 
 def floor_title(ctx, n):
@@ -100,7 +104,9 @@ def floor_title(ctx, n):
 def floor_meta(ctx, n):
     _, _, mech, enemies, reward = FLOORS[n]
     t = ctx.t
-    rows = [(t("New", "Neu"), T(ctx, mech)), (t("Enemies", "Gegner"), T(ctx, enemies))]
+    shape, screens = SHAPES[n]
+    rows = [(t("Shape", "Form"), f"{shape_glyph(ctx, shape)} {t(f'{screens} screens', f'{screens} Bildschirme')}"),
+            (t("New", "Neu"), T(ctx, mech)), (t("Enemies", "Gegner"), T(ctx, enemies))]
     if reward:
         rows.append((t("Reward", "Belohnung"), T(ctx, reward)))
     return '<dl class="floor-meta">' + "".join(f"<div><dt>{k}</dt><dd>{v}</dd></div>" for k, v in rows) + "</dl>"
@@ -116,19 +122,17 @@ def floor_end(ctx, n):
         return t(f"Daylight, and the doors of the <a href='{u('climb/sky-altar.html')}'>Sky Altar</a>.",
                  f"Tageslicht und die Tore zum <a href='{u('climb/sky-altar.html')}'>Himmelsaltar</a>.")
     if n in (14, 15, 16, 17):
-        return t("Then back to the Sun Well, with a basin to rest at. Pick another wing, or go home alive.",
-                 "Dann zurück zum Sonnenbrunnen, mit einem Becken zum Ausruhen. Wähl einen anderen Flügel oder geh lebend nach Hause.")
-    if n in SHRINE_FLOORS:
-        sr = f"<a href='{u('climb/shared-rooms.html')}#spirit-shrine'>{t('Spirit Shrine', 'Geisterschrein')}</a>"
-        return t(f"Then a {sr} to rest, and the {pc}.", f"Danach ein {sr} zum Ausruhen und die {pc}.")
-    return t(f"Then the {pc}, and up.", f"Danach die {pc}, und weiter nach oben.")
+        return t("Then back down to the Sun Well and its shrine. Pick another wing, or go home alive.",
+                 "Dann zurück hinunter zum Sonnenbrunnen und seinem Schrein. Wähl einen anderen Flügel oder geh lebend nach Hause.")
+    return t(f"Then the {pc}, and the stair up.", f"Danach die {pc} und die Treppe nach oben.")
 
 
 # ------------------------------------------------------------------ tiers
 # Each room: (code, name, tags, paragraphs, scene, map, codex, extra)
 def R(code, name, tag_pairs, text, scene=None, map_id=None, codex=None, extra=None, flip=False):
-    """flip is accepted for readability only: rooms alternate sides automatically."""
-    return (code, name, tag_pairs, text, scene or f"{code}-SCENE", map_id or f"{code}-MAP", codex or f"CX-{code}", extra)
+    """flip is accepted for readability only: rooms alternate sides automatically.
+    map_id and codex are left over from the top-down design and are no longer shown."""
+    return (code, name, tag_pairs, text, scene or f"{code}-SCENE", None, None, extra)
 
 
 KEY = ("Key Orb room", "Raum der Schlüsselkugel")
@@ -149,51 +153,73 @@ TIERS = {
         lede=("The temple's flooded base: water, leeches, the first ranged weapon and the first boss.",
               "Die geflutete Basis des Tempels: Wasser, Egel, die erste Fernkampfwaffe und der erste Boss."),
         intro=(("Three floors at the foot of the pyramid, where the builders first held the elements in balance and the water never "
-                "left. This is where you learn a run: choosing gates, keeping your health, and deciding when to stop.",
+                "left. Here water is the level's state: every floor has a water line that Kaya changes, and the change stays. This is "
+                "where you learn a run: shrines, shortcuts, keeping your health, and deciding when to stop.",
                 "Drei Ebenen am Fuß der Pyramide, wo die Erbauer die Elemente zum ersten Mal im Gleichgewicht hielten und das Wasser "
-                "nie wieder abfloss. Hier lernst du einen Durchlauf: Tore wählen, Gesundheit bewahren und entscheiden, wann du aufhörst."),),
+                "nie wieder abfloss. Hier ist das Wasser der Zustand der Ebene: Jede Ebene hat eine Wasserlinie, die Kaya verändert, und "
+                "die Veränderung bleibt. Hier lernst du einen Durchlauf: Schreine, Abkürzungen, Gesundheit bewahren und entscheiden, wann du aufhörst."),),
         floors={
             1: [R("T1A", ("The Drowned Gallery", "Die ertrunkene Galerie"), [("Water", "Wasser"), ("Timing", "Timing")],
-                  [("A tall flooded hall of dark green water. You cross stone islands and floating logs that drift between them, and "
-                    "one island has a band of spikes on a timer.",
-                    "Eine hohe, geflutete Halle voller dunkelgrünem Wasser. Du überquerst Steininseln und treibende Baumstämme dazwischen, "
-                    "und auf einer Insel fährt in festem Takt ein Streifen Stacheln aus."),
-                   ("Deep water hides temple leeches. The shallow wading lane along the east wall is safe from them but slow, and Drowned Risen "
-                    "climb out of it as you pass, so the coward's route costs time and a fight. The golden idol sits on a pillar in the water.",
-                    "Im tiefen Wasser lauern Tempelegel. Die flache Watspur an der Ostwand ist sicher vor ihnen, aber langsam, und Ertrunkene Erweckte "
-                    "steigen daraus empor, wenn du vorbeikommst, also kostet der Weg des Feiglings Zeit und einen Kampf. Das goldene Idol steht auf einer Säule im Wasser.")],
-                  scene="D-02", map_id="D-01"),
-               R("T1B", ("The Sluice Hall", "Die Schleusenhalle"), [KEY, ("Drain", "Abfluss")],
-                  [("The Key Orb sits on a pedestal at the bottom of a flooded channel, and a current pushes you back out.",
-                    "Die Schlüsselkugel liegt auf einem Sockel am Grund eines gefluteten Kanals, und eine Strömung drückt dich wieder hinaus."),
-                   ("Ride a stone lift to a balcony and press the plate there: the water drains through the sluice gate and the current "
-                    "stops. Take the orb and the room fights back, as three Risen Guardians rise in the galleries. The idol is on a "
-                    "column, reached from a crate.",
-                    "Fahr mit einem Steinaufzug zu einem Balkon und tritt dort auf die Platte: Das Wasser fließt durch das Schleusentor ab, "
-                    "und die Strömung versiegt. Nimm die Kugel, und der Raum wehrt sich, denn in den Galerien erheben sich drei Erweckte "
-                    "Wächter. Das Idol steht auf einer Säule, die du von einer Kiste aus erreichst.")],
-                  scene="D-04", map_id="D-03")],
-            2: [R("T1C", ("The Root Cellar", "Der Wurzelkeller"), [("Swing", "Schwingen"), ("Slope", "Hang")],
-                  [("A slick moss slope ends above a pit of tangled roots. Wooden platforms hang from vines and swing like pendulums "
-                    "across it, with a root island between them.",
-                    "Ein rutschiger Moosabhang endet über einer Grube voller verschlungener Wurzeln. Holzplattformen hängen an Ranken und "
-                    "schwingen wie Pendel darüber, mit einer Wurzelinsel dazwischen."),
-                   ("Cave bats swoop through the dark. Glowing fungus lights the way.",
-                    "Höhlenfledermäuse stoßen durch die Dunkelheit herab. Leuchtende Pilze weisen den Weg.")],
-                  scene="D-06", map_id="D-05"),
-               R("T1D", ("The Blowgun Shrine", "Der Blasrohrschrein"), [KEY, ("Ranged", "Fernkampf")],
-                  [("A square shrine with a raised altar that holds the Spirit Blowgun, the first ranged weapon.",
-                    "Ein quadratischer Schrein mit einem erhöhten Altar, auf dem das Geisterblasrohr liegt, die erste Fernkampfwaffe."),
-                   ("Three round glyph targets sit high on the walls. Hit all three and the Key Orb rises from the altar, while cave bats "
-                    "harass the shooter.",
-                    "Hoch an den Wänden sitzen drei runde Glyphenziele. Triff alle drei, und die Schlüsselkugel steigt aus dem Altar, "
-                    "während Höhlenfledermäuse den Schützen bedrängen.")],
-                  scene="D-08", map_id="D-07")],
+                  [("Four screens of stone islands over dark leech water, with floating logs drifting between them on a slow current. "
+                    "A log sinks a little under Kaya, and further under two Risen. Drowned Risen surface along the route: a ripple shows "
+                    "you where.",
+                    "Vier Bildschirme voller Steininseln über dunklem Egelwasser, dazwischen treiben Baumstämme in einer langsamen Strömung. "
+                    "Ein Stamm sinkt unter Kaya ein wenig ein, unter zwei Erweckten noch tiefer. Entlang des Wegs tauchen Ertrunkene Erweckte "
+                    "auf: Eine Kräuselung zeigt dir, wo."),
+                   ("The idol lies under the west ledge, and the leeches are the timer for the dive. Two things stay out of reach for "
+                    "now: an idol on a ledge too high to jump, and a deep current that throws you back.",
+                    "Das Idol liegt unter dem Westsims, und die Egel sind die Uhr für den Tauchgang. Zwei Dinge bleiben vorerst außer "
+                    "Reichweite: ein Idol auf einem Sims, zu hoch für jeden Sprung, und eine tiefe Strömung, die dich zurückwirft.")],
+                  scene="D-02"),
+               R("T1B", ("The Sluice Hall", "Die Schleusenhalle"), [KEY, ("Drain", "Abfluss"), ("Shaft", "Schacht")],
+                  [("A shaft three screens deep. The Key Orb lies at the bottom of a channel with a strong current: swim down with it, "
+                    "past the leeches. A plate on a balcony on the way down opens the sluice, and the whole lower floor drains for good.",
+                    "Ein Schacht, drei Bildschirme tief. Die Schlüsselkugel liegt am Grund eines Kanals mit starker Strömung: Schwimm mit "
+                    "ihr hinab, an den Egeln vorbei. Eine Platte auf einem Balkon auf halbem Weg öffnet die Schleuse, und die ganze untere "
+                    "Ebene läuft leer, für immer."),
+                   ("Taking the orb wakes three Risen. The lift up takes eight seconds: fight on its platform, or jump for the stairs. "
+                    "Below, the drained gallery is a dry walk back to the Entry Shrine, and a plate lift you open from below becomes the "
+                    "floor's shortcut.",
+                    "Wer die Kugel nimmt, weckt drei Erweckte. Der Aufzug nach oben braucht acht Sekunden: Kämpf auf seiner Plattform "
+                    "oder spring zur Treppe. Darunter führt die trockengelegte Galerie zurück zum Eingangsschrein, und ein Plattenaufzug, "
+                    "den du von unten öffnest, wird zur Abkürzung der Ebene.")],
+                  scene="D-04")],
+            2: [R("T1C", ("The Root Cellar", "Der Wurzelkeller"), [("Swing", "Schwingen"), ("Slope", "Hang"), ("Climb", "Aufstieg")],
+                  [("A tall root shaft, climbed from the bottom. Slick moss slopes slide Kaya back down unless she jumps, and vine "
+                    "swings cross the shaft: hold to swing, let go to fly, and keep the momentum.",
+                    "Ein hoher Wurzelschacht, von unten erklommen. Rutschige Moosflächen tragen Kaya wieder hinab, wenn sie nicht "
+                    "springt, und Ranken schwingen quer durch den Schacht: halten, um zu schwingen, loslassen, um zu fliegen, und den Schwung behalten."),
+                   ("Cave bats dive with a screech. A fall costs a little health and drops you a level into a pit of slow Risen: "
+                    "falling is a lower route, never a restart. In the dark fungus pit, the glowing caps are the only light, and bursting "
+                    "one poisons whatever stands near it.",
+                    "Höhlenfledermäuse stoßen kreischend herab. Ein Sturz kostet etwas Gesundheit und lässt dich eine Etage tiefer in eine "
+                    "Grube voller langsamer Erweckter fallen: Fallen ist ein tieferer Weg, nie ein Neustart. In der dunklen Pilzgrube sind "
+                    "die leuchtenden Hüte das einzige Licht, und wer einen platzen lässt, vergiftet, was in der Nähe steht.")],
+                  scene="D-06"),
+               R("T1D", ("The Blowgun Shrine", "Der Blasrohrschrein"), [KEY, ("Ranged", "Fernkampf"), ("New key", "Neuer Schlüssel")],
+                  [("At the top of the shaft, Kaya takes the Spirit Blowgun. Three glyph targets rise high on the walls, and every hit "
+                    "wakes two Risen below, so she shoots while she's chased. The last target raises the Key Orb.",
+                    "Oben im Schacht nimmt Kaya das Geisterblasrohr. Drei Glyphenziele steigen hoch an den Wänden auf, und jeder Treffer "
+                    "weckt unten zwei Erweckte, also schießt sie, während sie gejagt wird. Das letzte Ziel hebt die Schlüsselkugel."),
+                   ("On the way out, a far target across the shaft drops a root bridge: the first use of the new key, and a shortcut "
+                    "straight back down to the Mid Shrine. In the Portal Chamber, the Lens shows a thin crack that K'in's path walks past.",
+                    "Auf dem Rückweg lässt ein fernes Ziel auf der anderen Seite des Schachts eine Wurzelbrücke fallen: der erste Einsatz "
+                    "des neuen Schlüssels und eine Abkürzung direkt hinunter zum Mittleren Schrein. In der Portalkammer zeigt die Linse einen "
+                    "feinen Riss, an dem K'ins Pfad vorbeiführt.")],
+                  scene="D-08")],
             3: [R("SUMP", ("The Mire Mother's Cistern", "Die Zisterne der Schlammmutter"), [("Boss", "Boss"), ("Drain", "Abfluss")],
-                  [("A vast round cistern with four sluice gates and four stone islands. The Mire Mother, an enormous glossy leech with glowing teal spots, slides under the water and lunges at your island.",
-                    "Eine gewaltige runde Zisterne mit vier Schleusentoren und vier Steininseln. Die Schlammmutter, ein riesiger glänzender Egel mit leuchtend türkisen Flecken, gleitet unter dem Wasser dahin und stürzt sich auf deine Insel."),
-                   ("Shoot the glyph targets on the gates to drain the water and leave her beached. Beat her, and the first Sun Gate lights, so your next run can start at Tier II.",
-                    "Schieß auf die Glyphenziele der Tore, um das Wasser abzulassen und sie auf dem Trockenen zu lassen. Besiege sie, und das erste Sonnentor leuchtet auf, sodass dein nächster Durchlauf bei Stufe II beginnen kann.")],
+                  [("A long, low overflow channel first, where the water rises on a cycle from ankle to over your head, then a pump hall "
+                    "that teaches the boss's rule: water down means danger exposed. Then the cistern, side-on: four stone islands at two "
+                    "heights, four sluice gates in the walls, and the Mire Mother, an enormous glossy leech with glowing teal spots.",
+                    "Zuerst ein langer, niedriger Überlaufkanal, in dem das Wasser im Takt vom Knöchel bis über den Kopf steigt, dann eine "
+                    "Pumpenhalle, die die Regel des Bosses lehrt: Wasser runter heißt Gefahr offen. Dann die Zisterne, von der Seite: vier "
+                    "Steininseln auf zwei Höhen, vier Schleusentore in den Wänden und die Schlammmutter, ein riesiger glänzender Egel mit "
+                    "leuchtend türkisen Flecken."),
+                   ("Her spots glow before she lunges: roll under the arc and strike her side, or pogo off her back. When she sinks out "
+                    "of reach, shoot the sluice targets with the Blowgun and leave her beached. Beat her, and the first Sun Gate lights.",
+                    "Ihre Flecken glühen, bevor sie zustößt: Roll unter dem Bogen hindurch und triff ihre Seite, oder federe von ihrem "
+                    "Rücken ab. Taucht sie außer Reichweite, schieß mit dem Blasrohr auf die Schleusenziele und lass sie auf dem Trockenen "
+                    "liegen. Besiege sie, und das erste Sonnentor leuchtet auf.")],
                   scene=["F3-SCENE", "D-04"], extra=("ACT-BOSS-MIRE", ("The Mire Mother", "Die Schlammmutter")))],
         },
         set_pieces=[("T1-01", ("Logs and stone islands", "Baumstämme und Steininseln")),
@@ -253,7 +279,7 @@ TIERS = {
                     "Vier Räume, jeder mit eigenem Takt: die Eingangshalle, die Galerie der Augen, der Stachelhof, in dem du außerdem auf Gold stehen musst, und das Jaguarheiligtum. Die Erweckten erstarren, wenn der Tempel hinsieht, du kannst also zu ihnen hingehen. Augenträger erstarren nicht. Diebesaffen sind hinter denselben Idolen her wie du."),
                    ("The Key Orb sits beside the Great Idol, the richest single thing on this tier. You only need the orb. Take the idol as well, and the whole temple wakes, the carrier glows, and the Serpent Door opens onto a fast, shadeless way home over a crumbling bridge.",
                     "Die Schlüsselkugel liegt neben dem Großen Idol, dem Wertvollsten dieser Stufe. Du brauchst nur die Kugel. Nimmst du auch das Idol, erwacht der ganze Tempel, die Trägerin leuchtet, und die Schlangentür öffnet einen schnellen, schattenlosen Heimweg über eine bröckelnde Brücke.")],
-                  scene=["HYB-SCENE1", "HYB-MAP"], map_id="HYB-MAP", extra=("HYB-SCENE4", ("The Serpent Run", "Der Schlangenlauf")))],
+                  scene=["HYB-SCENE1", "T2A-SCENE"], extra=("HYB-SCENE4", ("The Serpent Run", "Der Schlangenlauf")))],
             8: [R("T2E", ("The Collapsing Stair", "Die einstürzende Treppe"), [("Crumbling", "Bröckeln"), ("Boulders", "Felsbrocken")],
                   [("A tall shaft of zig-zag stair flights. The steps crumble behind you while boulders roll down toward you.",
                     "Ein hoher Schacht aus Treppenläufen im Zickzack. Die Stufen bröckeln hinter dir weg, während Felsbrocken auf dich "
@@ -306,7 +332,7 @@ TIERS = {
                      "Auch Gegner fallen, und die Erweckten können nicht lesen. Bekämpf sie auf den Zeichen, die gleich verschwinden. Ein Sturz bringt dich auf das Rad darunter; der Brunnen kostet weit mehr. Von der Morgendämmerung bis zur Finsternis werden die Rufe schneller, bis K'in dir nicht mehr sagt, was fällt, sondern nur noch, was hält."),
                     ("Five glyph drums stand on the rim. Shoot one, and the next call favours that sign. It's the first time you tell the temple what to do. On later runs she stops saying the names, and you have to read them.",
                      "Fünf Glyphentrommeln stehen am Rand. Schieß auf eine, und der nächste Ruf begünstigt dieses Zeichen. Es ist das erste Mal, dass du dem Tempel sagst, was er tun soll. In späteren Durchläufen sagt sie die Namen nicht mehr, und du musst sie lesen.")],
-                   scene=["CF-SCENE1", "T3B-SCENE"], map_id="CF-MAP", extra=("CF-SCENE2", ("Eclipse", "Finsternis")))],
+                   scene=["CF-SCENE1", "T3B-SCENE"], extra=("CF-SCENE2", ("Eclipse", "Finsternis")))],
             11: [R("T3C", ("The Phase Bridges", "Die Phasenbrücken"), [("Phasing", "Phasen"), ("Rhythm", "Rhythmus")],
                   [("Square platforms flicker between solid stone and glowing outlines over a void, in three colour-keyed groups. "
                     "K'in pulses on the beat.",
@@ -523,11 +549,17 @@ def tier_page(n):
                     enemies.append(e)
         fact_rows = [
             (t("Floors", "Ebenen"), f"{first}–{last}" if first != last else str(first)),
-            (t("Rooms", "Räume"), ", ".join(r[0] for r in tier_rooms(tier))),
+            (t("Screens", "Bildschirme"), str(sum(SHAPES[f][1] for f in floors))),
+            (t("Signature rooms", "Prägende Räume"), ", ".join(r[0] for r in tier_rooms(tier))),
             (t("Enemies", "Gegner"), ", ".join(enemies)),
             (t("Rewards", "Belohnungen"), "; ".join(rewards) if rewards else t("Progress toward the summit", "Fortschritt zum Gipfel")),
         ]
         intro = "".join(f"<p>{T(ctx, p)}</p>" for p in tier["intro"])
+        if n != 1:
+            intro += ("<p class='tier-note'>" + t("Below are each floor's signature rooms. In side view, every floor is a hand-built level around them, "
+                                                  "with its Sun Shrines, shortcuts and reward doors; the full floor sheets are drawn one tier at a time.",
+                                                  "Unten stehen die prägenden Räume jeder Ebene. In der Seitenansicht ist jede Ebene ein von Hand gebautes Level um sie herum, "
+                                                  "mit Sonnenschreinen, Abkürzungen und Belohnungstüren; die vollständigen Ebenenblätter entstehen Stufe für Stufe.") + "</p>")
         q = t("“", "„") + T(ctx, tier["line"]) + t("”", "“")
         sections = []
         for i, f in enumerate(floors):
@@ -580,61 +612,87 @@ def tier_page(n):
 
 
 # ------------------------------------------------------------------ Floor 0
+# The 17 screens of the vertical slice (VERTICAL_SLICE_Floor0_Design.md §5.2). Each shows its SCR picture once it is
+# uploaded, and until then the closest existing painting.
+SHELL_SCREENS = [
+    (["SCR-01", "HUB01"], ("The camp at dawn", "Das Lager im Morgengrauen")),
+    (["SCR-02", "A-04"], ("The trail", "Der Pfad")),
+    (["SCR-03", "HUB05"], ("The serpent tunnel", "Der Schlangentunnel")),
+    (["SCR-04", "A-03"], ("Down to the Threshold", "Hinab zur Schwelle")),
+    (["SCR-05", "B-03"], ("The flooded atrium", "Das geflutete Atrium")),
+    (["SCR-06", "F0-01"], ("The Sun Pillar", "Die Sonnensäule")),
+    (["SCR-07", "B-07"], ("The spike corridor", "Der Stachelgang")),
+    (["SCR-08", "B-04"], ("The fire gallery", "Die Feuergalerie")),
+    (["SCR-09", "B-05"], ("The edge of the chasm", "Der Rand der Schlucht")),
+    (["SCR-10", "F0-02"], ("The far side", "Die andere Seite")),
+    (["SCR-11", "B-06"], ("The plate door and the climb", "Die Plattentür und der Aufstieg")),
+    (["SCR-12", "B-08"], ("The orb shrine", "Der Kugelschrein")),
+    (["SCR-13", "B-09"], ("The beam stair", "Die Strahlentreppe")),
+    (["SCR-14", "T3C-SCENE"], ("The beam stair, upper", "Die Strahlentreppe, oben")),
+    (["SCR-15", "B-10"], ("The sword shrine", "Der Schwertschrein")),
+    (["SCR-16", "F0-03"], ("The root curtain and the broken bridge", "Der Wurzelvorhang und die zerbrochene Brücke")),
+    (["SCR-17", "B-11"], ("The portal on the Sun Pillar", "Das Portal auf der Sonnensäule")),
+]
+
+
 def floor_0(ctx):
     u, t = ctx.url, ctx.t
     ix_nicte = u("characters/guardians/ix-nicte.html")
     story = u("story/short-story.html")
     rooms = [
-        ("B-03", ("The entry hall", "Die Eingangshalle"), [("Spawn", "Startpunkt"), ("Movement", "Bewegung")],
-         ("Where you arrive, and where the portal glows far above you. Wide, quiet, and lit by one shaft through the roof, so you can "
-          "learn the camera and the jump with nothing at stake. Here, nothing is counted yet.",
-          "Hier kommst du an, und hier leuchtet das Portal hoch über dir. Weit, still und erhellt von einem einzigen Lichtschacht im Dach, "
-          "damit du Kamera und Sprung lernen kannst, ohne dass etwas auf dem Spiel steht. Hier wird noch nichts gezählt."),
-         (f"On a half-submerged step, <a href='{ix_nicte}'>Ix Nicte</a>, Keeper of the First Step, stands dormant.",
-          f"Auf einer halb überfluteten Stufe ruht <a href='{ix_nicte}'>Ix Nicte</a>, die Hüterin der ersten Stufe.")),
-        ("B-04", ("The fire-vent floor", "Der Boden der Feuerdüsen"), [("Timed hazard", "Getaktete Gefahr"), ("Fixed beat", "Fester Takt")],
-         ("Five stepping stones over a pit of flame. The first hazard, and the one that teaches you to read timing off the floor "
-          "rather than off an enemy.",
-          "Fünf Trittsteine über einer Grube voller Flammen. Die erste Gefahr, und die, die dir beibringt, das Timing am Boden "
-          "abzulesen statt an einem Gegner."), None),
-        ("B-05", ("The chasm", "Die Schlucht"), [("Fall", "Absturz"), ("Platforming", "Plattformen")],
-         ("The floor runs out over a deep chasm. Sliding slabs and floating platforms carry you across, and not one of them waits "
-          "for you. A golden idol glints on a ledge.",
-          "Der Boden endet über einer tiefen Schlucht. Gleitende Steinplatten und schwebende Plattformen tragen dich hinüber, und "
-          "keine davon wartet auf dich. Auf einem Vorsprung glänzt ein goldenes Idol."), None),
-        ("B-06", ("The pressure plate", "Die Druckplatte"), [("Puzzle", "Rätsel"), ("Gate", "Tor")],
-         ("Stand on the carved plate and the door lifts. Step off and it drops. The first room that asks you to think about where "
-          "your weight is.",
-          "Stell dich auf die gemeißelte Platte, und die Tür hebt sich. Steig herunter, und sie fällt. Der erste Raum, in dem du "
-          "darüber nachdenken musst, wo dein Gewicht steht."), None),
-        ("B-07", ("The trap corridor", "Der Fallenkorridor"), [("Layered hazard", "Überlagerte Gefahren"), ("Corridor", "Korridor")],
-         ("Two hazards on different rhythms in one narrow run: retractable spikes in the floor, and a stone serpent spitting fire "
-          "from the end. Getting through once is luck; getting through clean means you have learned both beats.",
-          "Zwei Gefahren in unterschiedlichem Rhythmus in einem engen Gang: einfahrende Stacheln im Boden und eine steinerne "
-          "Schlange, die am Ende Feuer speit. Einmal durchzukommen ist Glück; sauber durchzukommen heißt, dass du beide Takte "
-          "gelernt hast."),
-         (f"This is where you die for the first time, as Kaya does in <a href='{story}'>the short story</a>. It is meant to happen. You wake at the Threshold, Oxlahun pours the tea, and there's a new face on the wall.",
-          f"Hier stirbst du zum ersten Mal, wie Kaya in <a href='{story}'>der Kurzgeschichte</a>. Das soll so sein. Du erwachst an der Schwelle, Oxlahun gießt Tee ein, und an der Wand ist ein neues Gesicht.")),
-        ("B-08", ("The orb shrine", "Der Kugelschrein"), [("Puzzle", "Rätsel"), ("Shrine", "Schrein")],
-         ("Orbs on pedestals, gold, blue and red, around a ring of glyphs, with one correct arrangement. K'in lights the orb that "
-          "is wrong rather than the one that is right, so the solving is still yours.",
-          "Kugeln auf Sockeln, gold, blau und rot, um einen Ring aus Glyphen, mit genau einer richtigen Anordnung. K'in lässt die "
-          "Kugel aufleuchten, die falsch liegt, nicht die richtige, damit das Lösen deine Sache bleibt."), None),
+        ("B-03", ("The flooded atrium", "Das geflutete Atrium"), [("Spawn", "Startpunkt"), ("Jump", "Springen"), ("Swim", "Schwimmen")],
+         ("A spawn platform, stone islands in knee-deep water, and a pool to swim. The portal glows on top of the Sun Pillar far "
+          "above you, so the goal of the floor is in view from its first second. Two things here are out of reach for now: a glyph "
+          "target high over the pool, and a ledge too tall to climb.",
+          "Eine Startplattform, Steininseln in knietiefem Wasser und ein Becken zum Schwimmen. Das Portal leuchtet hoch über dir auf "
+          "der Spitze der Sonnensäule, also ist das Ziel der Ebene von der ersten Sekunde an zu sehen. Zwei Dinge hier sind vorerst "
+          "außer Reichweite: ein Glyphenziel hoch über dem Becken und ein Sims, zu hoch zum Klettern."),
+         (f"On a half-submerged step, <a href='{ix_nicte}'>Ix Nicte</a>, Keeper of the First Step, stands dormant. K'in goes quiet near her.",
+          f"Auf einer halb überfluteten Stufe ruht <a href='{ix_nicte}'>Ix Nicte</a>, die Hüterin der ersten Stufe. In ihrer Nähe wird K'in still.")),
+        ("B-07", ("The spike corridor", "Der Stachelgang"), [("Lens", "Linse"), ("Sun Shrine", "Sonnenschrein")],
+         ("The first Sun Shrine stands at its door. Inside, a low corridor: three spike strips on different beats, and a stone serpent "
+          "spitting fire from the far end. The Lens shows which plates are safe.",
+          "Der erste Sonnenschrein steht an seiner Tür. Drinnen ein niedriger Gang: drei Stachelleisten in verschiedenen Takten und "
+          "eine steinerne Schlange, die vom anderen Ende Feuer speit. Die Linse zeigt, welche Platten sicher sind."),
+         (f"The last plate kills you, as it kills Kaya in <a href='{story}'>the short story</a>. It is meant to happen. You wake at the Threshold, Oxlahun pours the tea, and there's a new face on the wall. When you come back, the temple has moved: the end door has dropped to a low slot, and you roll through it.",
+          f"Die letzte Platte tötet dich, wie sie Kaya in <a href='{story}'>der Kurzgeschichte</a> tötet. Das soll so sein. Du erwachst an der Schwelle, Oxlahun gießt Tee ein, und an der Wand ist ein neues Gesicht. Wenn du zurückkommst, hat sich der Tempel bewegt: Die Tür am Ende ist zu einem niedrigen Schlitz geworden, und du rollst hindurch.")),
+        ("B-04", ("The fire gallery", "Die Feuergalerie"), [("Timing", "Timing"), ("Push", "Schieben")],
+         ("Five stepping stones over a pit of flame, with vents firing on a two-second beat. One block, one rule: push it into a "
+          "vent's mouth, and that vent stays shut for good.",
+          "Fünf Trittsteine über einer Grube voller Flammen, mit Düsen, die im Zwei-Sekunden-Takt feuern. Ein Block, eine Regel: "
+          "Schieb ihn in die Öffnung einer Düse, und diese Düse bleibt für immer zu."), None),
+        ("B-05", ("The chasm", "Die Schlucht"), [("Moving platforms", "Bewegte Plattformen"), ("Finds", "Funde")],
+         ("A still slab, a sliding one, a lifting one and a ferry, over a drop into the dark. A golden idol waits on a wall ledge. "
+          "A fall costs a little health and puts you back on the platform you left.",
+          "Eine ruhende Platte, eine gleitende, eine steigende und eine Fähre, über einem Sturz ins Dunkel. Auf einem Wandsims "
+          "wartet ein goldenes Idol. Ein Sturz kostet etwas Gesundheit und setzt dich auf die Plattform zurück, von der du kamst."), None),
+        ("B-06", ("The plate door and the climb", "Die Plattentür und der Aufstieg"), [("Carry", "Tragen"), ("Ledge grab", "Simsgriff")],
+         ("Carry a stone block onto the plate, and the door holds. A second Sun Shrine. Behind the door a shaft climbs four storeys "
+          "on ledges, and a ladder at the top can be kicked down: the floor's first shortcut.",
+          "Trag einen Steinblock auf die Platte, und die Tür bleibt offen. Ein zweiter Sonnenschrein. Hinter der Tür steigt ein "
+          "Schacht vier Stockwerke über Simse hinauf, und oben lässt sich eine Leiter hinuntertreten: die erste Abkürzung der Ebene."), None),
+        ("B-08", ("The orb shrine", "Der Kugelschrein"), [("Puzzle", "Rätsel")],
+         ("Three pedestals, gold, blue and red. Sun poured into water makes growth; fire is the decoy. Growth in the socket sends a "
+          "vine across the floor that bursts open the way on.",
+          "Drei Sockel, gold, blau und rot. Sonne in Wasser gegossen ergibt Wachstum; Feuer ist die Falle. Wachstum in der Fassung "
+          "schickt eine Ranke über den Boden, die den Weg weiter aufsprengt."), None),
         ("B-09", ("The beam switchback", "Die Strahlen-Serpentine"), [("Toggle hazard", "Schaltende Gefahr"), ("Timing", "Timing")],
-         ("Blue-white energy beams cross a switchback ramp and switch on a toggle. Nothing is dodged here. It is walked, on the "
-          "right half of the second.",
-          "Blauweiße Energiestrahlen kreuzen eine Serpentinenrampe und schalten im Takt an und aus. Hier wird nichts ausgewichen. "
-          "Hier wird gegangen, in der richtigen Hälfte der Sekunde."), None),
-        ("B-10", ("The sword shrine", "Der Schwertschrein"), [("Combat", "Kampf"), ("Reward", "Belohnung")],
-         ("You lift the obsidian macuahuitl off its pedestal, and the first guardian stands up. First real combat, on a high "
-          "landing that overlooks the atrium: the combo, the dodge, and reading a sigil.",
-          "Du hebst das Obsidian-Macuahuitl von seinem Sockel, und der erste Wächter erhebt sich. Der erste echte Kampf, "
-          "auf einem hohen Absatz über dem Atrium: die Kombo, das Ausweichen und das Lesen eines Siegels."), None),
-        ("B-11", ("The bridge to the portal", "Die Brücke zum Portal"), [("Exit", "Ausgang"), ("Next floor", "Nächste Ebene")],
-         ("A narrow bridge crosses high over the atrium to the round portal on top of the Sun Pillar. Step through and the Shell "
-          "seals behind you, sword in hand.",
-          "Eine schmale Brücke führt hoch über das Atrium zum runden Portal auf der Spitze der Sonnensäule. Tritt hindurch, und "
-          "The Shell versiegelt sich hinter dir, das Schwert in der Hand."), None),
+         ("Two ramps climb back to the left, each crossed by a blue-white beam: one a plate turns off, one on a two-second cycle. "
+          "Nothing is dodged here. It is walked, on the right half of the beat.",
+          "Zwei Rampen steigen nach links zurück, jede von einem blauweißen Strahl gekreuzt: einen schaltet eine Platte ab, einer läuft "
+          "im Zwei-Sekunden-Takt. Hier wird nichts ausgewichen. Hier wird gegangen, in der richtigen Hälfte des Takts."), None),
+        ("B-10", ("The sword shrine", "Der Schwertschrein"), [("Combat", "Kampf"), ("Parry", "Parieren")],
+         ("A high landing over the atrium. Kaya lifts the obsidian macuahuitl, and the first Risen Guardian steps out of its niche: "
+          "the combo, the heavy strike, the roll, and the parry when its mark burns gold. Then two more Risen and a Novice.",
+          "Ein hoher Absatz über dem Atrium. Kaya hebt das Obsidian-Macuahuitl, und der erste Erweckte Wächter tritt aus seiner "
+          "Nische: die Kombo, der schwere Schlag, die Rolle und die Parade, wenn sein Zeichen golden glüht. Dann zwei weitere Erweckte und ein Novize."), None),
+        ("B-11", ("The bridge to the portal", "Die Brücke zum Portal"), [("Cut", "Schneiden"), ("Pogo", "Abfedern")],
+         ("Two hits cut the root curtain: the first lock the new blade opens. A bridge runs back over the atrium, broken in the middle, "
+          "where spike urns stand on posts. Strike down on them and they throw you on. On the Sun Pillar: the portal, a third shrine, and "
+          "a vine ladder down to the start.",
+          "Zwei Hiebe durchtrennen den Wurzelvorhang: das erste Schloss, das die neue Klinge öffnet. Eine Brücke führt zurück über das "
+          "Atrium, in der Mitte zerbrochen, wo Stachelurnen auf Pfosten stehen. Schlag von oben auf sie, und sie werfen dich weiter. Auf "
+          "der Sonnensäule: das Portal, ein dritter Schrein und eine Rankenleiter hinunter zum Anfang."), None),
     ]
     stations = []
     for n, (img, name, tag_pairs, text, note) in enumerate(rooms, 1):
@@ -644,11 +702,12 @@ def floor_0(ctx):
             f'<div class="station-media">{ctx.figure(img, alt=t(*name))}</div>'
             f'<div class="station-text"><h3>{t(*name)}</h3>{tags(ctx, tag_pairs)}<p>{t(*text)}</p>{note_html}</div></li>')
     fact_rows = [
-        (t("Place in the climb", "Platz im Aufstieg"), t("The first floor, below Tier I", "Die erste Ebene, unter Stufe I")),
-        (t("Rooms", "Räume"), t("Nine spaces on one route", "Neun Räume auf einer Route")),
-        (t("Teaches", "Lehrt"), t("Every core verb once: move, time, think, fight", "Jedes Grundverb genau einmal: laufen, timen, denken, kämpfen")),
-        (t("Enemies", "Gegner"), t("Your first Risen Guardians", "Deine ersten Erweckten Wächter")),
-        (t("Reward", "Belohnung"), t("The obsidian macuahuitl, and the Threshold opens", "Das Obsidian-Macuahuitl, und die Schwelle öffnet sich")),
+        (t("Place in the climb", "Platz im Aufstieg"), t("The first level, below Tier I", "Die erste Ebene, unter Stufe I")),
+        (t("Size", "Größe"), f'{shape_glyph(ctx, "H>V")} ' + t("17 screens: 4 outside, 13 inside", "17 Bildschirme: 4 draußen, 13 drinnen")),
+        (t("Teaches", "Lehrt"), t("Every base move in a safe order: run, jump, ledge grab, swim, push, carry, roll, parry, pogo",
+                                  "Jede Grundbewegung in sicherer Reihenfolge: laufen, springen, Simsgriff, schwimmen, schieben, tragen, rollen, parieren, abfedern")),
+        (t("Enemies", "Gegner"), t("Your first Risen Guardian, and a Novice", "Dein erster Erweckter Wächter und ein Novize")),
+        (t("Reward", "Belohnung"), t("The obsidian macuahuitl and the Lens", "Das Obsidian-Macuahuitl und die Linse")),
         (t("Also", "Außerdem"), t("Your first death, on purpose", "Dein erster Tod, mit Absicht")),
     ]
     set_pieces = [
@@ -660,35 +719,42 @@ def floor_0(ctx):
 <section class="wrap section narrow-top">
   <div class="intro">
     <div class="prose">
-      <p class="big">{t("The Shell was designed as one object before a single room was painted. The cutaway, the plan and the codex "
-                        "page all describe the same nine spaces and the single route through them.",
-                        "The Shell wurde als ein einziges Objekt entworfen, bevor auch nur ein Raum gemalt wurde. Schnitt, Grundriss "
-                        "und Codexseite beschreiben dieselben neun Räume und die eine Route hindurch.")}</p>
-      <p>{t("The route spirals upward from a flooded atrium to a portal on top of the Sun Pillar, which stands in that same atrium. "
-            "It is the tutorial: it teaches every core verb once, and it kills you once, so that you learn what comes after.",
-            "Die Route windet sich von einem gefluteten Atrium nach oben bis zu einem Portal auf der Spitze der Sonnensäule, die "
-            "in genau diesem Atrium steht. Sie ist das Tutorial: Sie lehrt jedes Grundverb genau einmal, und sie tötet dich einmal, damit du lernst, was danach kommt.")}</p>
+      <p class="big">{t("The Shell is the first level, and the vertical slice: the half hour that has to prove the whole game. It is played "
+                        "side-on, in two rows of screens.",
+                        "The Shell ist die erste Ebene und der Vertical Slice: die halbe Stunde, die das ganze Spiel beweisen muss. Sie wird "
+                        "von der Seite gespielt, in zwei Reihen von Bildschirmen.")}</p>
+      <p>{t("The lower row runs right, from the flooded atrium through the spike corridor, the fire gallery and the chasm. A shaft "
+            "climbs. The upper row runs back left, to a bridge high over the atrium and the portal on top of the Sun Pillar, which "
+            "glowed above you from the first second. It teaches every base move once, shows you two locks you can't open yet, and "
+            "kills you once, on purpose, so that the first thing you really learn is the Return.",
+            "Die untere Reihe läuft nach rechts, vom gefluteten Atrium durch den Stachelgang, die Feuergalerie und die Schlucht. Ein "
+            "Schacht steigt auf. Die obere Reihe läuft zurück nach links, zu einer Brücke hoch über dem Atrium und dem Portal auf der "
+            "Spitze der Sonnensäule, das von der ersten Sekunde an über dir leuchtete. Sie lehrt jede Grundbewegung einmal, zeigt dir zwei "
+            "Schlösser, die du noch nicht öffnen kannst, und tötet dich einmal, mit Absicht, damit das Erste, was du wirklich lernst, die Rückkehr ist.")}</p>
     </div>
     {facts(fact_rows)}
   </div>
 </section>
 
-<section class="band"><div class="wrap section">
-  <h2>{t("One floor, three drawings", "Eine Ebene, drei Zeichnungen")}</h2>
-  <div class="drawings-3">
-    {ctx.figure("B-01", t("The floor from above", "Die Ebene von oben"))}
-    {ctx.figure("B-02", t("Isometric cutaway: the route spirals upward", "Isometrischer Schnitt: Die Route windet sich nach oben"))}
-    {ctx.figure("CX-F0", t("The same floor as a codex page", "Dieselbe Ebene als Codexseite"))}
+<section class="band strip-band"><div class="wrap section">
+  <div class="section-head">
+    <h2>{t("Seventeen screens, camp to portal", "Siebzehn Bildschirme, vom Lager zum Portal")}</h2>
   </div>
-</div></section>
+  <p class="lede-sm">{t("Every screen is one frame of the game camera, 30.72 by 17.28 metres of the temple, in the order you play them. "
+                        "The first four are outside: the camp, the trail and the serpent tunnel down to the Threshold.",
+                        "Jeder Bildschirm ist ein Bild der Spielkamera, 30,72 mal 17,28 Meter Tempel, in der Reihenfolge, in der du sie spielst. "
+                        "Die ersten vier liegen draußen: das Lager, der Pfad und der Schlangentunnel hinab zur Schwelle.")}</p>
+</div>
+{run_strip(ctx, SHELL_SCREENS, t("The Shell, screen by screen", "The Shell, Bildschirm für Bildschirm"))}
+</section>
 
 <section class="wrap section">
-  <h2>{t("Nine rooms, one way up", "Neun Räume, ein Weg nach oben")}</h2>
+  <h2>{t("Nine rooms, two rows, one way up", "Neun Räume, zwei Reihen, ein Weg nach oben")}</h2>
   <p class="lede-sm">{t("In the order you meet them, from the flooded atrium to the portal on the Sun Pillar.",
                         "In der Reihenfolge, in der du sie betrittst, vom gefluteten Atrium bis zum Portal auf der Sonnensäule.")}</p>
   <ol class="route" role="list">{"".join(stations)}</ol>
-  <p class="floor-end">{t(f"Then home to the Threshold. Once Oxlahun's table and the Memory Wheel are open, the middle portal leads up into <a href='{u('climb/tier-1.html')}'>the Flooded Foundations</a>.",
-                           f"Dann nach Hause zur Schwelle. Sobald Oxlahuns Tisch und das Erinnerungsrad offen sind, führt das mittlere Portal hinauf in <a href='{u('climb/tier-1.html')}'>die überfluteten Fundamente</a>.")}</p>
+  <p class="floor-end">{t(f"Then home to the Threshold. Oxlahun's table opens, the Memory Wheel lights, and the middle portal leads up into <a href='{u('climb/tier-1.html')}'>the Flooded Foundations</a>.",
+                           f"Dann nach Hause zur Schwelle. Oxlahuns Tisch öffnet sich, das Erinnerungsrad leuchtet auf, und das mittlere Portal führt hinauf in <a href='{u('climb/tier-1.html')}'>die überfluteten Fundamente</a>.")}</p>
 </section>
 
 <section class="band"><div class="wrap section">
@@ -723,25 +789,44 @@ def pyramid(ctx):
     rows = []
     for n in range(0, LAST_FLOOR + 1):
         name, _, mech, _, reward = FLOORS[n]
+        shape, screens = SHAPES[n]
         tier = 0 if n == 0 else 7 if n == LAST_FLOOR else next(k for k, v in TIERS.items() if n in v["floors"])
         path = "climb/floor-0.html" if n == 0 else "climb/sky-altar.html" if n == LAST_FLOOR else f"climb/tier-{tier}.html#floor-{n}"
         rows.append(f"<tr><td class='num'>{n}</td><th><a href='{u(path)}'>{T(ctx, name)}</a></th>"
+                    f"<td class='shape-cell'>{shape_glyph(ctx, shape)}<span class='screens'>{screens}</span></td>"
                     f"<td>{T(ctx, mech)}</td><td>{T(ctx, reward) if reward else '–'}</td></tr>")
+    anatomy = [
+        (t("Entry Shrine", "Eingangsschrein"), t("Lit when you arrive from the stair below.", "Leuchtet auf, wenn du von der Treppe darunter ankommst.")),
+        (t("The main path", "Der Hauptweg"), t("Three to five beats around one new idea: teach it, develop it, twist it, conclude it. A landmark you can see from far away leads you on.",
+                                               "Drei bis fünf Takte um eine neue Idee: lehren, entwickeln, verdrehen, abschließen. Ein Wahrzeichen, das du von weit her siehst, führt dich.")),
+        (t("Pockets and secrets", "Taschen und Geheimnisse"), t("Reward doors rerolled each run, pockets locked until a later ability, and at least one cracked wall or Lens-only crack.",
+                                                                "Belohnungstüren, in jedem Durchlauf neu gewürfelt, Taschen, die erst eine spätere Fähigkeit öffnet, und mindestens eine rissige Wand oder ein Riss, den nur die Linse zeigt.")),
+        (t("Mid Shrine and shortcut", "Mittlerer Schrein und Abkürzung"), t("A Sun Shrine halfway, and a shortcut opened from the far side that stays open for good.",
+                                                                           "Ein Sonnenschrein auf halbem Weg und eine Abkürzung, von der anderen Seite geöffnet, die für immer offen bleibt.")),
+        (t("Signature rooms and the boss", "Prägende Räume und der Boss"), t("The floor's authored rooms, then a shrine right before the boss door: back in the fight in seconds.",
+                                                                              "Die von Hand gebauten Räume der Ebene, dann ein Schrein direkt vor der Bosstür: in Sekunden zurück im Kampf.")),
+        (t("Portal Chamber", "Portalkammer"), t("Socket the Key Orb, take a rubbing, ring the bell, then climb on, send your Finds down, or go home.",
+                                               "Schlüsselkugel einsetzen, Abrieb nehmen, Glocke läuten, dann weiter aufsteigen, die Funde hinunterschicken oder nach Hause gehen.")),
+    ]
+    anatomy_html = '<ol class="loops loops-grid">' + "".join(f'<li><span class="loop-label">{k}</span><p>{v}</p></li>' for k, v in anatomy) + "</ol>"
     return f"""
 <section class="wrap section narrow-top">
   <div class="intro">
     <div class="prose">
-      <p class="big">{t("One pyramid, climbed from the inside: the Shell, then twenty-five floors in six tiers, then the open summit. Thirteen floors below the Sun Well, thirteen above it.",
-                        "Eine Pyramide, von innen erklommen: The Shell, dann fünfundzwanzig Ebenen in sechs Stufen, dann der offene Gipfel. Dreizehn Ebenen unter dem Sonnenbrunnen, dreizehn darüber.")}</p>
-      <p>{t("Every floor runs the same way. Fights in encounter chambers, chosen at carved gates, around the floor's authored rooms; then the Key Orb; then the Portal Chamber, where K'in speaks one line, "
-            "a fragment of the mural lights, and you decide whether to climb on or go home. The chambers shuffle every run. The authored rooms stay, but the temple reseeds their answers.",
-            "Jede Ebene läuft gleich ab. Kämpfe in Begegnungskammern, gewählt an gemeißelten Toren, rund um die von Hand gebauten Räume der Ebene; dann die Schlüsselkugel; dann die Portalkammer, wo K'in einen Satz spricht, "
-            "ein Fragment des Wandbilds aufleuchtet und du entscheidest, ob du weiter aufsteigst oder nach Hause gehst. Die Kammern wechseln mit jedem Durchlauf. Die gebauten Räume bleiben, aber der Tempel mischt ihre Lösungen neu.")}</p>
-      <p>{t("A run lasts 25 to 45 minutes. Beat a tier's boss and its Sun Gate lights, so your next run can start there.",
-            "Ein Durchlauf dauert 25 bis 45 Minuten. Besiege den Boss einer Stufe, und ihr Sonnentor leuchtet auf, sodass dein nächster Durchlauf dort beginnen kann.")}</p>
+      <p class="big">{t("One pyramid, climbed from the inside and seen from the side: the Shell, then twenty-five floors in six tiers, then the open summit. Thirteen floors below the Sun Well, thirteen above it.",
+                        "Eine Pyramide, von innen erklommen und von der Seite gesehen: The Shell, dann fünfundzwanzig Ebenen in sechs Stufen, dann der offene Gipfel. Dreizehn Ebenen unter dem Sonnenbrunnen, dreizehn darüber.")}</p>
+      <p>{t("Every floor is a hand-built side-scrolling level of six to twenty-eight screens, and it stays the same from run to run, so you can learn it. "
+            "What the temple remembers stays changed: shrines you lit, shortcuts you opened, water you drained. What it resets is what you fight for: "
+            "the enemies, the Finds, and the glyphs on the reward doors.",
+            "Jede Ebene ist ein von Hand gebautes Side-Scrolling-Level aus sechs bis achtundzwanzig Bildschirmen, und sie bleibt von Durchlauf zu Durchlauf gleich, damit du sie lernen kannst. "
+            "Was der Tempel sich merkt, bleibt verändert: Schreine, die du entzündet hast, Abkürzungen, die du geöffnet hast, Wasser, das du abgelassen hast. Was er zurücksetzt, ist das, worum du kämpfst: "
+            "die Gegner, die Funde und die Glyphen an den Belohnungstüren.")}</p>
+      <p>{t("Each tier has its own direction. Tier I climbs flooded shafts, Tier II runs along trap galleries, and Tier IV sends you four ways at once. Beat a tier's boss and its Sun Gate lights, so your next run can start there.",
+            "Jede Stufe hat ihre eigene Richtung. Stufe I steigt durch geflutete Schächte, Stufe II läuft durch Fallengalerien, und Stufe IV schickt dich in vier Richtungen zugleich. Besiege den Boss einer Stufe, und ihr Sonnentor leuchtet auf, sodass dein nächster Durchlauf dort beginnen kann.")}</p>
     </div>
     {facts([(t("Floors", "Ebenen"), t("27: the Shell, 25 floors in six tiers, the summit", "27: The Shell, 25 Ebenen in sechs Stufen, der Gipfel")),
-            (t("Per floor", "Pro Ebene"), t("Encounter chambers, authored rooms, the Key Orb, the Portal Chamber", "Begegnungskammern, gebaute Räume, Schlüsselkugel, Portalkammer")),
+            (t("Screens", "Bildschirme"), t("About 505, plus 72 one-screen rooms in the Builders' Ways", "Rund 505, dazu 72 Ein-Bildschirm-Räume in den Wegen der Erbauer")),
+            (t("Per floor", "Pro Ebene"), t("Sun Shrines, a shortcut, reward doors, locked pockets, a secret, the Portal Chamber", "Sonnenschreine, eine Abkürzung, Belohnungstüren, verschlossene Taschen, ein Geheimnis, die Portalkammer")),
             (t("Bosses", "Bosse"), t("Mire Mother, Chak Tun, Gearwarden, Fourfold Echo, Jaguar Priest, Priest's Lieutenant, Hollow High Priest, and four sanctum guardians",
                                      "Schlammmutter, Chak Tun, Zahnradwächter, Vierfaches Echo, Jaguarpriester, Leutnant des Priesters, Hohler Hohepriester und vier Hüter der Heiligtümer")),
             (t("Secrets", "Geheimnisse"), t(f"Six <a href='{u('climb/builders-ways.html')}'>Builders' Ways</a> hidden in the walls", f"Sechs <a href='{u('climb/builders-ways.html')}'>Wege der Erbauer</a>, verborgen in den Wänden"))])}
@@ -754,17 +839,26 @@ def pyramid(ctx):
 </div></section>
 
 <section class="wrap section">
-  <div class="pair pair-wide">
-    {ctx.figure("CX-00", t("The codex map found inside the pyramid. In the game its pages are collectible maps and loading screens.",
-                         "Die Codexkarte, die in der Pyramide gefunden wird. Im Spiel sind ihre Seiten sammelbare Karten und Ladebildschirme."))}
-    {ctx.figure("HOME-CLIMB", t("The pyramid in cutaway, floor by floor", "Die Pyramide im Schnitt, Ebene für Ebene"))}
+  <div class="split">
+    <div class="split-media">{ctx.figure("HOME-CLIMB", t("The pyramid in cutaway, floor by floor", "Die Pyramide im Schnitt, Ebene für Ebene"))}</div>
+    <div class="split-text">
+      <p class="kicker">{t("Every floor", "Jede Ebene")}</p>
+      <h2>{t("One template, twenty-seven levels", "Eine Vorlage, siebenundzwanzig Level")}</h2>
+      <p>{t("Every floor is built from the same parts, in the same order, so a new floor is always readable even when everything on it is new. "
+            "What changes from floor to floor is the one new idea at its heart, and the direction it runs in.",
+            "Jede Ebene ist aus denselben Teilen gebaut, in derselben Reihenfolge, damit eine neue Ebene immer lesbar bleibt, auch wenn alles darauf neu ist. "
+            "Was sich von Ebene zu Ebene ändert, ist die eine neue Idee in ihrem Kern und die Richtung, in die sie läuft.")}</p>
+    </div>
   </div>
+  <div class="anatomy">{anatomy_html}</div>
 </section>
 
 <section class="band"><div class="wrap section">
   <h2>{t("The campaign, floor by floor", "Die Kampagne, Ebene für Ebene")}</h2>
+  <p class="lede-sm">{t("The arrows show which way each level runs in side view; the number is its size in screens.",
+                        "Die Pfeile zeigen, in welche Richtung jedes Level in der Seitenansicht läuft; die Zahl ist seine Größe in Bildschirmen.")}</p>
   <div class="table-wrap"><table class="orb-table campaign">
-    <thead><tr><th>{t("Floor", "Ebene")}</th><th>{t("Name", "Name")}</th><th>{t("New mechanic", "Neue Mechanik")}</th><th>{t("Reward", "Belohnung")}</th></tr></thead>
+    <thead><tr><th>{t("Floor", "Ebene")}</th><th>{t("Name", "Name")}</th><th>{t("Shape", "Form")}</th><th>{t("The new idea", "Die neue Idee")}</th><th>{t("Reward", "Belohnung")}</th></tr></thead>
     <tbody>{"".join(rows)}</tbody>
   </table></div>
 </div></section>
@@ -779,8 +873,8 @@ def threshold_hub(ctx):
          ("The round altar is a calendar wheel. K'in floats above it, greets you after every return with a line that changes as the climb goes on, and tends your permanent talents.",
           "Der runde Altar ist ein Kalenderrad. K'in schwebt darüber, begrüßt dich nach jeder Rückkehr mit einem Satz, der sich im Lauf des Aufstiegs verändert, und pflegt deine dauerhaften Talente.")),
         ("HUB12", ("Six Sun Gates", "Sechs Sonnentore"),
-         ("Three on each side wall, one per tier. Beat a tier's boss and its gate lights, so a later run can start higher up, with a head start to match.",
-          "Drei an jeder Seitenwand, eines pro Stufe. Besiege den Boss einer Stufe, und ihr Tor leuchtet auf, sodass ein späterer Durchlauf weiter oben beginnen kann, mit passendem Vorsprung.")),
+         ("In the back wall, one per tier. Beat a tier's boss and its gate lights, so a later run can start higher up, with a head start to match. Any lit Sun Shrine on a cleared floor can be a start point too.",
+          "In der Rückwand, eines pro Stufe. Besiege den Boss einer Stufe, und ihr Tor leuchtet auf, sodass ein späterer Durchlauf weiter oben beginnen kann, mit passendem Vorsprung. Auch jeder entzündete Sonnenschrein auf einer geschafften Ebene kann ein Startpunkt sein.")),
         ("HUB10", ("The offering table", "Der Opfertisch"),
          ("Oxlahun's table: sell your Finds, take a bounty, buy weapons and stock, pawn your gear, drink the tea, and collect a carving of whatever just killed you.",
           "Oxlahuns Tisch: Funde verkaufen, Aufträge annehmen, Waffen und Vorräte kaufen, Ausrüstung verpfänden, Tee trinken und eine Schnitzerei von dem abholen, was dich gerade getötet hat.")),
@@ -814,8 +908,6 @@ def threshold_hub(ctx):
     <p>{t(f"This page is about how the hub plays. For its history and the clues hidden in it, see <a href='{u('world/threshold.html')}'>World: The Threshold</a>.",
           f"Diese Seite zeigt, wie der Hub funktioniert. Seine Geschichte und die darin versteckten Hinweise findest du unter <a href='{u('world/threshold.html')}'>Welt: Die Schwelle</a>.")}</p>
   </div>
-  {pair(ctx, "A-02", t("The hall and the forecourt from above", "Halle und Vorplatz von oben"),
-        "CX-HUB", t("The same hall as a codex page", "Dieselbe Halle als Codexseite"))}
 </section>
 
 <section class="band"><div class="wrap section">
@@ -867,29 +959,34 @@ def shared_rooms(ctx):
                 "Jede Ebene endet hier. Du setzt die Schlüsselkugel in die Schale aus gemeißelten Händen, ein Fragment des Wandbilds leuchtet auf, und K'in spricht einen Satz. Nimm einen Abrieb des Fragments. Läute die Messingglocke, und ein Tablett gleitet aus der Wand, mit Oxlahuns Stimme dahinter."),
                ("Then decide. Climb the three-step dais through the great round Portal Door and keep your Finds at risk. Pay to send them down the offering chute. Or take the small blue return portal and walk home alive.",
                 "Dann entscheide. Steig das dreistufige Podest hinauf durch die große runde Portaltür und lass deine Funde im Risiko. Zahl, um sie den Opferschacht hinunterzuschicken. Oder nimm das kleine blaue Rückkehrportal und geh lebend nach Hause.")],
-              "C-02", "C-01", "CX-PC01", tag_pairs=[("End of every floor", "Ende jeder Ebene")])
-    sr = room(ctx, "SR", ("The Spirit Shrine", "Der Geisterschrein"),
-              [("A calm safe room, and one of the only places you can heal: a candlelit altar, a basin of glowing water that restores some of your health once per visit, and three "
-                "relics to choose a blessing from, a gold sun amulet, a green jade necklace and a blue shell charm.",
-                "Ein ruhiger, sicherer Raum und einer der wenigen Orte, an denen du heilen kannst: ein Altar im Kerzenschein, ein Becken mit "
-                "leuchtendem Wasser, das einmal pro Besuch einen Teil deiner Gesundheit wiederherstellt, und drei Relikte, aus denen du einen Segen wählst: ein goldenes Sonnenamulett, eine grüne "
-                "Jadekette und ein blauer Muschelanhänger.")],
-              "C-04", "C-03", "CX-SR01", tag_pairs=[("A gate you can choose", "Ein Tor zur Wahl"), ("Safe room", "Sicherer Raum")], flip=True)
+              "C-02", tag_pairs=[("End of every floor", "Ende jeder Ebene")])
+    sr = room(ctx, "SR", ("The Sun Shrine", "Der Sonnenschrein"),
+              [("The checkpoint. A stone sun disc on a plinth that glows green-gold once it's lit. Resting at it refills Oxlahun's tea gourd, "
+                "two sips that each heal a good part of your health, and saves your place. It also wakes the floor's ordinary enemies again, "
+                "so rest or press on is a real choice.",
+                "Der Kontrollpunkt. Eine steinerne Sonnenscheibe auf einem Sockel, die grüngolden leuchtet, sobald sie entzündet ist. Wer an "
+                "ihr rastet, füllt Oxlahuns Teekürbis wieder auf, zwei Schlucke, die jeweils einen guten Teil der Gesundheit heilen, und sichert "
+                "seinen Platz. Sie weckt aber auch die gewöhnlichen Gegner der Ebene wieder, also ist Rasten oder Weitergehen eine echte Wahl."),
+               ("Every floor has one or more, and one stands right before every boss door. A lit shrine on a cleared floor is also a start "
+                "point from the Threshold: the way back to the pockets you couldn't open the first time.",
+                "Jede Ebene hat einen oder mehrere, und einer steht direkt vor jeder Bosstür. Ein entzündeter Schrein auf einer geschafften "
+                "Ebene ist außerdem ein Startpunkt von der Schwelle aus: der Weg zurück zu den Taschen, die du beim ersten Mal nicht öffnen konntest.")],
+              ctx.pick("SCR-06", "C-04"), tag_pairs=[("Every floor", "Jede Ebene"), ("Checkpoint", "Kontrollpunkt")], flip=True)
     return f"""
 <section class="wrap section narrow-top">
   <div class="prose">
-    <p class="big">{t("Two rooms appear again and again on the way up. They are where the climb pauses: to bank what you carry, to "
+    <p class="big">{t("Two rooms appear on every floor of the climb. They are where it pauses: to rest, to bank what you carry, to "
                       "hear K'in, and to breathe.",
-                      "Zwei Räume tauchen auf dem Weg nach oben immer wieder auf. In ihnen hält der Aufstieg inne: um zu sichern, "
+                      "Zwei Räume tauchen auf jeder Ebene des Aufstiegs auf. In ihnen hält er inne: um zu rasten, um zu sichern, "
                       "was du trägst, um K'in zu hören und um durchzuatmen.")}</p>
   </div>
 </section>
 <section class="band" id="portal-chamber"><div class="wrap section">{pc}</div></section>
-<section class="wrap section" id="spirit-shrine">{sr}</section>
+<section class="wrap section" id="sun-shrine">{sr}</section>
 <section class="band"><div class="wrap section">
   <h2>{t("Set pieces", "Setpieces")}</h2>
   {catalog(ctx, [("PC01", ("Portal Chamber set", "Set der Portalkammer"), None),
-                 ("SR01", ("Spirit Shrine set", "Set des Geisterschreins"), None)], cls="catalog-3")}
+                 ("SR01", ("Shrine set", "Set des Schreins"), None)], cls="catalog-3")}
 </div></section>
 """
 
@@ -906,10 +1003,10 @@ def sky_altar(ctx):
   <div class="intro">
     <div class="prose">
       <blockquote class="kin-line"><p>{q}</p><cite>K'in</cite></blockquote>
-      <p>{t("The summit is the only floor under the open sky: a circular glyph arena with four broken columns, four great braziers in "
+      <p>{t("The summit is the only floor under the open sky, a single arena screen seen side-on: a glyph-carved platform with four broken columns, four great braziers in "
             "the corners, red for fire, blue for water, white for wind and green for earth, and the small summit temple with the dark "
             "Sun Portal.",
-            "Der Gipfel ist die einzige Ebene unter freiem Himmel: eine runde Glyphenarena mit vier zerbrochenen Säulen, vier großen "
+            "Der Gipfel ist die einzige Ebene unter freiem Himmel, ein einziger Arena-Bildschirm von der Seite: eine glyphenbedeckte Plattform mit vier zerbrochenen Säulen, vier großen "
             "Feuerbecken in den Ecken, rot für Feuer, blau für Wasser, weiß für Wind und grün für Erde, und der kleine Gipfeltempel "
             "mit dem dunklen Sonnenportal.")}</p>
     </div>
@@ -917,7 +1014,6 @@ def sky_altar(ctx):
             (t("Ending", "Ende"), t("Restore the cycle, or break it", "Den Kreislauf wiederherstellen oder durchbrechen")),
             (t("Afterwards", "Danach"), t("The temple resets, and the Trials open", "Der Tempel beginnt von vorn, und die Prüfungen öffnen sich"))])}
   </div>
-  {pair(ctx, "E-01", t("The plateau from above", "Das Plateau von oben"), "CX-SKY", t("The summit as a codex page", "Der Gipfel als Codexseite"))}
 </section>
 
 <section class="band"><div class="wrap section">
@@ -988,8 +1084,8 @@ def builders_ways(ctx):
     <div class="prose">
       <p class="big">{t("The builders never used the grand stair: they had their own way down, hidden inside the walls, and they trapped every inch of it.",
                         "Die Erbauer benutzten nie die große Treppe: Sie hatten ihren eigenen Weg nach unten, versteckt in den Wänden, und jeden Zentimeter davon mit Fallen gesichert.")}</p>
-      <p>{t("Six cracks in the temple's walls, each one visible only through the Lens. Behind them, the game changes shape: a side-on, one-screen-at-a-time trap platformer, running down through the pyramid to a hidden Sun Door that opens onto the Threshold.",
-            "Sechs Risse in den Wänden des Tempels, jeder nur durch die Linse zu sehen. Dahinter ändert das Spiel seine Gestalt: ein Fallen-Plattformer in Seitenansicht, Bildschirm für Bildschirm, der durch die Pyramide nach unten zu einer verborgenen Sonnentür führt, die sich zur Schwelle öffnet.")}</p>
+      <p>{t("Six cracks in the temple's walls, each one visible only through the Lens. Behind them, the rules get harder: one fixed screen at a time, one touch and you're dust, five lives for the whole Way. They use the same moves as the rest of the game at their very limit, and they run down through the pyramid to a hidden Sun Door that opens onto the Threshold.",
+            "Sechs Risse in den Wänden des Tempels, jeder nur durch die Linse zu sehen. Dahinter werden die Regeln härter: jeweils ein fester Bildschirm, eine Berührung, und du bist Staub, fünf Leben für den ganzen Weg. Sie nutzen dieselben Bewegungen wie der Rest des Spiels an ihrer äußersten Grenze und führen durch die Pyramide nach unten zu einer verborgenen Sonnentür, die sich zur Schwelle öffnet.")}</p>
       <p>{t("They're the most dangerous way to walk home alive, and the richest. Finds carried out through a Way are worth half as much again, and they hold relics you can't get anywhere else.",
             "Sie sind der gefährlichste Weg, lebend nach Hause zu gehen, und der reichste. Funde, die du durch einen Weg hinausträgst, sind anderthalbmal so viel wert, und dort liegen Relikte, die es sonst nirgends gibt.")}</p>
     </div>
@@ -1040,9 +1136,9 @@ PAGES = {
     "climb/builders-ways.html": dict(
         title=("The Builders' Ways", "Die Wege der Erbauer"), kicker=("The Climb", "Der Aufstieg"),
         banner=["LP1-S10", "T2E-SCENE"], og=["LP1-S10", "T2E-SCENE"],
-        lede=("Six secret side-view passages inside the walls: the most dangerous way home, and the richest.",
-              "Sechs geheime Gänge in Seitenansicht in den Wänden: der gefährlichste Weg nach Hause und der reichste."),
-        description=("The Builders' Ways: optional flip-screen trap platforming levels hidden inside the Sun Temple's walls.",
+        lede=("Six secret one-screen trap gauntlets inside the walls: the most dangerous way home, and the richest.",
+              "Sechs geheime Fallen-Spießrutenläufe in den Wänden, Bildschirm für Bildschirm: der gefährlichste Weg nach Hause und der reichste."),
+        description=("The Builders' Ways: optional one-screen trap gauntlets hidden inside the Sun Temple's walls, the game's hardest platforming.",
                      "Die Wege der Erbauer: optionale Fallen-Plattformer-Level, verborgen in den Wänden des Sonnentempels."),
         body=builders_ways),
     "climb/index.html": dict(
@@ -1060,11 +1156,11 @@ PAGES = {
         banner=["A-03"], og=["A-03"], body=threshold_hub),
     "climb/floor-0.html": dict(
         title=("The Shell", "The Shell"), kicker=("The Climb", "Der Aufstieg"),
-        lede=("The tutorial floor: nine spaces on one route, and every core verb taught once.",
-              "Die Tutorial-Ebene: neun Räume auf einer Route, und jedes Grundverb wird genau einmal gelehrt."),
+        lede=("The first level and the vertical slice: seventeen side-on screens, every base move taught once, and your first death.",
+              "Die erste Ebene und der Vertical Slice: siebzehn Bildschirme von der Seite, jede Grundbewegung einmal gelehrt, und dein erster Tod."),
         description=("The Shell: the tutorial floor of Ascent of the Sun Temple, room by room.",
                      "The Shell: die Tutorial-Ebene von Ascent of the Sun Temple, Raum für Raum."),
-        banner=["B-03", "B-11"], og=["B-02", "B-11"], body=floor_0),
+        banner=["SCR-05", "B-03", "B-11"], og=["SCR-05", "B-11"], body=floor_0),
     "climb/sky-altar.html": dict(
         title=("The Sky Altar", "Der Himmelsaltar"), kicker=("The Climb", "Der Aufstieg"),
         lede=("Floor 26: the open summit, the last fight, and the choice.",
@@ -1073,11 +1169,11 @@ PAGES = {
                      "Der Himmelsaltar, der Gipfel des Sonnentempels: das Plateau, der letzte Kampf und die Wahl am Ende."),
         banner=["E-02", "E-03"], og=["E-02", "E-03"], body=sky_altar),
     "climb/shared-rooms.html": dict(
-        title=("Shared Rooms", "Gemeinsame Räume"), kicker=("The Climb", "Der Aufstieg"),
-        lede=("The Portal Chamber that ends every floor, and the Spirit Shrine where you can rest.",
-              "Die Portalkammer am Ende jeder Ebene und der Geisterschrein, an dem du rasten kannst."),
-        description=("The Portal Chamber and the Spirit Shrine, the two rooms shared by every floor of the climb.",
-                     "Die Portalkammer und der Geisterschrein, die beiden Räume, die alle Ebenen des Aufstiegs teilen."),
+        title=("Shrines & Portals", "Schreine & Portale"), kicker=("The Climb", "Der Aufstieg"),
+        lede=("The Sun Shrines where you rest and start again, and the Portal Chamber that ends every floor.",
+              "Die Sonnenschreine, an denen du rastest und neu beginnst, und die Portalkammer am Ende jeder Ebene."),
+        description=("The Sun Shrine and the Portal Chamber, the two rooms on every floor of the climb.",
+                     "Der Sonnenschrein und die Portalkammer, die beiden Räume auf jeder Ebene des Aufstiegs."),
         banner=["C-02", "C-04"], og=["C-02", "C-04"], body=shared_rooms),
 }
 for _n in TIERS:

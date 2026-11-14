@@ -339,7 +339,7 @@ TAB_SHORT = {
     "climb/tier-1.html": ("Tier I", "Stufe I"), "climb/tier-2.html": ("Tier II", "Stufe II"),
     "climb/tier-3.html": ("Tier III", "Stufe III"), "climb/tier-4.html": ("Tier IV", "Stufe IV"),
     "climb/tier-5.html": ("Tier V", "Stufe V"), "climb/tier-6.html": ("Tier VI", "Stufe VI"),
-    "climb/sky-altar.html": ("Sky Altar", "Himmelsaltar"), "climb/shared-rooms.html": ("Shared Rooms", "Gemeinsame Räume"),
+    "climb/sky-altar.html": ("Sky Altar", "Himmelsaltar"), "climb/shared-rooms.html": ("Shrines & Portals", "Schreine & Portale"),
     "climb/builders-ways.html": ("Builders' Ways", "Wege der Erbauer"),
 }
 

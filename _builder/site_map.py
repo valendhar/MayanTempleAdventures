@@ -63,7 +63,7 @@ NAV = [
         (("Tier V · Illusion Depths", "Stufe V · Tiefen der Täuschung"), "climb/tier-5.html", []),
         (("Tier VI · The Ascension", "Stufe VI · Die Erhebung"), "climb/tier-6.html", []),
         (("The Sky Altar", "Der Himmelsaltar"), "climb/sky-altar.html", []),
-        (("Shared Rooms", "Gemeinsame Räume"), "climb/shared-rooms.html", []),
+        (("Shrines & Portals", "Schreine & Portale"), "climb/shared-rooms.html", []),
         (("The Builders' Ways", "Die Wege der Erbauer"), "climb/builders-ways.html", []),
     ]),
 ]

@@ -122,13 +122,13 @@ C["characters/kaya.html"] = dict(
                                           "Jeder Schritt, vom ersten Korridor bis zum Himmelsaltar"))],
     quote=(("Thank you. I mean that. And I'm going to check it anyway.",
             "Danke. Ehrlich. Und ich prüfe es trotzdem nach."), ("Kaya", "Kaya")),
-    design=("Everything has to read in motion, at third-person range, against busy carved stone. Her cerulean tunic is the one "
+    design=("Everything has to read in motion, side-on and a tenth of the screen tall, against busy carved stone. Her cerulean tunic is the one "
             "cool colour on floors lit almost entirely by torch gold, so she never gets lost in a fire room. The braids hang "
-            "straight down her back for clean 3D geometry, and goggles, satchel and braids stay in silhouette from every angle.",
-            "Alles muss in Bewegung, aus der Third-Person-Distanz und vor unruhig behauenem Stein lesbar sein. Ihre himmelblaue "
+            "straight down her back for clean 3D geometry, and goggles, satchel and braids stay readable in silhouette.",
+            "Alles muss in Bewegung lesbar sein, von der Seite, ein Zehntel des Bildschirms hoch, vor unruhig behauenem Stein. Ihre himmelblaue "
             "Tunika ist die einzige kühle Farbe auf Ebenen, die fast nur von Fackelgold beleuchtet sind, so geht sie selbst in "
             "einem Feuerraum nie verloren. Die Zöpfe hängen für saubere 3D-Geometrie gerade den Rücken hinunter, und Brille, Tasche "
-            "und Zöpfe bleiben aus jedem Blickwinkel in der Silhouette erkennbar."),
+            "und Zöpfe bleiben in der Silhouette erkennbar."),
     extras=[("HOME-KAYA", ("Kaya in action", "Kaya in Aktion")), ("TA-KAYA", ("Turnaround", "Turnaround")),
             ("W08", ("Kaya's field kit", "Kayas Feldausrüstung"))],
 )
@@ -784,8 +784,8 @@ def creatures(ctx):
     return f"""
 <section class="wrap section narrow-top">
   <p class="kicker">{t("Enemies", "Gegner")}</p><h2>{t("What waits on the floors", "Was auf den Ebenen wartet")}</h2>
-  <p class="lede-sm">{t("Eerie and characterful rather than gory. Every enemy is built to read clearly at third-person range, has a tell you can learn, and can be caught by the temple's own traps.",
-                        "Eher unheimlich und charaktervoll als blutig. Jeder Gegner ist so gestaltet, dass er aus der Third-Person-Distanz klar lesbar ist, hat ein Warnzeichen, das du lernen kannst, und kann in die Fallen des Tempels geraten.")}</p>
+  <p class="lede-sm">{t("Eerie and characterful rather than gory. Every enemy is built to read clearly side-on, in silhouette, has a tell you can learn, and can be caught by the temple's own traps.",
+                        "Eher unheimlich und charaktervoll als blutig. Jeder Gegner ist so gestaltet, dass er von der Seite, im Umriss, klar lesbar ist, hat ein Warnzeichen, das du lernen kannst, und kann in die Fallen des Tempels geraten.")}</p>
   {grid(ENEMIES)}
   <h3 class="sub-head">{t("Also on the floors", "Außerdem auf den Ebenen")}</h3>
   {new_enemies(ctx)}
