@@ -866,6 +866,13 @@ def pyramid(ctx):
 
 
 # ------------------------------------------------------------------ the Threshold hub
+THRESHOLD_SCREENS = [
+    (["TH-01", "HUB10"], ("The table", "Der Tisch")),
+    (["TH-02", "HUB06"], ("The Wheel and the portals", "Das Rad und die Portale")),
+    (["TH-03", "HUB12"], ("The Sun Gates", "Die Sonnentore")),
+]
+
+
 def threshold_hub(ctx):
     u, t = ctx.url, ctx.t
     stations = [
@@ -908,6 +915,16 @@ def threshold_hub(ctx):
     <p>{t(f"This page is about how the hub plays. For its history and the clues hidden in it, see <a href='{u('world/threshold.html')}'>World: The Threshold</a>.",
           f"Diese Seite zeigt, wie der Hub funktioniert. Seine Geschichte und die darin versteckten Hinweise findest du unter <a href='{u('world/threshold.html')}'>Welt: Die Schwelle</a>.")}</p>
   </div>
+</section>
+
+<section class="strip-band"><div class="wrap section">
+  <div class="section-head">
+    <h2>{t("The hall, side-on", "Die Halle, von der Seite")}</h2>
+  </div>
+  <p class="lede-sm">{t("Three screens from west to east: the table where you wake, the Memory Wheel and the portals, and the wall of Sun Gates.",
+                        "Drei Bildschirme von West nach Ost: der Tisch, an dem du erwachst, das Erinnerungsrad mit den Portalen und die Wand der Sonnentore.")}</p>
+</div>
+{run_strip(ctx, THRESHOLD_SCREENS, t("The Threshold, screen by screen", "Die Schwelle, Bildschirm für Bildschirm"))}
 </section>
 
 <section class="band"><div class="wrap section">
